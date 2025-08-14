@@ -39,8 +39,8 @@ const Home = () => {
   
   // Contact form state
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
+    name: '',
+    subject: '',
     email: '',
     phone: '',
     message: ''
@@ -232,8 +232,8 @@ const Home = () => {
       
       // Reset form
       setFormData({
-        firstName: '',
-        lastName: '',
+        name: '',
+        subject: '',
         email: '',
         phone: '',
         message: ''
@@ -357,7 +357,7 @@ const Home = () => {
               {courses.map((course, index) => (
                 <div
                   key={course.name}
-                  className={`group relative bg-gradient-to-br from-white to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-8 border border-african_violet/10 hover:border-african_violet/30 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden ${
+                  className={`group relative bg-gradient-to-br from-white to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-8 border border-african_violet/10 hover:border-african_violet/30 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden border-l-4 border-l-grape ${
                     coursesInView 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-8'
@@ -457,7 +457,7 @@ const Home = () => {
               {features.map((feature, index) => (
                 <div
                   key={index}
-                  className={`group relative bg-gradient-to-br from-white/90 to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-8 border border-african_violet/20 hover:border-african_violet/40 cursor-pointer transform hover:-translate-y-2 hover:scale-105 overflow-hidden ${
+                  className={`group relative bg-gradient-to-br from-white/90 to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-8 border border-african_violet/20 hover:border-african_violet/40 cursor-pointer transform hover:-translate-y-2 hover:scale-105 overflow-hidden border-l-4 border-l-grape ${
                     whySeagullInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                   }`}
                   style={{ 
@@ -792,17 +792,17 @@ const Home = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <input 
                         type="text" 
-                        placeholder="First Name" 
-                        value={formData.firstName}
-                        onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                        placeholder="Full Name" 
+                        value={formData.name}
+                        onChange={(e) => setFormData({...formData, name: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-african_violet focus:border-transparent"
                         required
                       />
                       <input 
                         type="text" 
-                        placeholder="Last Name" 
-                        value={formData.lastName}
-                        onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                        placeholder="Subject" 
+                        value={formData.subject}
+                        onChange={(e) => setFormData({...formData, subject: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-african_violet focus:border-transparent"
                         required
                       />
