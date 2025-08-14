@@ -5,6 +5,7 @@ import About from './pages/About'
 import Courses from './pages/Courses'
 import Mentors from './pages/Mentors'
 import Achievements from './pages/Achievements'
+import Contact from './pages/Contact'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/mentors" element={<Mentors />} />
           <Route path="/achievements" element={<Achievements />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </ToastProvider>
