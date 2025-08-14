@@ -65,12 +65,12 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-8">
+              <div className="ml-6 flex items-baseline space-x-6">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-white/90 hover:text-white px-3 py-2 text-sm font-medium relative group transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-african_violet rounded"
+                    className="text-white/90 hover:text-white px-2 py-2 text-base font-semibold relative group transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-african_violet rounded"
                   >
                     {link.name}
                     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-200 ease-out group-hover:w-full"></span>
