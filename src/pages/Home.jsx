@@ -18,6 +18,7 @@ import Spinner from '../components/ui/Spinner';
 import { useToast } from '../components/ui/Toast';
 import homeData from '../data/home.json';
 import AnchorNavigation from '../components/AnchorNavigation';
+import mentorsData from '../data/mentors.json';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -58,15 +59,16 @@ const Home = () => {
   ];
 
   // Mentor data
-  const mentors = [
-    { name: 'Vikram Ghule', subject: 'Physics', experience: 'BE, ME & PhD Mechanical, 17 years experience' },
-    { name: 'Prachi Ghule', subject: 'Mathematics', experience: 'BE, ME Instrumentation, 7 years' },
-    { name: 'Minal Patil', subject: 'Chemistry', experience: 'BSc & MSc Chemistry, 12 years' },
-    { name: 'Asawari Hire', subject: 'Biology', experience: 'BSc & MSc Biotechnology, 8 years' },
-    { name: 'Ram Solanke', subject: 'Biology', experience: 'BSc & MSc Microbiology, 6 years' },
-    { name: 'Kishor Jadhav', subject: 'Mathematics', experience: 'BE & ME Mechanical, 6 years' },
-    { name: 'Dr. Shradha Dandnaik', subject: 'Bio‑NEET', experience: 'BDS, 4 years' }
-  ];
+  // const mentors = [
+  //   { name: 'Vikram Ghule', subject: 'Physics', experience: 'BE, ME & PhD Mechanical, 17 years experience' },
+  //   { name: 'Prachi Ghule', subject: 'Mathematics', experience: 'BE, ME Instrumentation, 7 years' },
+  //   { name: 'Minal Patil', subject: 'Chemistry', experience: 'BSc & MSc Chemistry, 12 years' },
+  //   { name: 'Asawari Hire', subject: 'Biology', experience: 'BSc & MSc Biotechnology, 8 years' },
+  //   { name: 'Ram Solanke', subject: 'Biology', experience: 'BSc & MSc Microbiology, 6 years' },
+  //   { name: 'Kishor Jadhav', subject: 'Mathematics', experience: 'BE & ME Mechanical, 6 years' },
+  //   { name: 'Dr. Shradha Dandnaik', subject: 'Bio‑NEET', experience: 'BDS, 4 years' }
+  // ];
+  const mentors = mentorsData;
 
   // Achievement data
   const achievements = [
@@ -353,11 +355,11 @@ const Home = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courses.map((course, index) => (
                 <div
                   key={course.name}
-                  className={`group relative bg-gradient-to-br from-white to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-8 border border-african_violet/10 hover:border-african_violet/30 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden border-l-4 border-l-grape ${
+                  className={`group relative bg-gradient-to-br from-white to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-6 border border-african_violet/10 hover:border-african_violet/30 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden border-l-4 border-l-grape ${
                     coursesInView 
                       ? 'opacity-100 translate-y-0' 
                       : 'opacity-0 translate-y-8'
@@ -379,7 +381,7 @@ const Home = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-african_violet/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"></div>
                   
                   {/* Icon container with enhanced design */}
-                  <div className="relative z-10 text-center space-y-6">
+                  <div className="relative z-10 text-center space-y-5">
                     <div className="relative mx-auto">
                       {/* Outer glow ring */}
                       <div className="absolute inset-0 w-20 h-20 bg-gradient-to-r from-grape to-african_violet rounded-full blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
@@ -391,18 +393,18 @@ const Home = () => {
                     </div>
                     
                     {/* Course title with enhanced typography */}
-                    <h3 className="font-display font-bold text-2xl text-jet group-hover:text-eminence transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
+                    <h3 className="font-display font-bold text-xl text-jet group-hover:text-eminence transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
                       {course.name}
                     </h3>
                     
                     {/* Description */}
-                    <p className="text-jet/70 text-lg leading-relaxed group-hover:text-jet/90 transition-all duration-500 ease-out">
+                    <p className="text-jet/70 text-base leading-relaxed group-hover:text-jet/90 transition-all duration-500 ease-out">
                       {course.description}
                     </p>
                     
                     {/* Interactive CTA button */}
-                    <div className="pt-4">
-                      <span className="inline-flex items-center space-x-2 text-african_violet font-semibold text-lg group-hover:text-grape transition-all duration-500 ease-out transform group-hover:translate-x-1">
+                    <div className="pt-3">
+                      <span className="inline-flex items-center space-x-2 text-african_violet font-semibold text-base group-hover:text-grape transition-all duration-500 ease-out transform group-hover:translate-x-1">
                         <span>View details</span>
                         <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-2 transition-all duration-500 ease-out" />
                       </span>
@@ -596,7 +598,7 @@ const Home = () => {
                               {/* Hover indicator */}
                               <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-2 group-hover:translate-y-0">
                                 <span className="inline-flex items-center space-x-2 text-african_violet font-medium text-xs group-hover:text-grape transition-colors duration-500">
-                                  <span>View Profile</span>
+                                  <span onClick={() => window.location.href = '/mentors'}>View Profile</span>
                                   <ArrowRightIcon className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
                                 </span>
                               </div>

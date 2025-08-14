@@ -5,6 +5,7 @@
     "subject": "Physics",
     "qualification": "BE, ME & PhD Mechanical",
     "photo": "/images/mentors/vikram.jpg",
+    "experience": "17 years",
     "bio": "17 years of experience in teaching Physics to NEET & JEE aspirants. Specializes in mechanics, thermodynamics, and modern physics. Known for breaking down complex concepts into simple, understandable parts.",
     "achievements": [
       "Mentored 800+ NEET qualifiers",
@@ -19,6 +20,7 @@
     "subject": "Mathematics",
     "qualification": "BE, ME Instrumentation",
     "photo": "/images/mentors/prachi.jpg",
+    "experience": "7 years",
     "bio": "7 years of experience in Mathematics education. Expert in calculus, algebra, and trigonometry. Focuses on building strong mathematical foundations and problem-solving skills.",
     "achievements": [
       "Produced 150+ state rankers",
@@ -33,6 +35,7 @@
     "subject": "Chemistry",
     "qualification": "BSc & MSc Chemistry",
     "photo": "/images/mentors/minal.jpg",
+    "experience": "12 years",
     "bio": "12 years of experience in Chemistry education. Specializes in organic chemistry, physical chemistry, and analytical chemistry. Known for making chemistry concepts memorable through practical examples.",
     "achievements": [
       "Mentored 400+ NEET qualifiers",
@@ -46,7 +49,8 @@
     "name": "Asawari Hire",
     "subject": "Biology",
     "qualification": "BSc & MSc Biotechnology",
-    "photo": "/images/mentors/asawari.jpg",
+    "photo": "/images/mentors/asawari.jpg", 
+    "experience": "8 years",
     "bio": "8 years of experience in Biology education. Specializes in human physiology, genetics, and ecology. Focuses on NEET-specific biology preparation with emphasis on diagrams and concepts.",
     "achievements": [
       "Mentored 300+ NEET qualifiers",
@@ -61,6 +65,7 @@
     "subject": "Biology",
     "qualification": "BSc & MSc Microbiology",
     "photo": "/images/mentors/ram.jpg",
+    "experience": "6 years",
     "bio": "6 years of experience in Biology education. Expert in microbiology, cell biology, and plant physiology. Known for his innovative teaching methods and practical approach.",
     "achievements": [
       "Mentored 200+ NEET qualifiers",
@@ -75,6 +80,7 @@
     "subject": "Mathematics",
     "qualification": "BE & ME Mechanical",
     "photo": "/images/mentors/kishor.jpg",
+    "experience": "6 years",
     "bio": "6 years of experience in Mathematics education. Specializes in calculus, coordinate geometry, and statistics. Focuses on building logical thinking and mathematical intuition.",
     "achievements": [
       "Mentored 180+ JEE qualifiers",
@@ -88,7 +94,8 @@
     "name": "Dr. Shradha Dandnaik",
     "subject": "Bio-NEET",
     "qualification": "BDS",
-    "photo": "/images/mentors/shradha.jpg",
+    "photo": "/images/mentors/shradha.jpg", 
+    "experience": "4 years",
     "bio": "4 years of experience in Biology education with medical background. Specializes in human anatomy, physiology, and medical terminology. Provides unique medical perspective to biology concepts.",
     "achievements": [
       "Mentored 120+ NEET qualifiers",
@@ -103,6 +110,7 @@
     "subject": "Physics",
     "qualification": "Ph.D. in Physics",
     "photo": "/images/mentors/amit.jpg",
+    "experience": "15 years",
     "bio": "15 years of experience in Physics education. Specializes in electromagnetism, optics, and quantum physics. Known for his research-oriented approach and deep conceptual understanding.",
     "achievements": [
       "Mentored 600+ JEE qualifiers",
@@ -117,6 +125,7 @@
     "subject": "Chemistry",
     "qualification": "MSc Chemistry, PhD Scholar",
     "photo": "/images/mentors/sneha.jpg",
+    "experience": "10 years",
     "bio": "10 years of experience in Chemistry education. Specializes in inorganic chemistry, coordination chemistry, and chemical bonding. Focuses on conceptual clarity and numerical problem solving.",
     "achievements": [
       "Mentored 350+ NEET qualifiers",
@@ -131,6 +140,7 @@
     "subject": "Mathematics",
     "qualification": "MSc Mathematics",
     "photo": "/images/mentors/rahul.jpg",
+    "experience": "8 years",
     "bio": "8 years of experience in Mathematics education. Specializes in algebra, trigonometry, and probability. Known for his systematic approach and emphasis on fundamentals.",
     "achievements": [
       "Mentored 250+ JEE qualifiers",
@@ -145,6 +155,7 @@
     "subject": "Biology",
     "qualification": "MBBS, MD Pathology",
     "photo": "/images/mentors/priyanka.jpg",
+    "experience": "12 years",
     "bio": "12 years of experience in Biology education with medical background. Specializes in human anatomy, pathology, and medical biology. Provides clinical perspective to biological concepts.",
     "achievements": [
       "Mentored 450+ NEET qualifiers",
@@ -159,6 +170,7 @@
     "subject": "Physics",
     "qualification": "MSc Physics",
     "photo": "/images/mentors/vikrant.jpg",
+    "experience": "9 years",
     "bio": "9 years of experience in Physics education. Specializes in mechanics, waves, and modern physics. Known for his practical demonstrations and real-world applications.",
     "achievements": [
       "Mentored 280+ NEET qualifiers",

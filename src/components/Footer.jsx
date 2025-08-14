@@ -9,6 +9,7 @@ const Footer = () => {
     { name: 'Courses', href: '/courses' },
     { name: 'Mentors', href: '/mentors' },
     { name: 'Achievements', href: '/achievements' },
+    { name: 'Gallery', href: '/gallery' },
     { name: 'Contact', href: '/contact' },
     { name: 'Privacy Policy', href: '/privacy' },
     { name: 'Terms of Service', href: '/terms' }
