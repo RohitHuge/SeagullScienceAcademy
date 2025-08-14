@@ -33,6 +33,13 @@ export default {
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards'
+      },
+      scale: {
+        '102': '1.02',
+        '98': '0.98'
+      },
+      backdropBlur: {
+        'xs': '2px'
       }
     },
   },

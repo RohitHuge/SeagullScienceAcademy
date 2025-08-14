@@ -1,0 +1,170 @@
+[
+  {
+    "id": 1,
+    "name": "Vikram Ghule",
+    "subject": "Physics",
+    "qualification": "BE, ME & PhD Mechanical",
+    "photo": "/images/mentors/vikram.jpg",
+    "bio": "17 years of experience in teaching Physics to NEET & JEE aspirants. Specializes in mechanics, thermodynamics, and modern physics. Known for breaking down complex concepts into simple, understandable parts.",
+    "achievements": [
+      "Mentored 800+ NEET qualifiers",
+      "Author of 'Physics Made Simple' guide",
+      "Former HOD at prestigious engineering college",
+      "Guest lecturer at multiple universities"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Prachi Ghule",
+    "subject": "Mathematics",
+    "qualification": "BE, ME Instrumentation",
+    "photo": "/images/mentors/prachi.jpg",
+    "bio": "7 years of experience in Mathematics education. Expert in calculus, algebra, and trigonometry. Focuses on building strong mathematical foundations and problem-solving skills.",
+    "achievements": [
+      "Produced 150+ state rankers",
+      "Specialist in competitive exam mathematics",
+      "Developed unique problem-solving methodologies",
+      "Regular contributor to mathematics journals"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Minal Patil",
+    "subject": "Chemistry",
+    "qualification": "BSc & MSc Chemistry",
+    "photo": "/images/mentors/minal.jpg",
+    "bio": "12 years of experience in Chemistry education. Specializes in organic chemistry, physical chemistry, and analytical chemistry. Known for making chemistry concepts memorable through practical examples.",
+    "achievements": [
+      "Mentored 400+ NEET qualifiers",
+      "Expert in organic chemistry mechanisms",
+      "Published research papers in chemistry",
+      "Awarded 'Best Chemistry Teacher' 2022"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Asawari Hire",
+    "subject": "Biology",
+    "qualification": "BSc & MSc Biotechnology",
+    "photo": "/images/mentors/asawari.jpg",
+    "bio": "8 years of experience in Biology education. Specializes in human physiology, genetics, and ecology. Focuses on NEET-specific biology preparation with emphasis on diagrams and concepts.",
+    "achievements": [
+      "Mentored 300+ NEET qualifiers",
+      "Specialist in human anatomy",
+      "Developed biology study materials",
+      "Regular speaker at biology conferences"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Ram Solanke",
+    "subject": "Biology",
+    "qualification": "BSc & MSc Microbiology",
+    "photo": "/images/mentors/ram.jpg",
+    "bio": "6 years of experience in Biology education. Expert in microbiology, cell biology, and plant physiology. Known for his innovative teaching methods and practical approach.",
+    "achievements": [
+      "Mentored 200+ NEET qualifiers",
+      "Specialist in cell biology",
+      "Developed practical biology modules",
+      "Awarded 'Innovative Teacher' 2023"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Kishor Jadhav",
+    "subject": "Mathematics",
+    "qualification": "BE & ME Mechanical",
+    "photo": "/images/mentors/kishor.jpg",
+    "bio": "6 years of experience in Mathematics education. Specializes in calculus, coordinate geometry, and statistics. Focuses on building logical thinking and mathematical intuition.",
+    "achievements": [
+      "Mentored 180+ JEE qualifiers",
+      "Expert in advanced mathematics",
+      "Developed mathematics problem banks",
+      "Regular contributor to mathematics forums"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Dr. Shradha Dandnaik",
+    "subject": "Bio-NEET",
+    "qualification": "BDS",
+    "photo": "/images/mentors/shradha.jpg",
+    "bio": "4 years of experience in Biology education with medical background. Specializes in human anatomy, physiology, and medical terminology. Provides unique medical perspective to biology concepts.",
+    "achievements": [
+      "Mentored 120+ NEET qualifiers",
+      "Medical professional turned educator",
+      "Specialist in human physiology",
+      "Developed medical biology curriculum"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Dr. Amit Deshmukh",
+    "subject": "Physics",
+    "qualification": "Ph.D. in Physics",
+    "photo": "/images/mentors/amit.jpg",
+    "bio": "15 years of experience in Physics education. Specializes in electromagnetism, optics, and quantum physics. Known for his research-oriented approach and deep conceptual understanding.",
+    "achievements": [
+      "Mentored 600+ JEE qualifiers",
+      "Published 25+ research papers",
+      "Former IIT faculty member",
+      "Awarded 'Excellence in Teaching' 2021"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Sneha Kulkarni",
+    "subject": "Chemistry",
+    "qualification": "MSc Chemistry, PhD Scholar",
+    "photo": "/images/mentors/sneha.jpg",
+    "bio": "10 years of experience in Chemistry education. Specializes in inorganic chemistry, coordination chemistry, and chemical bonding. Focuses on conceptual clarity and numerical problem solving.",
+    "achievements": [
+      "Mentored 350+ NEET qualifiers",
+      "Expert in coordination chemistry",
+      "Published chemistry textbooks",
+      "Awarded 'Young Chemistry Educator' 2023"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Rahul More",
+    "subject": "Mathematics",
+    "qualification": "MSc Mathematics",
+    "photo": "/images/mentors/rahul.jpg",
+    "bio": "8 years of experience in Mathematics education. Specializes in algebra, trigonometry, and probability. Known for his systematic approach and emphasis on fundamentals.",
+    "achievements": [
+      "Mentored 250+ JEE qualifiers",
+      "Specialist in algebra",
+      "Developed mathematics worksheets",
+      "Regular mathematics tutor trainer"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Dr. Priyanka Singh",
+    "subject": "Biology",
+    "qualification": "MBBS, MD Pathology",
+    "photo": "/images/mentors/priyanka.jpg",
+    "bio": "12 years of experience in Biology education with medical background. Specializes in human anatomy, pathology, and medical biology. Provides clinical perspective to biological concepts.",
+    "achievements": [
+      "Mentored 450+ NEET qualifiers",
+      "Medical doctor turned educator",
+      "Expert in human pathology",
+      "Developed clinical biology modules"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Vikrant Pawar",
+    "subject": "Physics",
+    "qualification": "MSc Physics",
+    "photo": "/images/mentors/vikrant.jpg",
+    "bio": "9 years of experience in Physics education. Specializes in mechanics, waves, and modern physics. Known for his practical demonstrations and real-world applications.",
+    "achievements": [
+      "Mentored 280+ NEET qualifiers",
+      "Specialist in wave physics",
+      "Developed physics lab modules",
+      "Awarded 'Practical Physics Teacher' 2022"
+    ]
+  }
+]
