@@ -19,6 +19,7 @@ import { useToast } from '../components/ui/Toast';
 import homeData from '../data/home.json';
 import AnchorNavigation from '../components/AnchorNavigation';
 import mentorsData from '../data/mentors.json';
+import { sendMessage } from '../data/controllers';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -209,15 +210,7 @@ const Home = () => {
   }, []);
 
   const handleCTAClick = async () => {
-    setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
-    showSuccess('Redirecting to courses page...');
-    // In a real app, this would navigate to courses
-    setTimeout(() => {
-      window.location.href = '/courses';
-    }, 1000);
+    window.location.href = '/courses';
   };
 
   // Contact form submission handler
@@ -226,13 +219,14 @@ const Home = () => {
     setIsSubmitting(true);
     
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Show success message
-      showSuccess('Message sent successfully! We\'ll get back to you soon.');
-      
-      // Reset form
+      res = await sendMessage(formData.name, formData.subject, formData.phone, formData.email, formData.message);
+      console.log(res);
+
+      if(res.success){
+        showSuccess('Message sent successfully! We\'ll get back to you soon.');
+      }else{
+        showError('Failed to send message. Please try again.');
+      }
       setFormData({
         name: '',
         subject: '',
@@ -240,6 +234,7 @@ const Home = () => {
         phone: '',
         message: ''
       });
+      
     } catch (error) {
       showError('Failed to send message. Please try again.');
     } finally {
