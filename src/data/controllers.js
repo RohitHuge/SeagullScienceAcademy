@@ -1,16 +1,17 @@
 import { Client, Databases, ID } from "appwrite";
+import { appwriteEndpoint, appwriteProjectId, appwriteDatabaseId, appwriteEnquiryCollectionId, appwriteApplicationCollectionId } from "./config";
 
 const client = new Client()
-    .setEndpoint("https://fra.cloud.appwrite.io/v1")    
-    .setProject("689dfef5001a30964c88");
+    .setEndpoint(appwriteEndpoint)    
+    .setProject(appwriteProjectId);
 
 const databases = new Databases(client);
 
 export async function sendMessage(name,subject,phone,email, message) {
     try {
         const res = await databases.createDocument(
-            "689dffc9002257c4f1cb",
-            "689dffdc00390699c4e8",
+            appwriteDatabaseId,
+            appwriteEnquiryCollectionId,
             ID.unique(),
             { name, subject, phone, email, message }
         );
@@ -25,8 +26,8 @@ export async function sendMessage(name,subject,phone,email, message) {
 export async function sendApplication(name,course,phone,email, message) {
     try {
         const res = await databases.createDocument(
-            "689dffc9002257c4f1cb",
-            "689eb4f30010e41462f3",
+            appwriteDatabaseId,
+            appwriteApplicationCollectionId,
             ID.unique(),
             { name, course, phone, email, message }
         );
