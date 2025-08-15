@@ -6,38 +6,34 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon
 } from '@heroicons/react/24/outline';
-import AdminLayout from '../components/AdminLayout';
-import { useToast } from '../components/ui/Toast';
+import AdminLayout from '../../components/AdminLayout';
+import { useToast } from '../../components/ui/Toast';
 
-const AdminApplications = () => {
-  const [applications, setApplications] = useState([]);
+const AdminEnquiries = () => {
+  const [enquiries, setEnquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filters, setFilters] = useState({
-    course: '',
+    subject: '',
     status: '',
-    interest: '',
     outcome: ''
   });
-  const [selectedApplication, setSelectedApplication] = useState(null);
+  const [selectedEnquiry, setSelectedEnquiry] = useState(null);
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const { showToast } = useToast();
 
-  const courses = [
-    'Web Development',
-    'Data Science',
-    'Machine Learning',
-    'Mobile App Development',
-    'Cloud Computing',
-    'Cybersecurity',
-    'UI/UX Design',
-    'Digital Marketing'
+  const subjects = [
+    'Admission Inquiry',
+    'Course Information',
+    'Fee Structure',
+    'Batch Details',
+    'General Query',
+    'Other'
   ];
 
   const statuses = ['Pending', 'Addressed'];
-  const interests = ['Interested', 'Not Interested', 'Custom'];
   const outcomes = [
     'Converted to Admission',
     'Lost the Student',
@@ -46,42 +42,42 @@ const AdminApplications = () => {
   ];
 
   useEffect(() => {
-    fetchApplications();
+    fetchEnquiries();
   }, [currentPage, filters]);
 
-  const fetchApplications = async () => {
+  const fetchEnquiries = async () => {
     try {
       // TODO: Implement actual API call with pagination and filters
       // Mock data for now
-      const mockApplications = Array.from({ length: 30 }, (_, i) => ({
-        id: `app_${i + 1}`,
-        name: `Applicant ${i + 1}`,
+      const mockEnquiries = Array.from({ length: 25 }, (_, i) => ({
+        id: `enq_${i + 1}`,
+        name: `Student ${i + 1}`,
         phone: `+91 ${Math.floor(Math.random() * 9000000000) + 1000000000}`,
-        email: `applicant${i + 1}@example.com`,
-        course: courses[Math.floor(Math.random() * courses.length)],
-        message: `This is a sample application message ${i + 1}. It contains details about the applicant's interest in our courses and their specific requirements.`,
-        status: Math.random() > 0.4 ? 'Addressed' : 'Pending',
-        interest: interests[Math.floor(Math.random() * interests.length)],
-        outcome: Math.random() > 0.4 ? outcomes[Math.floor(Math.random() * outcomes.length)] : '',
+        email: `student${i + 1}@example.com`,
+        subject: subjects[Math.floor(Math.random() * subjects.length)],
+        message: `This is a sample enquiry message ${i + 1}. It contains details about the student's interest in our courses and their specific requirements.`,
+        status: Math.random() > 0.3 ? 'Addressed' : 'Pending',
+        addressedBy: Math.random() > 0.3 ? 'Admin User' : '',
+        outcome: Math.random() > 0.3 ? outcomes[Math.floor(Math.random() * outcomes.length)] : '',
         date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString()
       }));
 
-      setApplications(mockApplications);
-      setTotalPages(Math.ceil(mockApplications.length / 10));
+      setEnquiries(mockEnquiries);
+      setTotalPages(Math.ceil(mockEnquiries.length / 10));
     } catch (error) {
-      showToast('Failed to fetch applications', 'error');
+      showToast('Failed to fetch enquiries', 'error');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleStatusUpdate = async (applicationId, newStatus) => {
+  const handleStatusUpdate = async (enquiryId, newStatus) => {
     try {
       // TODO: Implement API call to update status
-      setApplications(prev => prev.map(app => 
-        app.id === applicationId 
-          ? { ...app, status: newStatus }
-          : app
+      setEnquiries(prev => prev.map(enq => 
+        enq.id === enquiryId 
+          ? { ...enq, status: newStatus, addressedBy: newStatus === 'Addressed' ? 'Admin User' : '' }
+          : enq
       ));
       showToast('Status updated successfully', 'success');
     } catch (error) {
@@ -89,23 +85,11 @@ const AdminApplications = () => {
     }
   };
 
-  const handleInterestUpdate = async (applicationId, newInterest) => {
-    try {
-      // TODO: Implement API call to update interest
-      setApplications(prev => prev.map(app => 
-        app.id === applicationId ? { ...app, interest: newInterest } : app
-      ));
-      showToast('Interest updated successfully', 'success');
-    } catch (error) {
-      showToast('Failed to update interest', 'error');
-    }
-  };
-
-  const handleOutcomeUpdate = async (applicationId, newOutcome) => {
+  const handleOutcomeUpdate = async (enquiryId, newOutcome) => {
     try {
       // TODO: Implement API call to update outcome
-      setApplications(prev => prev.map(app => 
-        app.id === applicationId ? { ...app, outcome: newOutcome } : app
+      setEnquiries(prev => prev.map(enq => 
+        enq.id === enquiryId ? { ...enq, outcome: newOutcome } : enq
       ));
       showToast('Outcome updated successfully', 'success');
     } catch (error) {
@@ -113,26 +97,25 @@ const AdminApplications = () => {
     }
   };
 
-  const filteredApplications = applications.filter(application => {
+  const filteredEnquiries = enquiries.filter(enquiry => {
     return (
-      (!filters.course || application.course === filters.course) &&
-      (!filters.status || application.status === filters.status) &&
-      (!filters.interest || application.interest === filters.interest) &&
-      (!filters.outcome || application.outcome === filters.outcome)
+      (!filters.subject || enquiry.subject === filters.subject) &&
+      (!filters.status || enquiry.status === filters.status) &&
+      (!filters.outcome || enquiry.outcome === filters.outcome)
     );
   });
 
-  const paginatedApplications = filteredApplications.slice(
+  const paginatedEnquiries = filteredEnquiries.slice(
     (currentPage - 1) * 10,
     currentPage * 10
   );
 
-  const ViewModal = ({ application, onClose }) => (
+  const ViewModal = ({ enquiry, onClose }) => (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       <div className="bg-black/90 backdrop-blur-md border border-neon-blue rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold text-light-text">Application Details</h2>
+            <h2 className="text-2xl font-bold text-light-text">Enquiry Details</h2>
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-neon-red transition-colors"
@@ -145,73 +128,69 @@ const AdminApplications = () => {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="text-gray-400 text-sm">Name</label>
-                <p className="text-light-text font-medium">{application.name}</p>
+                <p className="text-light-text font-medium">{enquiry.name}</p>
               </div>
               <div>
                 <label className="text-gray-400 text-sm">Phone</label>
-                <p className="text-light-text font-medium">{application.phone}</p>
+                <p className="text-light-text font-medium">{enquiry.phone}</p>
               </div>
               <div>
                 <label className="text-gray-400 text-sm">Email</label>
-                <p className="text-light-text font-medium">{application.email}</p>
+                <p className="text-light-text font-medium">{enquiry.email}</p>
               </div>
               <div>
-                <label className="text-gray-400 text-sm">Course</label>
-                <p className="text-light-text font-medium">{application.course}</p>
+                <label className="text-gray-400 text-sm">Subject</label>
+                <p className="text-light-text font-medium">{enquiry.subject}</p>
               </div>
               <div>
                 <label className="text-gray-400 text-sm">Status</label>
                 <span className={`px-2 py-1 rounded text-xs font-medium ${
-                  application.status === 'Pending' 
+                  enquiry.status === 'Pending' 
                     ? 'bg-neon-yellow/20 text-neon-yellow border border-neon-yellow/30' 
                     : 'bg-neon-green/20 text-neon-green border border-neon-green/30'
                 }`}>
-                  {application.status}
-                </span>
-              </div>
-              <div>
-                <label className="text-gray-400 text-sm">Interest Level</label>
-                <span className={`px-2 py-1 rounded text-xs font-medium ${
-                  application.interest === 'Interested' 
-                    ? 'bg-neon-green/20 text-neon-green border border-neon-green/30'
-                    : application.interest === 'Not Interested'
-                    ? 'bg-neon-red/20 text-neon-red border border-neon-red/30'
-                    : 'bg-neon-yellow/20 text-neon-yellow border border-neon-yellow/30'
-                }`}>
-                  {application.interest}
+                  {enquiry.status}
                 </span>
               </div>
               <div>
                 <label className="text-gray-400 text-sm">Date</label>
-                <p className="text-light-text font-medium">{application.date}</p>
-              </div>
-              <div>
-                <label className="text-gray-400 text-sm">Outcome</label>
-                <p className="text-light-text font-medium">{application.outcome || 'Not specified'}</p>
+                <p className="text-light-text font-medium">{enquiry.date}</p>
               </div>
             </div>
             
             <div>
               <label className="text-gray-400 text-sm">Message</label>
               <p className="text-light-text mt-1 bg-black/30 p-3 rounded border border-neon-blue/30">
-                {application.message}
+                {enquiry.message}
               </p>
             </div>
+
+            {enquiry.status === 'Addressed' && (
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-gray-400 text-sm">Addressed By</label>
+                  <p className="text-light-text font-medium">{enquiry.addressedBy}</p>
+                </div>
+                <div>
+                  <label className="text-gray-400 text-sm">Outcome</label>
+                  <p className="text-light-text font-medium">{enquiry.outcome || 'Not specified'}</p>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
   );
 
-  const EditModal = ({ application, onClose, onSave }) => {
+  const EditModal = ({ enquiry, onClose, onSave }) => {
     const [formData, setFormData] = useState({
-      status: application.status,
-      interest: application.interest,
-      outcome: application.outcome || ''
+      status: enquiry.status,
+      outcome: enquiry.outcome || ''
     });
 
     const handleSave = () => {
-      onSave(application.id, formData);
+      onSave(enquiry.id, formData);
       onClose();
     };
 
@@ -220,7 +199,7 @@ const AdminApplications = () => {
         <div className="bg-black/90 backdrop-blur-md border border-neon-blue rounded-lg max-w-md w-full">
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-light-text">Edit Application</h2>
+              <h2 className="text-xl font-bold text-light-text">Edit Enquiry</h2>
               <button
                 onClick={onClose}
                 className="text-gray-400 hover:text-neon-red transition-colors"
@@ -239,19 +218,6 @@ const AdminApplications = () => {
                 >
                   {statuses.map(status => (
                     <option key={status} value={status}>{status}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div>
-                <label className="text-gray-400 text-sm">Interest Level</label>
-                <select
-                  value={formData.interest}
-                  onChange={(e) => setFormData(prev => ({ ...prev, interest: e.target.value }))}
-                  className="w-full mt-1 px-3 py-2 bg-black/30 border border-neon-blue/50 rounded text-light-text focus:border-neon-cyan focus:outline-none"
-                >
-                  {interests.map(interest => (
-                    <option key={interest} value={interest}>{interest}</option>
                   ))}
                 </select>
               </div>
@@ -306,23 +272,23 @@ const AdminApplications = () => {
       <div className="space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-light-text">Applications Management</h1>
-          <p className="text-gray-400 mt-2">Manage and process student applications</p>
+          <h1 className="text-3xl font-bold text-light-text">Enquiries Management</h1>
+          <p className="text-gray-400 mt-2">Manage and respond to student enquiries</p>
         </div>
 
         {/* Filters */}
         <div className="bg-black/40 backdrop-blur-md border border-neon-blue/30 rounded-lg p-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
-              <label className="text-gray-400 text-sm font-medium mb-2 block">Course</label>
+              <label className="text-gray-400 text-sm font-medium mb-2 block">Subject</label>
               <select
-                value={filters.course}
-                onChange={(e) => setFilters(prev => ({ ...prev, course: e.target.value }))}
+                value={filters.subject}
+                onChange={(e) => setFilters(prev => ({ ...prev, subject: e.target.value }))}
                 className="w-full px-3 py-2 bg-black/30 border border-neon-blue/50 rounded text-light-text focus:border-neon-cyan focus:outline-none"
               >
-                <option value="">All Courses</option>
-                {courses.map(course => (
-                  <option key={course} value={course}>{course}</option>
+                <option value="">All Subjects</option>
+                {subjects.map(subject => (
+                  <option key={subject} value={subject}>{subject}</option>
                 ))}
               </select>
             </div>
@@ -337,20 +303,6 @@ const AdminApplications = () => {
                 <option value="">All Statuses</option>
                 {statuses.map(status => (
                   <option key={status} value={status}>{status}</option>
-                ))}
-              </select>
-            </div>
-            
-            <div>
-              <label className="text-gray-400 text-sm font-medium mb-2 block">Interest</label>
-              <select
-                value={filters.interest}
-                onChange={(e) => setFilters(prev => ({ ...prev, interest: e.target.value }))}
-                className="w-full px-3 py-2 bg-black/30 border border-neon-blue/50 rounded text-light-text focus:border-neon-cyan focus:outline-none"
-              >
-                <option value="">All Interest Levels</option>
-                {interests.map(interest => (
-                  <option key={interest} value={interest}>{interest}</option>
                 ))}
               </select>
             </div>
@@ -379,60 +331,48 @@ const AdminApplications = () => {
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Name</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Contact</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Course</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Subject</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Message</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Status</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Interest</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Date</th>
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-neon-blue/20">
-                {paginatedApplications.map((application) => (
-                  <tr key={application.id} className="hover:bg-neon-blue/5 transition-colors">
+                {paginatedEnquiries.map((enquiry) => (
+                  <tr key={enquiry.id} className="hover:bg-neon-blue/5 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm font-medium text-light-text">{application.name}</div>
+                      <div className="text-sm font-medium text-light-text">{enquiry.name}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-light-text">{application.phone}</div>
-                      <div className="text-sm text-gray-400">{application.email}</div>
+                      <div className="text-sm text-light-text">{enquiry.phone}</div>
+                      <div className="text-sm text-gray-400">{enquiry.email}</div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="text-sm text-light-text">{application.course}</span>
+                      <span className="text-sm text-light-text">{enquiry.subject}</span>
                     </td>
                     <td className="px-6 py-4">
                       <div className="text-sm text-gray-400 max-w-xs truncate">
-                        {application.message}
+                        {enquiry.message}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className={`px-2 py-1 rounded text-xs font-medium ${
-                        application.status === 'Pending' 
+                        enquiry.status === 'Pending' 
                           ? 'bg-neon-yellow/20 text-neon-yellow border border-neon-yellow/30' 
                           : 'bg-neon-green/20 text-neon-green border border-neon-green/30'
                       }`}>
-                        {application.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <span className={`px-2 py-1 rounded text-xs font-medium ${
-                        application.interest === 'Interested' 
-                          ? 'bg-neon-green/20 text-neon-green border border-neon-green/30'
-                          : application.interest === 'Not Interested'
-                          ? 'bg-neon-red/20 text-neon-red border border-neon-red/30'
-                          : 'bg-neon-yellow/20 text-neon-yellow border border-neon-yellow/30'
-                      }`}>
-                        {application.interest}
+                        {enquiry.status}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                      {application.date}
+                      {enquiry.date}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <button
                           onClick={() => {
-                            setSelectedApplication(application);
+                            setSelectedEnquiry(enquiry);
                             setShowViewModal(true);
                           }}
                           className="text-neon-blue hover:text-neon-cyan transition-colors"
@@ -441,16 +381,16 @@ const AdminApplications = () => {
                         </button>
                         <button
                           onClick={() => {
-                            setSelectedApplication(application);
+                            setSelectedEnquiry(enquiry);
                             setShowEditModal(true);
                           }}
                           className="text-neon-cyan hover:text-neon-blue transition-colors"
                         >
                           <PencilIcon className="w-4 h-4" />
                         </button>
-                        {application.status === 'Pending' && (
+                        {enquiry.status === 'Pending' && (
                           <button
-                            onClick={() => handleStatusUpdate(application.id, 'Addressed')}
+                            onClick={() => handleStatusUpdate(enquiry.id, 'Addressed')}
                             className="text-neon-green hover:text-neon-cyan transition-colors"
                             title="Mark as addressed"
                           >
@@ -469,7 +409,7 @@ const AdminApplications = () => {
         {/* Pagination */}
         <div className="flex items-center justify-between">
           <div className="text-sm text-gray-400">
-            Showing {((currentPage - 1) * 10) + 1} to {Math.min(currentPage * 10, filteredApplications.length)} of {filteredApplications.length} results
+            Showing {((currentPage - 1) * 10) + 1} to {Math.min(currentPage * 10, filteredEnquiries.length)} of {filteredEnquiries.length} results
           </div>
           <div className="flex items-center space-x-2">
             <button
@@ -494,29 +434,26 @@ const AdminApplications = () => {
       </div>
 
       {/* Modals */}
-      {showViewModal && selectedApplication && (
+      {showViewModal && selectedEnquiry && (
         <ViewModal
-          application={selectedApplication}
+          enquiry={selectedEnquiry}
           onClose={() => {
             setShowViewModal(false);
-            setSelectedApplication(null);
+            setSelectedEnquiry(null);
           }}
         />
       )}
 
-      {showEditModal && selectedApplication && (
+      {showEditModal && selectedEnquiry && (
         <EditModal
-          application={selectedApplication}
+          enquiry={selectedEnquiry}
           onClose={() => {
             setShowEditModal(false);
-            setSelectedApplication(null);
+            setSelectedEnquiry(null);
           }}
           onSave={(id, data) => {
             if (data.status === 'Addressed') {
               handleStatusUpdate(id, data.status);
-            }
-            if (data.interest) {
-              handleInterestUpdate(id, data.interest);
             }
             if (data.outcome) {
               handleOutcomeUpdate(id, data.outcome);
@@ -528,4 +465,4 @@ const AdminApplications = () => {
   );
 };
 
-export default AdminApplications;
+export default AdminEnquiries;

@@ -10,10 +10,10 @@ import Achievements from './pages/Achievements'
 import Contact from './pages/Contact'
 import Gallery from './pages/Gallery'
 import Login from './pages/Login'
-import AdminDashboard from './pages/AdminDashboard'
-import AdminEnquiries from './pages/AdminEnquiries'
-import AdminApplications from './pages/AdminApplications'
-import AdminSettings from './pages/AdminSettings'
+import AdminDashboard from './pages/dashboard/AdminDashboard'
+import AdminEnquiries from './pages/dashboard/AdminEnquiries'
+import AdminApplications from './pages/dashboard/AdminApplications'
+import AdminSettings from './pages/dashboard/AdminSettings'
 
 function App() {
   return (

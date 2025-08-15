@@ -5,8 +5,8 @@ import {
   ShieldCheckIcon,
   UserGroupIcon
 } from '@heroicons/react/24/outline';
-import AdminLayout from '../components/AdminLayout';
-import { useToast } from '../components/ui/Toast';
+import AdminLayout from '../../components/AdminLayout';
+import { useToast } from '../../components/ui/Toast';
 
 const AdminSettings = () => {
   const [settings, setSettings] = useState({
