@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { sendMessage } from '../data/controllers';
 
 // Custom hook for in-view animation (play only once)
 function useInViewOnce(ref, options = {}) {
@@ -159,20 +160,14 @@ function ContactForm() {
     setIsSubmitting(true);
     
     try {
-      // Simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
-      // Here you would typically send the form data to your backend
-      // For now, we'll just show success and open email client
-      setSubmitStatus('success');
-      
-      // Open email client with form data
-      const subject = 'Contact Form Submission from Seagull Science Academy';
-      const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject}\nMessage: ${formData.message}`;
-      window.location.href = `mailto:info@seagullacademy.in?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      
-      // Reset form after successful submission
-      setTimeout(() => {
+      let res = await sendMessage(formData.name, formData.subject, formData.phone, formData.email, formData.message);
+
+      if(res.success === true){
+        setSubmitStatus('success');
+      }else{
+        setSubmitStatus('error');
+      }
+     
         setFormData({
           name: '',
           email: '',
@@ -180,8 +175,7 @@ function ContactForm() {
           subject: '',
           message: ''
         });
-        setSubmitStatus(null);
-      }, 3000);
+       
       
     } catch (error) {
       setSubmitStatus('error');

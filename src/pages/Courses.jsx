@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { sendApplication } from '../data/controllers';
 
 const COURSES = [
   {
@@ -105,13 +106,24 @@ function ApplyModal({ course, isOpen, onClose }) {
   const errors = validate();
   const isValid = !errors.name && !errors.phone;
   
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     setTouched({ name: true, phone: true });
     if (!isValid) return;
-    setSubmitted(true);
+    // setSubmitted(true);
     // Demo: log to console
-    console.log({ ...form, course: course?.title });
+    // console.log({ ...form, course: course?.title });
+    try{
+      let res = await sendApplication(form.name, course?.title, form.phone, form.email, form.message);
+      if(res.success === true){
+        setSubmitted(true);
+      }else{
+        setSubmitted(false);
+      }
+    }catch(err){
+      console.log("Error sending application:", err);
+      setSubmitted(false);
+    }
   };
   
   return (

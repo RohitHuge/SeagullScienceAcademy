@@ -219,13 +219,13 @@ const Home = () => {
     setIsSubmitting(true);
     
     try {
-      res = await sendMessage(formData.name, formData.subject, formData.phone, formData.email, formData.message);
-      console.log(res);
+      let res = await sendMessage(formData.name, formData.subject, formData.phone, formData.email, formData.message);
+      // console.log("res", res);
 
-      if(res.success){
+      if(res.success === true){
         showSuccess('Message sent successfully! We\'ll get back to you soon.');
       }else{
-        showError('Failed to send message. Please try again.');
+        showError('Failed to send message. Please try again.|| If else ladder');
       }
       setFormData({
         name: '',
@@ -236,7 +236,7 @@ const Home = () => {
       });
       
     } catch (error) {
-      showError('Failed to send message. Please try again.');
+      showError('Failed to send message. Please try again.|| catch');
     } finally {
       setIsSubmitting(false);
     }
@@ -795,14 +795,20 @@ const Home = () => {
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-african_violet focus:border-transparent"
                         required
                       />
-                      <input 
-                        type="text" 
-                        placeholder="Subject" 
+                      <select
                         value={formData.subject}
                         onChange={(e) => setFormData({...formData, subject: e.target.value})}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-african_violet focus:border-transparent"
                         required
-                      />
+                      >
+                        <option value="">Select a subject</option>
+                        <option value="Admission Inquiry">Admission Inquiry</option>
+                        <option value="Course Information">Course Information</option>
+                        <option value="Fee Structure">Fee Structure</option>
+                        <option value="Batch Details">Batch Details</option>
+                        <option value="General Query">General Query</option>
+                        <option value="Other">Other</option>
+                      </select>
                     </div>
                     <input 
                       type="email" 
