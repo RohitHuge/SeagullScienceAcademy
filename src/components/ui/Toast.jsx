@@ -94,9 +94,14 @@ export const ToastProvider = ({ children }) => {
   const showSuccess = useCallback((message) => addToast('success', message), [addToast]);
   const showError = useCallback((message) => addToast('error', message), [addToast]);
   const showInfo = useCallback((message) => addToast('info', message), [addToast]);
+  
+  // Generic showToast function for backward compatibility
+  const showToast = useCallback((message, type = 'info') => {
+    addToast(type, message);
+  }, [addToast]);
 
   return (
-    <ToastContext.Provider value={{ showSuccess, showError, showInfo }}>
+    <ToastContext.Provider value={{ showSuccess, showError, showInfo, showToast }}>
       {children}
       <div className="fixed top-0 right-0 z-50 p-4 space-y-2">
         {toasts.map(toast => (

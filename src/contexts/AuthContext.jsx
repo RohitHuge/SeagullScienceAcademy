@@ -48,11 +48,16 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
+    console.log('AuthContext: logout called');
     try {
+      console.log('AuthContext: deleting sessions...');
       await account.deleteSessions();
+      console.log('AuthContext: sessions deleted successfully');
       setUser(null);
+      console.log('AuthContext: user state cleared');
       return { success: true };
     } catch (error) {
+      console.error('AuthContext: logout error:', error);
       return { success: false, error: error.message };
     }
   };

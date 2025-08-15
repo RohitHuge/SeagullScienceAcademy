@@ -6,30 +6,37 @@ import {
 } from '@heroicons/react/24/outline';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from './ui/Toast';
+import { useNavigate } from 'react-router-dom';
 
 const AdminTopBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const { user, logout } = useAuth();
   const { showToast } = useToast();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       const result = await logout();
+      
       if (result.success) {
         showToast('Logged out successfully', 'success');
+        navigate('/login');
       } else {
-        showToast('Logout failed', 'error');
+        showToast(result.error || 'Logout failed', 'error');
+        // Still navigate to login even if logout fails
+        navigate('/login');
       }
     } catch (error) {
       showToast('An error occurred during logout', 'error');
+      // Navigate to login on error
+      navigate('/login');
     }
   };
 
   const handleSearch = (e) => {
     e.preventDefault();
     // Implement search functionality
-    console.log('Searching for:', searchQuery);
   };
 
   return (
@@ -56,6 +63,15 @@ const AdminTopBar = () => {
           <span className="absolute -top-1 -right-1 w-3 h-3 bg-neon-red rounded-full animate-pulse"></span>
         </button>
 
+        {/* Sign Out Button */}
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 text-light-text hover:text-neon-cyan hover:bg-neon-blue/10 rounded-lg transition-all duration-300 border border-neon-blue/30 hover:border-neon-cyan"
+          type="button"
+        >
+          Sign Out
+        </button>
+
         {/* User Profile */}
         <div className="relative">
           <button
@@ -67,17 +83,24 @@ const AdminTopBar = () => {
           </button>
 
           {showProfileDropdown && (
-            <div className="absolute right-0 mt-2 w-48 bg-black/90 backdrop-blur-md border border-neon-blue/30 rounded-lg shadow-neon-blue py-2 z-50">
-              <div className="px-4 py-2 border-b border-neon-blue/20">
+            <div 
+              className="absolute right-0 mt-2 w-48 bg-black/90 backdrop-blur-md border border-neon-blue/30 rounded-lg shadow-neon-blue py-2 z-50"
+            >
+              {/* Close button */}
+              <div className="flex justify-end px-2 py-1">
+                <button
+                  onClick={() => setShowProfileDropdown(false)}
+                  className="text-gray-400 hover:text-neon-red text-sm px-2 py-1 rounded hover:bg-neon-red/10 transition-all duration-300"
+                  type="button"
+                >
+                  ✕
+                </button>
+              </div>
+                      
+              <div className="px-4 py-2">
                 <p className="text-light-text text-sm font-medium">{user?.name || 'Admin User'}</p>
                 <p className="text-gray-400 text-xs">{user?.email}</p>
               </div>
-              <button
-                onClick={handleLogout}
-                className="w-full text-left px-4 py-2 text-light-text hover:bg-neon-blue/20 hover:text-neon-cyan transition-all duration-300"
-              >
-                Sign Out
-              </button>
             </div>
           )}
         </div>
