@@ -8,6 +8,8 @@ import {
 } from '@heroicons/react/24/outline';
 import AdminLayout from '../../components/AdminLayout';
 import { useToast } from '../../components/ui/Toast';
+import { Client, Databases, Query } from 'appwrite';
+import { appwriteDatabaseId, appwriteEnquiryCollectionId, appwriteEndpoint, appwriteProjectId } from '../../data/config';
 
 const AdminEnquiries = () => {
   const [enquiries, setEnquiries] = useState([]);
@@ -23,6 +25,7 @@ const AdminEnquiries = () => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const { showToast } = useToast();
+  const [databases, setDatabases] = useState(null);
 
   const subjects = [
     'Admission Inquiry',
@@ -33,82 +36,149 @@ const AdminEnquiries = () => {
     'Other'
   ];
 
+  const mapOutcomes = {
+    'Converted to Admission': 'ConvertedToAdmission',
+    'Lost the Student': 'LostTheStudent',
+    'Follow-up Required': 'FollowUpRequired',
+    'Custom': 'Custom'
+  };
+
   const statuses = ['Pending', 'Addressed'];
-  const outcomes = [
-    'Converted to Admission',
-    'Lost the Student',
-    'Follow-up Required',
-    'Custom'
-  ];
+  const outcomes = Object.keys(mapOutcomes);
 
   useEffect(() => {
     fetchEnquiries();
-  }, [currentPage, filters]);
+  }, [currentPage, filters, databases]);
+
+  useEffect(() => {
+    const initDatabases = async () => {
+    const client = new Client()
+      .setEndpoint(appwriteEndpoint)
+      .setProject(appwriteProjectId);
+
+      const databases =  new Databases(client);
+      // console.log(databases);
+      setDatabases(databases);
+    };
+    initDatabases();
+  }, []);
+
+  // const fetchEnquiries = async () => {
+  //   try {
+  //     // TODO: Implement actual API call with pagination and filters
+  //     // Mock data for now
+  //     const mockEnquiries = Array.from({ length: 25 }, (_, i) => ({
+  //       id: `enq_${i + 1}`,
+  //       name: `Student ${i + 1}`,
+  //       phone: `+91 ${Math.floor(Math.random() * 9000000000) + 1000000000}`,
+  //       email: `student${i + 1}@example.com`,
+  //       subject: subjects[Math.floor(Math.random() * subjects.length)],
+  //       message: `This is a sample enquiry message ${i + 1}. It contains details about the student's interest in our courses and their specific requirements.`,
+  //       status: Math.random() > 0.3 ? 'Addressed' : 'Pending',
+  //       addressedBy: Math.random() > 0.3 ? 'Admin User' : '',
+  //       outcome: Math.random() > 0.3 ? outcomes[Math.floor(Math.random() * outcomes.length)] : '',
+  //       date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString()
+  //     }));
+
+  //     setEnquiries(mockEnquiries);
+  //     setTotalPages(Math.ceil(mockEnquiries.length / 10));
+  //   } catch (error) {
+  //     showToast('Failed to fetch enquiries', 'error');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const fetchEnquiries = async () => {
-    try {
-      // TODO: Implement actual API call with pagination and filters
-      // Mock data for now
-      const mockEnquiries = Array.from({ length: 25 }, (_, i) => ({
-        id: `enq_${i + 1}`,
-        name: `Student ${i + 1}`,
-        phone: `+91 ${Math.floor(Math.random() * 9000000000) + 1000000000}`,
-        email: `student${i + 1}@example.com`,
-        subject: subjects[Math.floor(Math.random() * subjects.length)],
-        message: `This is a sample enquiry message ${i + 1}. It contains details about the student's interest in our courses and their specific requirements.`,
-        status: Math.random() > 0.3 ? 'Addressed' : 'Pending',
-        addressedBy: Math.random() > 0.3 ? 'Admin User' : '',
-        outcome: Math.random() > 0.3 ? outcomes[Math.floor(Math.random() * outcomes.length)] : '',
-        date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString()
-      }));
+  setLoading(true);
+  try {
+    const pageSize = 10;
+    const queries = [
+      Query.limit(pageSize),
+      Query.offset((currentPage - 1) * pageSize)
+    ];
 
-      setEnquiries(mockEnquiries);
-      setTotalPages(Math.ceil(mockEnquiries.length / 10));
-    } catch (error) {
-      showToast('Failed to fetch enquiries', 'error');
-    } finally {
-      setLoading(false);
-    }
-  };
+    if (filters.subject) queries.push(Query.equal("subject", filters.subject));
+    if (filters.status) queries.push(Query.equal("status", filters.status));
+    if (filters.outcome) queries.push(Query.equal("outcome", mapOutcomes[filters.outcome]));
+
+    const response = await databases.listDocuments(
+      appwriteDatabaseId,
+      appwriteEnquiryCollectionId,
+      queries
+    );
+
+    setEnquiries(response.documents);
+    setTotalPages(Math.ceil(response.total / pageSize)); 
+  } catch (err) {
+    showToast("Failed to fetch enquiries", "error");
+  } finally {
+    setLoading(false);
+  }
+};
 
   const handleStatusUpdate = async (enquiryId, newStatus) => {
     try {
       // TODO: Implement API call to update status
-      setEnquiries(prev => prev.map(enq => 
-        enq.id === enquiryId 
-          ? { ...enq, status: newStatus, addressedBy: newStatus === 'Addressed' ? 'Admin User' : '' }
-          : enq
-      ));
-      showToast('Status updated successfully', 'success');
+      // console.log(enquiryId, newStatus);
+      const response = await databases.updateDocument(
+        appwriteDatabaseId,
+        appwriteEnquiryCollectionId,
+        enquiryId,
+        { status: newStatus }
+      );
+      // console.log(response);
+      if (response) {
+        showToast('Status updated successfully', 'success');
+      } else {
+        showToast('Failed to update status || if else logic', 'error');
+      }
+      fetchEnquiries();
+      
     } catch (error) {
-      showToast('Failed to update status', 'error');
+      showToast('Failed to update status || catch block', 'error');
+      console.log(error);
     }
   };
 
   const handleOutcomeUpdate = async (enquiryId, newOutcome) => {
     try {
       // TODO: Implement API call to update outcome
-      setEnquiries(prev => prev.map(enq => 
-        enq.id === enquiryId ? { ...enq, outcome: newOutcome } : enq
-      ));
-      showToast('Outcome updated successfully', 'success');
+      const response = await databases.updateDocument(
+        appwriteDatabaseId,
+        appwriteEnquiryCollectionId,
+        enquiryId,
+        { outcome: newOutcome }
+      );
+      console.log(response);
+      if (response) {
+        showToast('Outcome updated successfully', 'success');
+      } else {
+        showToast('Failed to update outcome || if else logic', 'error');
+      }
+      fetchEnquiries();
+
+      // setEnquiries(prev => prev.map(enq => 
+      //   enq.id === enquiryId ? { ...enq, outcome: newOutcome } : enq
+      // ));
     } catch (error) {
-      showToast('Failed to update outcome', 'error');
+      showToast('Failed to update outcome || catch block', 'error');
+      console.log(error);
     }
   };
 
-  const filteredEnquiries = enquiries.filter(enquiry => {
-    return (
-      (!filters.subject || enquiry.subject === filters.subject) &&
-      (!filters.status || enquiry.status === filters.status) &&
-      (!filters.outcome || enquiry.outcome === filters.outcome)
-    );
-  });
+  // const filteredEnquiries = enquiries.filter(enquiry => {
+  //   return (
+  //     (!filters.subject || enquiry.subject === filters.subject) &&
+  //     (!filters.status || enquiry.status === filters.status) &&
+  //     (!filters.outcome || enquiry.outcome === filters.outcome)
+  //   );
+  // });
 
-  const paginatedEnquiries = filteredEnquiries.slice(
-    (currentPage - 1) * 10,
-    currentPage * 10
-  );
+  // const paginatedEnquiries = filteredEnquiries.slice(
+  //   (currentPage - 1) * 10,
+  //   currentPage * 10
+  // );
 
   const ViewModal = ({ enquiry, onClose }) => (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -154,7 +224,7 @@ const AdminEnquiries = () => {
               </div>
               <div>
                 <label className="text-gray-400 text-sm">Date</label>
-                <p className="text-light-text font-medium">{enquiry.date}</p>
+                <p className="text-light-text font-medium">{enquiry.$createdAt}</p>
               </div>
             </div>
             
@@ -190,7 +260,7 @@ const AdminEnquiries = () => {
     });
 
     const handleSave = () => {
-      onSave(enquiry.id, formData);
+              onSave(enquiry.$id, formData);
       onClose();
     };
 
@@ -339,8 +409,8 @@ const AdminEnquiries = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-neon-blue/20">
-                {paginatedEnquiries.map((enquiry) => (
-                  <tr key={enquiry.id} className="hover:bg-neon-blue/5 transition-colors">
+                {enquiries.map((enquiry) => (
+                  <tr key={enquiry.$id} className="hover:bg-neon-blue/5 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-light-text">{enquiry.name}</div>
                     </td>
@@ -365,9 +435,9 @@ const AdminEnquiries = () => {
                         {enquiry.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                      {enquiry.date}
-                    </td>
+                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                       {new Date(enquiry.$createdAt).toLocaleDateString()}
+                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <button
@@ -390,7 +460,7 @@ const AdminEnquiries = () => {
                         </button>
                         {enquiry.status === 'Pending' && (
                           <button
-                            onClick={() => handleStatusUpdate(enquiry.id, 'Addressed')}
+                            onClick={() => handleStatusUpdate(enquiry.$id, 'Addressed')}
                             className="text-neon-green hover:text-neon-cyan transition-colors"
                             title="Mark as addressed"
                           >
@@ -409,7 +479,7 @@ const AdminEnquiries = () => {
         {/* Pagination */}
         <div className="flex items-center justify-between">
           <div className="text-sm text-gray-400">
-            Showing {((currentPage - 1) * 10) + 1} to {Math.min(currentPage * 10, filteredEnquiries.length)} of {filteredEnquiries.length} results
+            Showing {((currentPage - 1) * 10) + 1} to {Math.min(currentPage * 10, enquiries.length)} of {enquiries.length} results
           </div>
           <div className="flex items-center space-x-2">
             <button

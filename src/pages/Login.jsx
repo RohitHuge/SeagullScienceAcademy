@@ -17,18 +17,15 @@ const Login = () => {
 
     try {
       const result = await login(email, password);
-      console.log(result);
+      // console.log(result);
       if (result.success) {
-        // showToast('Login successful!', 'success');
-        console.log('Login successful!');
+        showToast('Login successful!', 'success');
         navigate('/admin');
       } else {
-        // showToast(result.error || 'Login failed', 'error');
-        console.log('Login failed!');
+        showToast(result.error || 'Login failed', 'error');
       }
     } catch (error) {
-      // showToast('An unexpected error occurred', 'error');
-      console.log('An unexpected error occurred');
+      showToast('An unexpected error occurred', 'error');
     } finally {
       setLoading(false);
     }

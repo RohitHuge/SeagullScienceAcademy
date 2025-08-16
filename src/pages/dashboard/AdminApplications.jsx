@@ -8,6 +8,8 @@ import {
 } from '@heroicons/react/24/outline';
 import AdminLayout from '../../components/AdminLayout';
 import { useToast } from '../../components/ui/Toast';
+import { Client, Databases, Query } from 'appwrite';
+import { appwriteDatabaseId, appwriteApplicationCollectionId, appwriteEndpoint, appwriteProjectId } from '../../data/config';
 
 const AdminApplications = () => {
   const [applications, setApplications] = useState([]);
@@ -50,26 +52,35 @@ const AdminApplications = () => {
   }, [currentPage, filters]);
 
   const fetchApplications = async () => {
+    setLoading(true);
     try {
-      // TODO: Implement actual API call with pagination and filters
-      // Mock data for now
-      const mockApplications = Array.from({ length: 30 }, (_, i) => ({
-        id: `app_${i + 1}`,
-        name: `Applicant ${i + 1}`,
-        phone: `+91 ${Math.floor(Math.random() * 9000000000) + 1000000000}`,
-        email: `applicant${i + 1}@example.com`,
-        course: courses[Math.floor(Math.random() * courses.length)],
-        message: `This is a sample application message ${i + 1}. It contains details about the applicant's interest in our courses and their specific requirements.`,
-        status: Math.random() > 0.4 ? 'Addressed' : 'Pending',
-        interest: interests[Math.floor(Math.random() * interests.length)],
-        outcome: Math.random() > 0.4 ? outcomes[Math.floor(Math.random() * outcomes.length)] : '',
-        date: new Date(Date.now() - Math.random() * 30 * 24 * 60 * 60 * 1000).toLocaleDateString()
-      }));
+      const client = new Client()
+          .setEndpoint(appwriteEndpoint)    
+          .setProject(appwriteProjectId);
 
-      setApplications(mockApplications);
-      setTotalPages(Math.ceil(mockApplications.length / 10));
-    } catch (error) {
-      showToast('Failed to fetch applications', 'error');
+      const databases = new Databases(client);
+      
+      const pageSize = 10;
+      const queries = [
+        Query.limit(pageSize),
+        Query.offset((currentPage - 1) * pageSize)
+      ];
+
+      if (filters.course) queries.push(Query.equal("course", filters.course));
+      if (filters.status) queries.push(Query.equal("status", filters.status));
+      if (filters.interest) queries.push(Query.equal("interest", filters.interest));
+      if (filters.outcome) queries.push(Query.equal("outcome", filters.outcome));
+
+      const response = await databases.listDocuments(
+        appwriteDatabaseId,
+        appwriteApplicationCollectionId,
+        queries
+      );
+
+      setApplications(response.documents);
+      setTotalPages(Math.ceil(response.total / pageSize)); 
+    } catch (err) {
+      showToast("Failed to fetch applications", "error");
     } finally {
       setLoading(false);
     }
@@ -79,7 +90,7 @@ const AdminApplications = () => {
     try {
       // TODO: Implement API call to update status
       setApplications(prev => prev.map(app => 
-        app.id === applicationId 
+        app.$id === applicationId 
           ? { ...app, status: newStatus }
           : app
       ));
@@ -93,7 +104,7 @@ const AdminApplications = () => {
     try {
       // TODO: Implement API call to update interest
       setApplications(prev => prev.map(app => 
-        app.id === applicationId ? { ...app, interest: newInterest } : app
+        app.$id === applicationId ? { ...app, interest: newInterest } : app
       ));
       showToast('Interest updated successfully', 'success');
     } catch (error) {
@@ -105,7 +116,7 @@ const AdminApplications = () => {
     try {
       // TODO: Implement API call to update outcome
       setApplications(prev => prev.map(app => 
-        app.id === applicationId ? { ...app, outcome: newOutcome } : app
+        app.$id === applicationId ? { ...app, outcome: newOutcome } : app
       ));
       showToast('Outcome updated successfully', 'success');
     } catch (error) {
@@ -113,19 +124,7 @@ const AdminApplications = () => {
     }
   };
 
-  const filteredApplications = applications.filter(application => {
-    return (
-      (!filters.course || application.course === filters.course) &&
-      (!filters.status || application.status === filters.status) &&
-      (!filters.interest || application.interest === filters.interest) &&
-      (!filters.outcome || application.outcome === filters.outcome)
-    );
-  });
 
-  const paginatedApplications = filteredApplications.slice(
-    (currentPage - 1) * 10,
-    currentPage * 10
-  );
 
   const ViewModal = ({ application, onClose }) => (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
@@ -181,10 +180,10 @@ const AdminApplications = () => {
                   {application.interest}
                 </span>
               </div>
-              <div>
-                <label className="text-gray-400 text-sm">Date</label>
-                <p className="text-light-text font-medium">{application.date}</p>
-              </div>
+                             <div>
+                 <label className="text-gray-400 text-sm">Date</label>
+                 <p className="text-light-text font-medium">{new Date(application.$createdAt).toLocaleDateString()}</p>
+               </div>
               <div>
                 <label className="text-gray-400 text-sm">Outcome</label>
                 <p className="text-light-text font-medium">{application.outcome || 'Not specified'}</p>
@@ -211,7 +210,7 @@ const AdminApplications = () => {
     });
 
     const handleSave = () => {
-      onSave(application.id, formData);
+              onSave(application.$id, formData);
       onClose();
     };
 
@@ -388,8 +387,8 @@ const AdminApplications = () => {
                 </tr>
               </thead>
               <tbody className="divide-y divide-neon-blue/20">
-                {paginatedApplications.map((application) => (
-                  <tr key={application.id} className="hover:bg-neon-blue/5 transition-colors">
+                                 {applications.map((application) => (
+                  <tr key={application.$id} className="hover:bg-neon-blue/5 transition-colors">
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="text-sm font-medium text-light-text">{application.name}</div>
                     </td>
@@ -425,9 +424,9 @@ const AdminApplications = () => {
                         {application.interest}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
-                      {application.date}
-                    </td>
+                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                       {new Date(application.$createdAt).toLocaleDateString()}
+                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <button
@@ -450,7 +449,7 @@ const AdminApplications = () => {
                         </button>
                         {application.status === 'Pending' && (
                           <button
-                            onClick={() => handleStatusUpdate(application.id, 'Addressed')}
+                            onClick={() => handleStatusUpdate(application.$id, 'Addressed')}
                             className="text-neon-green hover:text-neon-cyan transition-colors"
                             title="Mark as addressed"
                           >
@@ -468,9 +467,9 @@ const AdminApplications = () => {
 
         {/* Pagination */}
         <div className="flex items-center justify-between">
-          <div className="text-sm text-gray-400">
-            Showing {((currentPage - 1) * 10) + 1} to {Math.min(currentPage * 10, filteredApplications.length)} of {filteredApplications.length} results
-          </div>
+                     <div className="text-sm text-gray-400">
+             Showing {((currentPage - 1) * 10) + 1} to {Math.min(currentPage * 10, applications.length)} of {applications.length} results
+           </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
