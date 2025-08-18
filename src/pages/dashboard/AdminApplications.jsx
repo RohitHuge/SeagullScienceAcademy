@@ -180,10 +180,10 @@ const AdminApplications = () => {
                   {application.interest}
                 </span>
               </div>
-                             <div>
-                 <label className="text-gray-400 text-sm">Date</label>
+              <div>
+                <label className="text-gray-400 text-sm">Date</label>
                  <p className="text-light-text font-medium">{new Date(application.$createdAt).toLocaleDateString()}</p>
-               </div>
+              </div>
               <div>
                 <label className="text-gray-400 text-sm">Outcome</label>
                 <p className="text-light-text font-medium">{application.outcome || 'Not specified'}</p>
@@ -424,9 +424,9 @@ const AdminApplications = () => {
                         {application.interest}
                       </span>
                     </td>
-                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
                        {new Date(application.$createdAt).toLocaleDateString()}
-                     </td>
+                    </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <div className="flex space-x-2">
                         <button
@@ -467,9 +467,9 @@ const AdminApplications = () => {
 
         {/* Pagination */}
         <div className="flex items-center justify-between">
-                     <div className="text-sm text-gray-400">
+          <div className="text-sm text-gray-400">
              Showing {((currentPage - 1) * 10) + 1} to {Math.min(currentPage * 10, applications.length)} of {applications.length} results
-           </div>
+          </div>
           <div className="flex items-center space-x-2">
             <button
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}

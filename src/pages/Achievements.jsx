@@ -583,3 +583,5 @@ export default function Achievements() {
     </div>
   );
 }
+
+export {STUDENT_ACHIEVEMENTS}

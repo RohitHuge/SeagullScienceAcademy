@@ -19,7 +19,10 @@ import { useToast } from '../components/ui/Toast';
 import homeData from '../data/home.json';
 import AnchorNavigation from '../components/AnchorNavigation';
 import mentorsData from '../data/mentors.json';
+import BlurText from '../components/ui/BlurText';
+import TextType from '../components/ui/TextType';
 import { sendMessage } from '../data/controllers';
+import { STUDENT_ACHIEVEMENTS } from './Achievements';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -36,6 +39,7 @@ const Home = () => {
   const [contactInView, setContactInView] = useState(false);
   const [whySeagullInView, setWhySeagullInView] = useState(false);
   const [mentorsInView, setMentorsInView] = useState(false);
+  const [currentAchieverSet, setCurrentAchieverSet] = useState(0);
   const achievementsRef = useRef();
   const contactRef = useRef();
   
@@ -72,14 +76,7 @@ const Home = () => {
   const mentors = mentorsData;
 
   // Achievement data
-  const achievements = [
-    { name: 'Amit Shinde', exam: 'CET', score: '98.86', subject: 'PCB' },
-    { name: 'Priya Deshmukh', exam: 'NEET-UG', score: '97.50', subject: 'PCM' },
-    { name: 'Rahul Joshi', exam: 'IIT-JEE', score: '96.20', subject: 'PCM' },
-    { name: 'Anjali Singh', exam: 'CET', score: '95.80', subject: 'PCB' },
-    { name: 'Vikram Mehta', exam: 'NDA', score: '94.50', subject: 'General' },
-    { name: 'Sneha Reddy', exam: 'NEET-UG', score: '93.75', subject: 'PCB' }
-  ];
+  const achievements = STUDENT_ACHIEVEMENTS;
 
   // Why Seagull features
   const features = [
@@ -99,6 +96,16 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, [mentors.length]);
+
+  // Auto-advance achiever sets
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentAchieverSet((prev) => (prev + 1) % Math.ceil(achievements.length / 3));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [achievements.length]);
+
+
 
   // Simulate loading mentor images
   useEffect(() => {
@@ -282,10 +289,25 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
               <div className="space-y-8">
                 <h1 className="font-display font-bold text-5xl lg:text-7xl leading-tight animate-fade-in-up">
-                  {homeData.hero.title}
+                <BlurText
+                  text={homeData.hero.title}
+                  delay={150}
+                  animateBy="words"
+                  direction="top"
+                  // onAnimationComplete={handleAnimationComplete}
+                  className="text-5xl lg:text-7xl leading-tight"
+                />
                 </h1>
                 <p className="text-xl lg:text-2xl text-white/90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-                  {homeData.hero.subtitle}
+                <TextType 
+                  text={homeData.hero.subtitle.split('**')}
+                  typingSpeed={75}
+                  pauseDuration={1500}
+                  showCursor={false}
+                  cursorCharacter="•"
+                  className="text-xl lg:text-2xl text-white/90 leading-relaxed"
+                  variableSpeed={{min : 60 , max : 120}}
+                />
                 </p>
                 <button
                   onClick={handleCTAClick}
@@ -307,15 +329,88 @@ const Home = () => {
                 </button>
               </div>
               
-              {/* Highlight Card */}
-              <div className="bg-white/95 backdrop-blur-sm text-jet p-8 rounded-2xl shadow-2xl border border-white/20 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
+              {/* Highlight Card with Achievers Carousel */}
+              <div 
+                className="bg-white/95 backdrop-blur-sm text-jet p-8 rounded-2xl shadow-2xl border border-white/20 animate-fade-in-up" 
+                style={{ animationDelay: '0.6s' }}
+              >
                 <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-display font-semibold text-xl">Top Performer</h3>
-                  <span className="bg-gold text-jet px-3 py-1 rounded-full text-xs font-bold shadow-md">TOPPER</span>
+                  <h3 className="font-display font-semibold text-xl">Top Performers</h3>
+                  <span className="bg-gold text-jet px-3 py-1 rounded-full text-xs font-bold shadow-md">TOPPERS</span>
                 </div>
-                <div className="space-y-3">
-                  <p className="font-semibold text-african_violet text-lg">{homeData.hero.highlight.name}</p>
-                  <p className="text-jet/80 text-base">{homeData.hero.highlight.achievement}</p>
+                
+                {/* Top Performers Display */}
+                <div className="space-y-4">
+                  {/* Current Set of 3 Achievers */}
+                  {achievements
+                    .slice(currentAchieverSet * 3, (currentAchieverSet * 3) + 3)
+                    .map((achiever, index) => (
+                    <div 
+                      key={`set-${currentAchieverSet}-${index}`}
+                      className="flex items-center justify-between p-3 bg-gradient-to-r from-african_violet/10 to-grape/10 rounded-lg border border-african_violet/20 animate-fade-in-up"
+                      style={{ 
+                        animationDelay: `${index * 0.1}s`,
+                        animationDuration: '0.6s'
+                      }}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <div className="w-8 h-8 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center text-jet font-bold text-sm animate-bounce-in">
+                          {(currentAchieverSet * 3) + index + 1}
+                        </div>
+                        <div className="animate-slide-in-left">
+                          <p className="font-semibold text-african_violet text-sm">{achiever.name}</p>
+                          <p className="text-jet/70 text-xs">{achiever.exam}</p>
+                        </div>
+                      </div>
+                      <div className="text-right animate-slide-in-right">
+                        <p className="font-bold text-eminence text-lg">{achiever.score}</p>
+                      </div>
+                    </div>
+                  ))}
+                  
+                  {/* Set Navigation */}
+                  <div className="flex items-center justify-between pt-2">
+                    <div className="text-center flex-1">
+                      <p 
+                        className="text-jet/60 text-xs transition-all duration-300"
+                      >
+                        Set {currentAchieverSet + 1} of {Math.ceil(achievements.length / 3)}
+                      </p>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      {/* Manual Navigation Buttons */}
+                      <button
+                        onClick={() => setCurrentAchieverSet((prev) => (prev - 1 + Math.ceil(achievements.length / 3)) % Math.ceil(achievements.length / 3))}
+                        className="p-1 text-jet/60 hover:text-african_violet transition-all duration-300 hover:scale-110"
+                        title="Previous set"
+                      >
+                        ←
+                      </button>
+                      
+                      {/* Navigation Dots */}
+                      <div className="flex space-x-1">
+                        {Array.from({ length: Math.ceil(achievements.length / 3) }).map((_, index) => (
+                                                  <button
+                          key={index}
+                          onClick={() => setCurrentAchieverSet(index)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            index === currentAchieverSet 
+                              ? 'bg-african_violet w-4 shadow-neon-blue' 
+                              : 'bg-jet/30 hover:bg-jet/50'
+                          }`}
+                        />
+                        ))}
+                      </div>
+                      
+                      <button
+                        onClick={() => setCurrentAchieverSet((prev) => (prev + 1) % Math.ceil(achievements.length / 3))}
+                        className="p-1 text-african_violet hover:text-african_violet transition-all duration-300 hover:scale-110"
+                        title="Next set"
+                      >
+                        →
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -658,13 +753,13 @@ const Home = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" ref={achievementsRef}>
               {achievements.map((achievement, i) => (
                 <div 
-                  key={achievement.name} 
+                  key={`achievement-${i}`} 
                   className={`bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center border-b-4 border-gold transition-all duration-700 hover:scale-105 cursor-pointer ${
                     achievementsInView ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
                   }`} 
                   style={{ transitionDelay: `${i * 120}ms` }}
                 >
-                  <span className="text-4xl font-bold text-grape mb-2">{achievement.score}</span>
+                  <span className="text-4xl font-bold text-eminence mb-2">{achievement.score}</span>
                   <h3 className="text-lg font-bold text-jet mb-1">{achievement.name}</h3>
                   <p className="text-base text-jet/70 mb-1">{achievement.exam}</p>
                 </div>
