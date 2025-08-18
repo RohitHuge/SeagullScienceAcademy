@@ -8,10 +8,10 @@ import {
 
 const AdminSidebar = () => {
   const navItems = [
-    { path: '/admin', icon: HomeIcon, label: 'Dashboard' },
+    // { path: '/admin', icon: HomeIcon, label: 'Dashboard' },
     { path: '/admin/enquiries', icon: ChatBubbleLeftRightIcon, label: 'Enquiries' },
     { path: '/admin/applications', icon: DocumentTextIcon, label: 'Applications' },
-    { path: '/admin/settings', icon: Cog6ToothIcon, label: 'Settings' }
+    // { path: '/admin/settings', icon: Cog6ToothIcon, label: 'Settings' }
   ];
 
   return (

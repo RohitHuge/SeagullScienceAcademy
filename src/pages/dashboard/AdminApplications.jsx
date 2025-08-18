@@ -28,24 +28,30 @@ const AdminApplications = () => {
   const { showToast } = useToast();
 
   const courses = [
-    'Web Development',
-    'Data Science',
-    'Machine Learning',
-    'Mobile App Development',
-    'Cloud Computing',
-    'Cybersecurity',
-    'UI/UX Design',
-    'Digital Marketing'
+    '9th & 10th Foundation',
+    '11th & 12th Science (PCMB)',
+    'IIT-JEE Preparation',
+    'NEET-UG Preparation',
+    'MHT-CET Preparation',
+    'Foundation Course (6th-8th)',
+    'NDA Preparation'
   ];
 
   const statuses = ['Pending', 'Addressed'];
-  const interests = ['Interested', 'Not Interested', 'Custom'];
-  const outcomes = [
-    'Converted to Admission',
-    'Lost the Student',
-    'Follow-up Required',
-    'Custom'
-  ];
+  const mapOutcomes = {
+    'Converted to Admission': 'ConvertedToAdmission',
+    'Lost the Student': 'LostTheStudent',
+    'Follow-up Required': 'FollowUpRequired',
+    'Custom': 'Custom'
+  };
+
+  const outcomes = Object.keys(mapOutcomes);
+  const mapInterests = {
+    'Interested': 'Interested',
+    'Not Interested': 'NotInterested',
+    'Custom': 'Custom'
+  };
+  const interests = Object.keys(mapInterests);
 
   useEffect(() => {
     fetchApplications();

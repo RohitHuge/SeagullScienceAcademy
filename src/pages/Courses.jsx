@@ -100,15 +100,16 @@ function ApplyModal({ course, isOpen, onClose }) {
     return {
       name: !form.name.trim(),
       phone: !form.phone.trim() || !/^\d{7,15}$/.test(form.phone.trim()),
+      email: !form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim()),
     };
   };
   
   const errors = validate();
-  const isValid = !errors.name && !errors.phone;
+  const isValid = !errors.name && !errors.phone && !errors.email;
   
   const handleSubmit = async e => {
     e.preventDefault();
-    setTouched({ name: true, phone: true });
+    setTouched({ name: true, phone: true, email: true });
     if (!isValid) return;
     // setSubmitted(true);
     // Demo: log to console
@@ -179,7 +180,7 @@ function ApplyModal({ course, isOpen, onClose }) {
               </div>
               
               <div>
-                <label className="block text-sm font-medium text-grape mb-1">Email (optional)</label>
+                <label className="block text-sm font-medium text-grape mb-1">Email*</label>
                 <input
                   type="email"
                   name="email"
@@ -188,6 +189,7 @@ function ApplyModal({ course, isOpen, onClose }) {
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-african_violet focus:border-transparent transition-colors"
                   placeholder="Enter your email address"
                 />
+                {errors.email && touched.email && <div className="text-red-500 text-xs mt-1">Valid email is required</div>}
               </div>
               
               <div>

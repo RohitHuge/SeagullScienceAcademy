@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useToast } from '../components/ui/Toast';
@@ -7,9 +7,19 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, checkAuthStatus } = useAuth();
   const { showToast } = useToast();
   const navigate = useNavigate();
+
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     const result = await checkAuthStatus();
+  //     if (result.success) {
+  //       navigate('/admin/enquiries');
+  //     }
+  //   };
+  //   checkAuth();
+  // }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,7 +30,7 @@ const Login = () => {
       // console.log(result);
       if (result.success) {
         showToast('Login successful!', 'success');
-        navigate('/admin');
+        navigate('/admin/enquiries');
       } else {
         showToast(result.error || 'Login failed', 'error');
       }

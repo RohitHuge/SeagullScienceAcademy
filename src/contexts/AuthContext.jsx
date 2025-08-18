@@ -35,6 +35,12 @@ export const AuthProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
+
+    if (user) {
+      return { success: true };
+    } else {
+      return { success: false, error: 'User not found' };
+    }
   };
 
   const login = async (email, password) => {
