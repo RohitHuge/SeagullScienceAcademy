@@ -80,7 +80,7 @@ export default async function (context) {
       "Sorry, I couldn’t generate a response right now.";
 
     // 5) Respond
-    log(text);
+    context.log(text);
     return context.res.send(
       {
         reply: text,
