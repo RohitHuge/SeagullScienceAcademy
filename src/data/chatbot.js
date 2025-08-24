@@ -12,7 +12,7 @@ const functions = new Functions(client);
 export async function askBot(userMessage, history) {
   try {
     const execution = await functions.createExecution(
-      "seagull-bot", // replace with Appwrite Function ID
+      "68aafcd400374a707256", // replace with Appwrite Function ID
       JSON.stringify({
         message: userMessage,
         history,
