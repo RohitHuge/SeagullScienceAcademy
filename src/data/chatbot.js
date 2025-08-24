@@ -18,14 +18,34 @@ export async function askBot(userMessage, messages) {
         history: messages,
       })
     );
+    console.log(execution);
 
-    const response = JSON.parse(execution.responseBody);
-
-    return {
-      role: "model",
-      text: response.reply || "Sorry, no response received.",
-      timestamp: new Date(),
-    };
+    // Check if response body exists and is not empty
+    if (execution.responseBody && execution.responseBody.trim()) {
+      try {
+        const response = JSON.parse(execution.responseBody);
+        return {
+          role: "model",
+          text: response.reply || "Sorry, no response received.",
+          timestamp: new Date(),
+        };
+      } catch (parseError) {
+        console.error("JSON parse error:", parseError);
+        // If JSON parsing fails, return the raw response body
+        return {
+          role: "model",
+          text: execution.responseBody || "Response received but couldn't parse it.",
+          timestamp: new Date(),
+        };
+      }
+    } else {
+      // No response body received
+      return {
+        role: "model",
+        text: "No response received from the server. Please try again later.",
+        timestamp: new Date(),
+      };
+    }
   } catch (err) {
     console.error("askBot error:", err);
     return {

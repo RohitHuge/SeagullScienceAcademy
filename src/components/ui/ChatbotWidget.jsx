@@ -47,17 +47,10 @@ const ChatbotWidget = () => {
 
     try {
       // Get bot response
-      const botReply = await askBot(userMessage, messages);
+      const botResponse = await askBot(userMessage, messages);
       
       // Add bot response to chat
-      const newBotMessage = {
-        role: 'model',
-        text: botReply,
-        timestamp: new Date()
-      };
-      
-      setMessages(prev => [...prev, newBotMessage]);
-      // console.log(messages);
+      setMessages(prev => [...prev, botResponse]);
     } catch (err) {
       setError('Failed to get response. Please try again.');
       console.error('Chatbot error:', err);
