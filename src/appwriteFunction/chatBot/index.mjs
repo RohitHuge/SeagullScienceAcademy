@@ -28,7 +28,7 @@ export default async function (context) {
     }
 
     // 2) Env vars
-    const API_KEY = context.env.GEMINI_API_KEY;
+    const API_KEY = "AIzaSyDh9wnmdJsmFgKT_TUGp_YxRYrnBfvhKqI";
     const MODEL = context.env.MODEL || "gemini-1.5-flash";
     const SYSTEM_PROMPT =
       context.env.SYSTEM_PROMPT ||
