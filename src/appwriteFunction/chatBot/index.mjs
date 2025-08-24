@@ -7,6 +7,7 @@ export default async function (context) {
     try {
       payload = context.req.bodyRaw ? JSON.parse(context.req.bodyRaw) : {};
     } catch {
+      context.log("Invalid payload");
       return context.res.send(
         { error: "INVALID_PAYLOAD" },
         400,
@@ -18,6 +19,7 @@ export default async function (context) {
     const history = Array.isArray(payload.history) ? payload.history : [];
 
     if (!userMessage) {
+      context.log("Empty message");
       return context.res.send(
         { error: "EMPTY_MESSAGE" },
         400,
@@ -34,6 +36,7 @@ export default async function (context) {
        If unsure, say you can connect them to a counselor.`;
 
     if (!API_KEY) {
+      context.log("No API key");
       return context.res.send(
         { error: "NO_API_KEY" },
         500,
@@ -65,6 +68,7 @@ export default async function (context) {
     const data = await geminiResp.json();
 
     if (!geminiResp.ok) {
+      context.log("Gemini error");
       return context.res.send(
         { error: "GEMINI_ERROR", details: data },
         502,
@@ -86,6 +90,7 @@ export default async function (context) {
       { "Content-Type": "application/json" }
     );
   } catch (err) {
+    context.log("Function crash");
     return context.res.send(
       { error: "FUNCTION_CRASH", details: String(err) },
       500,
