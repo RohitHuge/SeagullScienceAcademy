@@ -9,13 +9,13 @@ const client = new Client()
 
 const functions = new Functions(client);
 
-export async function askBot(userMessage, history) {
+export async function askBot(userMessage, messages) {
   try {
     const execution = await functions.createExecution(
       "68aafcd400374a707256", // replace with Appwrite Function ID
       JSON.stringify({
         message: userMessage,
-        history,
+        history: messages,
       })
     );
 
