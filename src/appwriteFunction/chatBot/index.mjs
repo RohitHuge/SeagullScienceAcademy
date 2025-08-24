@@ -68,7 +68,7 @@ export default async function (context) {
     const data = await geminiResp.json();
 
     if (!geminiResp.ok) {
-      context.log("Gemini error");
+      context.log("Gemini error", data);
       return context.res.send(
         { error: "GEMINI_ERROR", details: data },
         502,
@@ -90,7 +90,7 @@ export default async function (context) {
       { "Content-Type": "application/json" }
     );
   } catch (err) {
-    context.log("Function crash");
+    context.log("Function crashed", err.message);
     return context.res.send(
       { error: "FUNCTION_CRASH", details: String(err) },
       500,
