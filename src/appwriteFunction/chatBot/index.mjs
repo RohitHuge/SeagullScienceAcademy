@@ -29,10 +29,9 @@ export default async function (context) {
 
     // 2) Env vars
     const API_KEY = "AIzaSyDh9wnmdJsmFgKT_TUGp_YxRYrnBfvhKqI";
-    const MODEL = context.env.MODEL || "gemini-1.5-flash";
+    const MODEL = "gemini-1.5-flash";
     const SYSTEM_PROMPT =
-      context.env.SYSTEM_PROMPT ||
-      `You are Seagull Academy's helpful assistant. Only answer about Seagull Academy (courses, fees, mentors, admissions).
+      `You are Seagull Science Academy's helpful assistant. Only answer about Seagull Science Academy (courses, fees, mentors, admissions).
        If unsure, say you can connect them to a counselor.`;
 
     if (!API_KEY) {
