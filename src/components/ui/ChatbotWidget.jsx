@@ -57,6 +57,7 @@ const ChatbotWidget = () => {
       };
       
       setMessages(prev => [...prev, newBotMessage]);
+      // console.log(messages);
     } catch (err) {
       setError('Failed to get response. Please try again.');
       console.error('Chatbot error:', err);
@@ -77,7 +78,7 @@ const ChatbotWidget = () => {
   };
 
   return (
-    <div className="bg-white z-50 rounded-2xl shadow-lg p-6 flex flex-col h-fit max-h-[785px] border border-gray-100 border-b-4 border-b-gold sm:max-h-[500px]">
+    <div className="bg-white z-50 rounded-2xl shadow-lg p-6 flex flex-col h-fit lg:max-h-[785px] border border-gray-100 border-b-4 border-b-gold sm:max-h-[500px]">
       {/* Header */}
       <div className="flex items-center gap-3 mb-4 pb-3 border-b border-gray-100">
         <div className="w-10 h-10 bg-gradient-to-br from-grape to-eminence rounded-full flex items-center justify-center">
