@@ -2,7 +2,8 @@
 import fetch from "node-fetch";
 
 export default async function (req, res) {
-    console.log(req);
+    context.log()
+
   try {
     // 1) Parse payload from frontend
     let payload = {};
