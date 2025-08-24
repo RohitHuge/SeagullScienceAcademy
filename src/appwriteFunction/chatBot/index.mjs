@@ -1,35 +1,27 @@
-// index.mjs
 import fetch from "node-fetch";
 
-export default async function (req) {
+export default async function (context) {
   try {
-    // 1) Parse payload from frontend
+    // 1) Parse payload
     let payload = {};
     try {
-      const text = await req.text();
-      payload = text ? JSON.parse(text) : {};
+      payload = context.req.body ? JSON.parse(context.req.body) : {};
     } catch {
-      return new Response(
-        JSON.stringify({ error: "INVALID_PAYLOAD" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return context.json({ error: "INVALID_PAYLOAD" }, 400);
     }
 
     const userMessage = (payload.message || "").trim();
     const history = Array.isArray(payload.history) ? payload.history : [];
 
     if (!userMessage) {
-      return new Response(
-        JSON.stringify({ error: "EMPTY_MESSAGE" }),
-        { status: 400, headers: { "Content-Type": "application/json" } }
-      );
+      return context.json({ error: "EMPTY_MESSAGE" }, 400);
     }
 
-    // 2) Environment variables
-    const API_KEY = process.env.GEMINI_API_KEY;
-    const MODEL = process.env.MODEL || "gemini-1.5-flash";
+    // 2) Env vars
+    const API_KEY = context.env.GEMINI_API_KEY;
+    const MODEL = context.env.MODEL || "gemini-1.5-flash";
     const SYSTEM_PROMPT =
-      process.env.SYSTEM_PROMPT ||
+      context.env.SYSTEM_PROMPT ||
       `You are Seagull Science Academy’s helpful assistant.  
         Seagull Science Academy is located in Maharashtra, India.  
         Contact details:  
@@ -52,13 +44,10 @@ export default async function (req) {
         `;
 
     if (!API_KEY) {
-      return new Response(
-        JSON.stringify({ error: "NO_API_KEY" }),
-        { status: 500, headers: { "Content-Type": "application/json" } }
-      );
+      return context.json({ error: "NO_API_KEY" }, 500);
     }
 
-    // 3) Build Gemini request format
+    // 3) Format request for Gemini
     const toGeminiTurn = (turn) => ({
       role: turn.role === "model" ? "model" : "user",
       parts: [{ text: String(turn.text || "") }],
@@ -82,26 +71,16 @@ export default async function (req) {
     const data = await geminiResp.json();
 
     if (!geminiResp.ok) {
-      return new Response(
-        JSON.stringify({ error: "GEMINI_ERROR", details: data }),
-        { status: 502, headers: { "Content-Type": "application/json" } }
-      );
+      return context.json({ error: "GEMINI_ERROR", details: data }, 502);
     }
 
     const text =
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       "Sorry, I couldn’t generate a response right now.";
 
-    // ✅ Return response properly
-    return new Response(
-      JSON.stringify({ reply: text, model: MODEL }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
-    );
-
+    // 5) Return
+    return context.json({ reply: text, model: MODEL }, 200);
   } catch (err) {
-    return new Response(
-      JSON.stringify({ error: "FUNCTION_CRASH", details: String(err) }),
-      { status: 500, headers: { "Content-Type": "application/json" } }
-    );
+    return context.json({ error: "FUNCTION_CRASH", details: String(err) }, 500);
   }
 }
