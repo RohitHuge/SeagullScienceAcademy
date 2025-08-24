@@ -5,16 +5,24 @@ export default async function (context) {
     // 1) Parse payload
     let payload = {};
     try {
-      payload = context.req.body ? JSON.parse(context.req.body) : {};
+      payload = context.req.bodyRaw ? JSON.parse(context.req.bodyRaw) : {};
     } catch {
-      return context.json({ error: "INVALID_PAYLOAD" }, 400);
+      return context.res.send(
+        { error: "INVALID_PAYLOAD" },
+        400,
+        { "Content-Type": "application/json" }
+      );
     }
 
     const userMessage = (payload.message || "").trim();
     const history = Array.isArray(payload.history) ? payload.history : [];
 
     if (!userMessage) {
-      return context.json({ error: "EMPTY_MESSAGE" }, 400);
+      return context.res.send(
+        { error: "EMPTY_MESSAGE" },
+        400,
+        { "Content-Type": "application/json" }
+      );
     }
 
     // 2) Env vars
@@ -22,32 +30,18 @@ export default async function (context) {
     const MODEL = context.env.MODEL || "gemini-1.5-flash";
     const SYSTEM_PROMPT =
       context.env.SYSTEM_PROMPT ||
-      `You are Seagull Science Academy’s helpful assistant.  
-        Seagull Science Academy is located in Maharashtra, India.  
-        Contact details:  
-        📞 Phone: +91-XXXXXXXXXX  
-        📧 Email: seagullacademy@example.com  
-
-        Your role is to assist students, parents, and guardians with information about:  
-        - Courses offered (Foundation 6th-8th, 9th-10th, 11th-12th Science PCMB, IIT-JEE, NEET-UG, MHT-CET, NDA Preparation).  
-        - Fees, batch timings, admission process, mentors, and achievements.  
-        - General enquiries about Seagull Science Academy.  
-
-        Guidelines:  
-        1. Always keep answers concise, polite, and accurate.  
-        2. Answer only about Seagull Academy.  
-        3. If the user asks something outside your knowledge (not related to Seagull Academy), politely respond:  
-        "I’m not sure about that. I can connect you to a Seagull Academy counselor for more details."  
-        4. Use a friendly and approachable tone.  
-        5. Never invent policies, fees, or mentor details that are not provided.  
-        6. Provide contact details (phone/email) if the user wants to reach out directly.  
-        `;
+      `You are Seagull Academy's helpful assistant. Only answer about Seagull Academy (courses, fees, mentors, admissions).
+       If unsure, say you can connect them to a counselor.`;
 
     if (!API_KEY) {
-      return context.json({ error: "NO_API_KEY" }, 500);
+      return context.res.send(
+        { error: "NO_API_KEY" },
+        500,
+        { "Content-Type": "application/json" }
+      );
     }
 
-    // 3) Format request for Gemini
+    // 3) Build Gemini request
     const toGeminiTurn = (turn) => ({
       role: turn.role === "model" ? "model" : "user",
       parts: [{ text: String(turn.text || "") }],
@@ -59,7 +53,7 @@ export default async function (context) {
       { role: "user", parts: [{ text: userMessage }] },
     ];
 
-    // 4) Call Gemini API
+    // 4) Call Gemini
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
 
     const geminiResp = await fetch(url, {
@@ -71,16 +65,31 @@ export default async function (context) {
     const data = await geminiResp.json();
 
     if (!geminiResp.ok) {
-      return context.json({ error: "GEMINI_ERROR", details: data }, 502);
+      return context.res.send(
+        { error: "GEMINI_ERROR", details: data },
+        502,
+        { "Content-Type": "application/json" }
+      );
     }
 
     const text =
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       "Sorry, I couldn’t generate a response right now.";
 
-    // 5) Return
-    return context.json({ reply: text, model: MODEL }, 200);
+    // 5) Respond
+    return context.res.send(
+      {
+        reply: text,
+        model: MODEL,
+      },
+      200,
+      { "Content-Type": "application/json" }
+    );
   } catch (err) {
-    return context.json({ error: "FUNCTION_CRASH", details: String(err) }, 500);
+    return context.res.send(
+      { error: "FUNCTION_CRASH", details: String(err) },
+      500,
+      { "Content-Type": "application/json" }
+    );
   }
 }
