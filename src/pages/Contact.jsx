@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { sendMessage } from '../data/controllers';
+import ChatbotWidget from '../components/ui/ChatbotWidget';
 
 // Custom hook for in-view animation (play only once)
 function useInViewOnce(ref, options = {}) {
@@ -352,7 +353,7 @@ function ContactSection() {
   return (
     <section className="py-16 bg-african_violet/10">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Desktop Layout - Grid of 3 cards: 2 upper, 1 lower */}
+        {/* Desktop Layout - Grid of 4 cards: 2 upper, 2 lower */}
         <div className="hidden lg:grid lg:grid-cols-2 lg:gap-8 lg:space-y-0">
           {/* Upper Row - 2 cards side by side with equal heights */}
           <div className="h-fit">
@@ -362,9 +363,12 @@ function ContactSection() {
             <GoogleMap />
           </div>
           
-          {/* Lower Row - Contact Form with same width as Contact Details */}
-          <div className="lg:col-span-1">
+          {/* Lower Row - Contact Form and Chatbot side by side */}
+          <div className="lg:col-span-1 h-fit">
             <ContactForm />
+          </div>
+          <div className="lg:col-span-1 h-fit">
+            <ChatbotWidget />
           </div>
         </div>
 
@@ -373,6 +377,7 @@ function ContactSection() {
           <ContactDetails />
           <GoogleMap />
           <ContactForm />
+          <ChatbotWidget />
         </div>
       </div>
     </section>
