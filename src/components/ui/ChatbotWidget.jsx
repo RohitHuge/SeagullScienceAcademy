@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { askBot } from '../../data/chatbot';
 import TextType from './TextType';
+import ReactMarkdown from 'react-markdown';
 
 const ChatbotWidget = () => {
   const [messages, setMessages] = useState([
@@ -104,7 +105,8 @@ const ChatbotWidget = () => {
                   : 'bg-gray-100 text-gray-800 rounded-bl-md border border-gray-200'
               }`}
             >
-              <p className="text-sm leading-relaxed break-words">{message.text}</p>
+              {/* <ReactMarkdown className="text-sm leading-relaxed break-words">{message.text}</ReactMarkdown> */}
+              <p className="text-sm leading-relaxed break-words"><ReactMarkdown>{message.text}</ReactMarkdown></p>
               {/* <p className='text-gray-500 text-sm leading-relaxed break-words'>
               <TextType 
                 text={message.text}
