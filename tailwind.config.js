@@ -38,6 +38,16 @@ export default {
             transform: 'translateY(0)'
           }
         },
+        'fadeInUp': {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(30px)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)'
+          }
+        },
         'glow-pulse': {
           '0%, 100%': {
             boxShadow: '0 0 5px #00BFFF, 0 0 10px #00BFFF, 0 0 15px #00BFFF'
@@ -57,6 +67,7 @@ export default {
       },
       animation: {
         'fade-in-up': 'fade-in-up 0.6s ease-out forwards',
+        'fadeInUp': 'fadeInUp 300ms ease-out',
         'glow-pulse': 'glow-pulse 2s ease-in-out infinite',
         'neon-sweep': 'neon-sweep 0.5s ease-out forwards'
       },

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { askBot } from '../../data/chatbot';
+import TextType from './TextType';
 
 const ChatbotWidget = () => {
   const [messages, setMessages] = useState([
@@ -104,6 +105,15 @@ const ChatbotWidget = () => {
               }`}
             >
               <p className="text-sm leading-relaxed break-words">{message.text}</p>
+              {/* <p className='text-gray-500 text-sm leading-relaxed break-words'>
+              <TextType 
+                text={message.text}
+                typingSpeed={75}
+                pauseDuration={1500}
+                showCursor={true}
+                cursorCharacter="|"
+              />
+              </p> */}
               <p className={`text-xs mt-1 opacity-70 ${
                 message.role === 'user' ? 'text-white' : 'text-gray-600'
               }`}>

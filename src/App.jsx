@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastProvider } from './components/ui/Toast'
 import { AuthProvider } from './contexts/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
+import FloatingChatLauncher from './components/FloatingChatLauncher'
 import Home from './pages/Home'
 import About from './pages/About'
 import Courses from './pages/Courses'
@@ -20,6 +21,7 @@ function App() {
     <AuthProvider>
       <ToastProvider>
         <BrowserRouter>
+          <FloatingChatLauncher />
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
