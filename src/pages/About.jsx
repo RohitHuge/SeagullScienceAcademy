@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import CountUp from '../components/ui/countup';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const NAV_LINKS = [
   { name: 'Home', href: '/' },
@@ -329,7 +330,52 @@ export default function About() {
   }, []);
 
   return (
+    <>
+    <HelmetProvider>
     <div className="font-display bg-white text-jet">
+      <Helmet>
+        {/* Basic SEO */}
+        <title>About Us | Seagull Science Academy</title>
+        <meta
+          name="description"
+          content="Learn about Seagull Science Academy, our mission, experienced mentors, and commitment to academic excellence for NEET, JEE, CET, and NDA aspirants."
+        />
+        <meta
+          name="keywords"
+          content="Seagull Science Academy, About Seagull Academy, best coaching institute Pune, NEET JEE CET NDA coaching"
+        />
+
+        {/* Open Graph for social media */}
+        <meta property="og:title" content="About Seagull Science Academy" />
+        <meta
+          property="og:description"
+          content="Discover Seagull Science Academy’s vision, expert mentors, and why we are the preferred choice for students aiming for NEET, JEE, CET, and NDA."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://seagullscienceacademy.pages.dev/about"
+        />
+        <meta
+          property="og:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/academy-building.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="About Seagull Science Academy"
+        />
+        <meta
+          name="twitter:description"
+          content="Meet the mentors and discover what makes Seagull Science Academy a trusted name for competitive exam coaching."
+        />
+        <meta
+          name="twitter:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/academy-building.jpg"
+        />
+      </Helmet>
       <Header />
       <HeroBanner />
       <MessageFromDirector />
@@ -339,6 +385,8 @@ export default function About() {
       <Philosophy />
       <FacilitiesGallery />
       <Footer />
-    </div>
+      </div>
+    </HelmetProvider>
+    </>
   );
 }

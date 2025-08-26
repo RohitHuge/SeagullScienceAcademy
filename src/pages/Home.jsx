@@ -23,6 +23,7 @@ import BlurText from '../components/ui/BlurText';
 import TextType from '../components/ui/TextType';
 import { sendMessage } from '../data/controllers';
 import { STUDENT_ACHIEVEMENTS } from './Achievements';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -265,6 +266,43 @@ const Home = () => {
   };
 
   return (
+    <>
+          <Helmet>
+        {/* Primary Meta Tags */}
+        <title>Seagull Science Academy | NEET, JEE, CET Coaching in Bhosari, Pune</title>
+        <meta
+          name="description"
+          content="Seagull Science Academy, Bhosari – Expert coaching for NEET, JEE, CET, NDA. Experienced mentors, daily tests, printed notes, and career guidance."
+        />
+        <meta
+          name="keywords"
+          content="Seagull Science Academy, NEET coaching Pune, JEE coaching Bhosari, CET coaching Maharashtra, NDA classes Pune, best science coaching"
+        />
+        <meta name="author" content="Seagull Science Academy" />
+
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.seagullscienceacademy.com/" />
+        <meta property="og:title" content="Seagull Science Academy | NEET, JEE, CET Coaching" />
+        <meta
+          property="og:description"
+          content="Join Seagull Science Academy in Bhosari, Pune for NEET, JEE, CET, and NDA coaching. Daily tests, expert faculties & personalized mentoring."
+        />
+        <meta property="og:image" content="https://www.seagullscienceacademy.com/images/og-banner.jpg" />
+
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content="https://www.seagullscienceacademy.com/" />
+        <meta name="twitter:title" content="Seagull Science Academy | NEET, JEE, CET Coaching" />
+        <meta
+          name="twitter:description"
+          content="Trusted coaching in Bhosari, Pune for NEET, JEE, CET, and NDA with daily tests and expert mentors."
+        />
+        <meta name="twitter:image" content="https://www.seagullscienceacademy.com/images/og-banner.jpg" />
+
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.ico" />
+      </Helmet>
     <div className="min-h-screen bg-white">
       <Header />
       <AnchorNavigation />
@@ -992,6 +1030,7 @@ const Home = () => {
 
       <Footer />
     </div>
+    </>
   );
 };
 

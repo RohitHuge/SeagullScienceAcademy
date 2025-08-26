@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { sendApplication } from '../data/controllers';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const COURSES = [
   {
@@ -375,10 +376,57 @@ export default function Courses() {
   }, []);
 
   return (
+    <>
+    <HelmetProvider>
+    <Helmet>
+        {/* Basic SEO */}
+        <title>Courses | Seagull Science Academy</title>
+        <meta
+          name="description"
+          content="Explore Seagull Science Academy’s courses including NEET, IIT-JEE, MHT-CET, NDA preparation, and Foundation batches (6th–12th). Expert mentors, daily tests, and career guidance."
+        />
+        <meta
+          name="keywords"
+          content="Seagull Science Academy courses, NEET coaching Pune, JEE coaching Pune, CET coaching, NDA preparation, foundation classes 6th to 12th"
+        />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content="Seagull Science Academy Courses" />
+        <meta
+          property="og:description"
+          content="Choose from NEET, JEE, CET, NDA, and Foundation batches at Seagull Science Academy. Daily coaching, expert mentors, mock tests, and career guidance."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://seagullscienceacademy.pages.dev/courses"
+        />
+        <meta
+          property="og:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/courses-banner.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Courses | Seagull Science Academy"
+        />
+        <meta
+          name="twitter:description"
+          content="NEET, JEE, CET, NDA, and Foundation courses at Seagull Science Academy. Learn with expert mentors and structured programs."
+        />
+        <meta
+          name="twitter:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/courses-banner.jpg"
+        />
+      </Helmet>
     <div className="font-display bg-white text-jet min-h-screen">
       <Header />
       <CoursesSection />
       <Footer />
     </div>
+    </HelmetProvider>
+    </>
   );
 }

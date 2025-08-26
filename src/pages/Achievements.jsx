@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // Individual Student Achievements Data
 const STUDENT_ACHIEVEMENTS = [
@@ -574,6 +575,51 @@ export default function Achievements() {
   }, []);
 
   return (
+    <>
+    <HelmetProvider>
+    <Helmet>
+        {/* Basic SEO */}
+        <title>Achievements | Seagull Science Academy</title>
+        <meta
+          name="description"
+          content="Seagull Science Academy’s proud achievements: hundreds of NEET and JEE qualifiers, top CET ranks, and NDA success stories. Discover why we are a trusted name in Science coaching."
+        />
+        <meta
+          name="keywords"
+          content="Seagull Academy achievements, NEET toppers Pune, JEE results Seagull Science Academy, CET rankers Pune, NDA success stories"
+        />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content="Achievements | Seagull Science Academy" />
+        <meta
+          property="og:description"
+          content="Celebrating Seagull Science Academy’s results — 800+ NEET qualifiers, 600+ JEE toppers, and outstanding CET/NDA success."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://seagullscienceacademy.pages.dev/achievements"
+        />
+        <meta
+          property="og:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/achievements-banner.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Achievements | Seagull Science Academy"
+        />
+        <meta
+          name="twitter:description"
+          content="Our students consistently excel in NEET, JEE, CET, and NDA — proving Seagull Science Academy’s academic excellence."
+        />
+        <meta
+          name="twitter:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/achievements-banner.jpg"
+        />
+      </Helmet>
     <div className="font-display bg-white text-jet min-h-screen">
       <Header />
       <AchievementsSection />
@@ -581,6 +627,8 @@ export default function Achievements() {
       <TestimonialsSection />
       <Footer />
     </div>
+    </HelmetProvider>
+    </>
   );
 }
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { Helmet } from 'react-helmet-async';
 
 // Sample gallery images - replace with actual Seagull Academy photos
 const GALLERY_IMAGES = [
@@ -269,6 +270,47 @@ export default function Gallery() {
   }, []);
 
   return (
+    <>
+    <Helmet>
+        {/* Basic SEO */}
+        <title>Gallery | Seagull Science Academy</title>
+        <meta
+          name="description"
+          content="Explore the Seagull Science Academy gallery – photos of classrooms, mentors, students, achievements, events, and success celebrations."
+        />
+        <meta
+          name="keywords"
+          content="Seagull Science Academy gallery, classroom photos, Pune coaching events, student activities, NEET JEE toppers celebration"
+        />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content="Gallery | Seagull Science Academy" />
+        <meta
+          property="og:description"
+          content="Browse through Seagull Science Academy’s gallery showcasing classrooms, mentors, events, and student success stories."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://seagullscienceacademy.pages.dev/gallery"
+        />
+        <meta
+          property="og:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/gallery-banner.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Gallery | Seagull Science Academy" />
+        <meta
+          name="twitter:description"
+          content="A glimpse of Seagull Science Academy’s vibrant environment – classrooms, mentors, and student achievements."
+        />
+        <meta
+          name="twitter:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/gallery-banner.jpg"
+        />
+      </Helmet>
     <div className="min-h-screen bg-white font-display">
       <Header />
       
@@ -362,5 +404,6 @@ export default function Gallery() {
         }
       `}</style>
     </div>
+    </>
   );
 }

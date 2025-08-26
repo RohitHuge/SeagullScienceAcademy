@@ -3,6 +3,8 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { sendMessage } from '../data/controllers';
 import ChatbotWidget from '../components/ui/ChatbotWidget';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+// import Header from '../components/Header';
 
 // Custom hook for in-view animation (play only once)
 function useInViewOnce(ref, options = {}) {
@@ -391,11 +393,129 @@ export default function Contact() {
   }, []);
 
   return (
+    <>
+    <HelmetProvider>
+    <Helmet>
+        {/* Basic SEO */}
+        <title>Contact Us | Seagull Science Academy</title>
+        <meta
+          name="description"
+          content="Get in touch with Seagull Science Academy. Visit us at Arham Plaza, Bhosari, Maharashtra or call +91 9096705353 / +91 9284635306. Email: seagullscienceacademy@gmail.com."
+        />
+        <meta
+          name="keywords"
+          content="Seagull Science Academy contact, Seagull Science Academy address, coaching classes Bhosari contact, NEET JEE coaching contact"
+        />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content="Contact Us | Seagull Science Academy" />
+        <meta
+          property="og:description"
+          content="Reach out to Seagull Science Academy for admissions, courses, and enquiries. Located at Arham Plaza, Near PNG Jewellers, Bhosari, Maharashtra."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://seagullscienceacademy.pages.dev/contact"
+        />
+        <meta
+          property="og:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/contact-banner.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contact Us | Seagull Science Academy" />
+        <meta
+          name="twitter:description"
+          content="Have questions? Contact Seagull Science Academy via phone, email, or visit us at Arham Plaza, Bhosari, Maharashtra."
+        />
+        <meta
+          name="twitter:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/contact-banner.jpg"
+        />
+
+        {/* Local Business / Contact info for SEO */}
+        <meta name="geo.region" content="IN-MH" />
+        <meta name="geo.placename" content="Bhosari, Maharashtra" />
+        <meta name="geo.position" content="18.6279;73.8531" />
+        <meta name="ICBM" content="18.6279, 73.8531" />
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "name": "Seagull Science Academy",
+            "url": "https://seagullscienceacademy.pages.dev",
+            "logo": "https://seagullscienceacademy.pages.dev/images/logo.png",
+            "image": "https://seagullscienceacademy.pages.dev/images/seo/contact-banner.jpg",
+            "description": "Seagull Science Academy provides expert coaching for NEET, JEE, MHT-CET, NDA, and 6th-12th Science (PCMB). Located in Bhosari, Maharashtra.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "2nd floor, Arham Plaza, Near PNG Jewellers, Gavhanewasti",
+              "addressLocality": "Bhosari",
+              "addressRegion": "Maharashtra",
+              "postalCode": "411039",
+              "addressCountry": "IN"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 18.6279,
+              "longitude": 73.8531
+            },
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+91-9096705353",
+                "contactType": "customer service",
+                "areaServed": "IN",
+                "availableLanguage": "English, Hindi, Marathi"
+              },
+              {
+                "@type": "ContactPoint",
+                "telephone": "+91-9284635306",
+                "contactType": "admissions",
+                "areaServed": "IN",
+                "availableLanguage": "English, Hindi, Marathi"
+              }
+            ],
+            "email": "seagullscienceacademy@gmail.com",
+            "sameAs": [
+              "https://www.facebook.com/seagullscienceacademy",
+              "https://www.instagram.com/seagullscienceacademy"
+            ],
+            "openingHoursSpecification": [
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                  "Monday",
+                  "Tuesday",
+                  "Wednesday",
+                  "Thursday",
+                  "Friday",
+                  "Saturday"
+                ],
+                "opens": "08:00",
+                "closes": "20:00"
+              },
+              {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": "Sunday",
+                "opens": "09:00",
+                "closes": "18:00"
+              }
+            ]
+          }
+          `}
+        </script>
+      </Helmet>
     <div className="font-display bg-white text-jet min-h-screen">
       <Header />
       <HeroSection />
       <ContactSection />
       <Footer />
     </div>
+    </HelmetProvider>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import FilterTabs from '../components/FilterTabs';
 import MentorCard from '../components/MentorCard';
 import MentorModal from '../components/MentorModal';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // Import mentors data
 import mentorsData from '../data/mentors.json';
@@ -92,6 +93,51 @@ export default function Mentors() {
   }, []);
 
   return (
+    <>
+    <HelmetProvider>
+    <Helmet>
+        {/* Basic SEO */}
+        <title>Our Mentors | Seagull Science Academy</title>
+        <meta
+          name="description"
+          content="Meet Seagull Science Academy’s expert mentors for Physics, Chemistry, Mathematics, and Biology. 6–20+ years of experience in NEET, JEE, CET, and NDA coaching."
+        />
+        <meta
+          name="keywords"
+          content="Seagull Academy mentors, NEET faculty Pune, JEE teachers Pune, best science academy teachers, Seagull Science Academy staff"
+        />
+
+        {/* Open Graph for social sharing */}
+        <meta property="og:title" content="Our Mentors | Seagull Science Academy" />
+        <meta
+          property="og:description"
+          content="Experienced mentors at Seagull Science Academy — IIT-JEE, NEET, CET, and NDA specialists with 6–20+ years of teaching excellence."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://seagullscienceacademy.pages.dev/mentors"
+        />
+        <meta
+          property="og:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/mentors-banner.jpg"
+        />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Our Mentors | Seagull Science Academy"
+        />
+        <meta
+          name="twitter:description"
+          content="Meet the expert faculty of Seagull Science Academy — guiding students to success in NEET, JEE, CET, and NDA."
+        />
+        <meta
+          name="twitter:image"
+          content="https://seagullscienceacademy.pages.dev/images/seo/mentors-banner.jpg"
+        />
+      </Helmet>
     <div className="font-display bg-white text-jet min-h-screen">
       <Header />
       
@@ -181,5 +227,7 @@ export default function Mentors() {
         />
       )}
     </div>
+    </HelmetProvider>
+    </>
   );
 }
