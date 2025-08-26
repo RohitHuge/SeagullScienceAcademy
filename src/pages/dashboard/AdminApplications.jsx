@@ -95,38 +95,89 @@ const AdminApplications = () => {
   const handleStatusUpdate = async (applicationId, newStatus) => {
     try {
       // TODO: Implement API call to update status
+      const client = new Client()
+          .setEndpoint(appwriteEndpoint)    
+          .setProject(appwriteProjectId);
+
+      const databases = new Databases(client);
+
+      const response = await databases.updateDocument(
+        appwriteDatabaseId,
+        appwriteApplicationCollectionId,
+        applicationId,
+        { status: newStatus }
+      );
+      if (response) {
+        showToast('Status updated successfully', 'success');
+      } else {
+        showToast('Failed to update status || if else logic', 'error');
+      }
       setApplications(prev => prev.map(app => 
         app.$id === applicationId 
           ? { ...app, status: newStatus }
           : app
       ));
-      showToast('Status updated successfully', 'success');
     } catch (error) {
-      showToast('Failed to update status', 'error');
+      showToast('Failed to update status || catch block', 'error');
+      console.log(error);
     }
   };
 
   const handleInterestUpdate = async (applicationId, newInterest) => {
     try {
       // TODO: Implement API call to update interest
+      const client = new Client()
+          .setEndpoint(appwriteEndpoint)    
+          .setProject(appwriteProjectId);
+
+      const databases = new Databases(client);
+
+      const response = await databases.updateDocument(
+        appwriteDatabaseId,
+        appwriteApplicationCollectionId,
+        applicationId,
+        { interest: mapInterests[newInterest] }
+      );
+      if (response) {
+        showToast('Interest updated successfully', 'success');
+      } else {
+        showToast('Failed to update interest || if else logic', 'error');
+      }
       setApplications(prev => prev.map(app => 
-        app.$id === applicationId ? { ...app, interest: newInterest } : app
+        app.$id === applicationId ? { ...app, interest: mapInterests[newInterest] } : app
       ));
-      showToast('Interest updated successfully', 'success');
     } catch (error) {
-      showToast('Failed to update interest', 'error');
+      showToast('Failed to update interest || catch block', 'error');
+      console.log(error);
     }
   };
 
   const handleOutcomeUpdate = async (applicationId, newOutcome) => {
     try {
       // TODO: Implement API call to update outcome
+      const client = new Client()
+          .setEndpoint(appwriteEndpoint)    
+          .setProject(appwriteProjectId);
+
+      const databases = new Databases(client);
+
+      const response = await databases.updateDocument(
+        appwriteDatabaseId,
+        appwriteApplicationCollectionId,
+        applicationId,
+        { outcome: mapOutcomes[newOutcome] }
+      );
+      if (response) {
+        showToast('Outcome updated successfully', 'success');
+      } else {
+        showToast('Failed to update outcome || if else logic', 'error');
+      }
       setApplications(prev => prev.map(app => 
-        app.$id === applicationId ? { ...app, outcome: newOutcome } : app
+        app.$id === applicationId ? { ...app, outcome: mapOutcomes[newOutcome] } : app
       ));
-      showToast('Outcome updated successfully', 'success');
     } catch (error) {
-      showToast('Failed to update outcome', 'error');
+      showToast('Failed to update outcome || catch block', 'error');
+      console.log(error);
     }
   };
 
@@ -177,9 +228,9 @@ const AdminApplications = () => {
               <div>
                 <label className="text-gray-400 text-sm">Interest Level</label>
                 <span className={`px-2 py-1 rounded text-xs font-medium ${
-                  application.interest === 'Interested' 
+                  application.interest === mapInterests['Interested']
                     ? 'bg-neon-green/20 text-neon-green border border-neon-green/30'
-                    : application.interest === 'Not Interested'
+                    : application.interest === mapInterests['Not Interested']
                     ? 'bg-neon-red/20 text-neon-red border border-neon-red/30'
                     : 'bg-neon-yellow/20 text-neon-yellow border border-neon-yellow/30'
                 }`}>

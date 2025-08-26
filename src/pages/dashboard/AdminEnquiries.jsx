@@ -148,7 +148,7 @@ const AdminEnquiries = () => {
         appwriteDatabaseId,
         appwriteEnquiryCollectionId,
         enquiryId,
-        { outcome: newOutcome }
+        { outcome: mapOutcomes[newOutcome] }
       );
       console.log(response);
       if (response) {

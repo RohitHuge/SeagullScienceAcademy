@@ -9,8 +9,13 @@ const FloatingChatLauncher = () => {
   const location = useLocation();
   const { showError } = useToast();
 
-  // Hide on contact page
-  if (location.pathname === '/contact') {
+  // Hide on contact page and admin routes
+  if (location.pathname === '/contact' || 
+      location.pathname.startsWith('/admin') || 
+      location.pathname.startsWith('/dashboard') ||
+      location.pathname.startsWith('/api') ||
+      location.pathname.startsWith('/private') ||
+      location.pathname === '/login') {
     return null;
   }
 
