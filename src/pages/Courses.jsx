@@ -4,73 +4,73 @@ import Footer from '../components/Footer';
 import { sendApplication } from '../data/controllers';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 
-const COURSES = [
+export const COURSES = [
   {
     id: 1,
-    title: '9th & 10th Foundation',
-    classes: '9th & 10th Standard',
+    title: 'IIT-JEE Intigrated Course',
+    classes: '11th & 12th Standard',
     subjects: ['Mathematics', 'Science', 'English', 'Social Studies'],
     fee: '₹30,000/year',
-    duration: 'April to March',
-    description: 'Comprehensive foundation course preparing students for board exams and future competitive tests. Strong focus on core subjects with regular assessments and doubt clearing sessions.'
+    duration: '2 year',
+    description: 'Board + Competitive exam preparation for 11th & 12th students.'
   },
   {
     id: 2,
-    title: '11th & 12th Science (PCMB)',
+    title: 'NEET-UG Intigrated Course',
     classes: '11th & 12th Standard',
     subjects: ['Physics', 'Chemistry', 'Mathematics', 'Biology'],
     fee: '₹40,000/year',
-    duration: 'April to February',
-    description: 'Advanced science stream preparation covering all core subjects required for medical and engineering entrance exams. Includes practical sessions and mock tests.'
+    duration: '2 year',
+    description: 'Board + NEET preparation for medical aspirants.'
   },
   {
     id: 3,
-    title: 'IIT-JEE Preparation',
-    classes: '12th Standard & Droppers',
+    title: 'MHT-CET Intigrated Course',
+    classes: '11th & 12th Standard',
     subjects: ['Physics', 'Chemistry', 'Mathematics'],
     fee: '₹35,000',
-    duration: 'January to April',
-    description: 'Intensive preparation for IIT-JEE entrance exam. Focused on important topics, previous year questions, and extensive practice with mock tests.'
+    duration: '2 year',
+    description: 'Board + MHT-CET preparation for engineering aspirants.'
   },
   {
     id: 4,
-    title: 'NEET-UG Preparation',
+    title: 'MHT-CET ',
     classes: '12th Standard & Droppers',
     subjects: ['Physics', 'Chemistry', 'Biology'],
     fee: '₹35,000',
-    duration: 'January to April',
-    description: 'Specialized preparation for NEET medical entrance exam. Comprehensive coverage of biology with physics and chemistry fundamentals.'
+    duration: '2 year',
+    description: 'MHT-CET focused preparation for 12th & droppers.'
   },
   {
     id: 5,
-    title: 'MHT-CET Preparation',
-    classes: '12th Standard',
+    title: 'Foundation for 9 & 10',
+    classes: '9th & 10th Standard',
     subjects: ['Physics', 'Chemistry', 'Mathematics', 'Biology'],
     fee: '₹35,000/year',
-    duration: 'April to May',
-    description: 'Focused preparation for Maharashtra CET engineering and medical entrance exams. State-specific syllabus coverage with regular assessments.'
+    duration: '1 year',
+    description: 'Strong foundation for 9th & 10th students.'
   },
   {
     id: 6,
-    title: 'Foundation Course (6th-8th)',
-    classes: '6th to 8th Standard',
+    title: 'MHT-CER Crash Course',
+    classes: '12th Standard',
     subjects: ['Mathematics', 'Science', 'English'],
     fee: '₹20,000/year',
-    duration: 'April to March',
-    description: 'Early foundation building for young students. Develops strong basics in core subjects through interactive learning methods.'
+    duration: '2 month',
+    description: 'Intensive MHT-CET crash course for quick preparation.'
   },
-  {
-    id: 7,
-    title: 'NDA Preparation',
-    classes: '12th Standard & Droppers',
-    subjects: ['Mathematics', 'General Knowledge', 'English'],
-    fee: '₹25,000',
-    duration: 'September to March',
-    description: 'Comprehensive preparation for National Defence Academy entrance exam. Covers all required subjects with military aptitude training.'
-  }
+  // {
+  //   id: 7,
+  //   title: 'NDA Preparation',
+  //   classes: '12th Standard & Droppers',
+  //   subjects: ['Mathematics', 'General Knowledge', 'English'],
+  //   fee: '₹25,000',
+  //   duration: 'September to March',
+  //   description: 'Comprehensive preparation for National Defence Academy entrance exam. Covers all required subjects with military aptitude training.'
+  // }
 ];
 
-function ApplyModal({ course, isOpen, onClose }) {
+export function ApplyModal({ course, isOpen, onClose }) {
   const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' });
   const [touched, setTouched] = useState({});
   const [submitted, setSubmitted] = useState(false);
