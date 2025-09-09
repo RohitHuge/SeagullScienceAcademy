@@ -24,6 +24,8 @@ import TextType from '../components/ui/TextType';
 import { sendMessage } from '../data/controllers';
 import { STUDENT_ACHIEVEMENTS } from './Achievements';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
+import { COURSES } from './Courses';
+import { ApplyModal } from './Courses';
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -40,10 +42,10 @@ const Home = () => {
   const [contactInView, setContactInView] = useState(false);
   const [whySeagullInView, setWhySeagullInView] = useState(false);
   const [mentorsInView, setMentorsInView] = useState(false);
-  const [currentAchieverSet, setCurrentAchieverSet] = useState(0);
   const achievementsRef = useRef();
   const contactRef = useRef();
-  
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // Contact form state
   const [formData, setFormData] = useState({
     name: '',
@@ -54,15 +56,14 @@ const Home = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Course data
-  const courses = [
-    { name: 'CET', icon: AcademicCapIcon, description: 'Common Entrance Test preparation' },
-    { name: 'NEET-UG', icon: BeakerIcon, description: 'Medical entrance exam coaching' },
-    { name: 'IIT-JEE', icon: BookOpenIcon, description: 'Engineering entrance preparation' },
-    { name: '11-12 Science', icon: AcademicCapIcon, description: 'Higher secondary science' },
-    { name: '9-10 Foundation', icon: BookOpenIcon, description: 'Foundation course preparation' },
-    { name: 'NDA', icon: ShieldCheckIcon, description: 'National Defence Academy coaching' }
-  ];
+  // Course data with icons mapped
+  const courses = COURSES.map((course, index) => {
+    const icons = [AcademicCapIcon, BeakerIcon, BookOpenIcon, AcademicCapIcon, BookOpenIcon, ShieldCheckIcon];
+    return {
+      ...course,
+      icon: icons[index % icons.length]
+    };
+  });
 
   // Mentor data
   // const mentors = [
@@ -81,10 +82,10 @@ const Home = () => {
 
   // Why Seagull features
   const features = [
+    { icon: UserGroupIcon, text: 'Expert & experienced faculties' },
     { icon: AcademicCapIcon, text: 'Daily 3–6 hour classroom coaching' },
     { icon: BookOpenIcon, text: 'Daily topic tests & doubt sessions' },
     { icon: TrophyIcon, text: 'Unlimited online mock tests' },
-    { icon: UserGroupIcon, text: 'Expert & experienced faculties' },
     { icon: BeakerIcon, text: 'Printed notes and recorded videos' },
     { icon: ShieldCheckIcon, text: 'Free career counseling & mentoring' }
   ];
@@ -98,13 +99,6 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [mentors.length]);
 
-  // Auto-advance achiever sets
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentAchieverSet((prev) => (prev + 1) % Math.ceil(achievements.length / 3));
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [achievements.length]);
 
 
 
@@ -265,6 +259,16 @@ const Home = () => {
     }
   };
 
+  const openModal = (course) => {
+    setSelectedCourse(course);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedCourse(null), 300);
+  };
+
   return (
     <>
           <Helmet>
@@ -318,138 +322,71 @@ const Home = () => {
           <div className="absolute bottom-32 left-1/4 w-20 h-20 bg-white/15 rounded-full blur-md animate-pulse" style={{ animationDelay: '2s' }}></div>
           <div className="absolute bottom-20 right-1/3 w-28 h-28 bg-african_violet/25 rounded-full blur-xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
           
-          {/* Gradient overlays for depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-grape/80 via-transparent to-eminence/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
+          {/* Gradient overlays for depth - only on left side */}
+          <div className="absolute inset-0 bg-gradient-to-r from-grape/80 via-transparent to-transparent"></div>
+          
+          {/* Full Height Background Image - Right Side */}
+          <div className="absolute inset-0 w-full h-full">
+            <div 
+              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+              style={{
+                backgroundImage: 'url(https://res.cloudinary.com/dewpzsbeb/image/upload/v1757457944/Gemini_Generated_Image_gqukb5gqukb5gquk_jxg5et.png)',
+                clipPath: 'polygon(60% 0%, 100% 0%, 100% 100%, 40% 100%)'
+              }}
+            ></div>
+          </div>
+          
           
           {/* Content */}
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
-              <div className="space-y-8">
-                <h1 className="font-display font-bold text-5xl lg:text-7xl leading-tight animate-fade-in-up">
+          <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] relative">
+              {/* Left Side - Content */}
+              <div className="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-30">
+                <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl leading-tight animate-fade-in-up">
                 <BlurText
                   text={homeData.hero.title}
                   delay={150}
                   animateBy="words"
                   direction="top"
-                  // onAnimationComplete={handleAnimationComplete}
-                  className="text-5xl lg:text-7xl leading-tight"
+                  className="text-4xl sm:text-5xl lg:text-7xl leading-tight"
                 />
                 </h1>
-                <p className="text-xl lg:text-2xl text-white/90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <p className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
                 <TextType 
                   text={homeData.hero.subtitle.split('**')}
+                  as="span"
                   typingSpeed={75}
                   pauseDuration={1500}
                   showCursor={false}
                   cursorCharacter="•"
-                  className="text-xl lg:text-2xl text-white/90 leading-relaxed"
+                  className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed"
                   variableSpeed={{min : 60 , max : 120}}
                 />
                 </p>
                 <button
                   onClick={handleCTAClick}
                   disabled={isLoading}
-                  className="group bg-white text-grape hover:bg-gray-100 focus:ring-2 focus:ring-african_violet px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 ease-out transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed animate-fade-in-up shadow-lg hover:shadow-xl"
+                  className="group bg-white text-grape hover:bg-gray-100 focus:ring-2 focus:ring-african_violet px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-200 ease-out transform hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed animate-fade-in-up shadow-lg hover:shadow-xl w-full sm:w-auto"
                   style={{ animationDelay: '0.4s' }}
                 >
                   {isLoading ? (
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center justify-center space-x-2">
                       <Spinner size="sm" />
                       <span>Loading...</span>
                     </div>
                   ) : (
-                    <div className="flex items-center space-x-2">
+                    <div className="flex items-center justify-center space-x-2">
                       <span>{homeData.hero.ctaText}</span>
-                      <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" />
+                      <ArrowRightIcon className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform duration-200" />
                     </div>
                   )}
                 </button>
               </div>
-              
-              {/* Highlight Card with Achievers Carousel */}
-              <div 
-                className="bg-white/95 backdrop-blur-sm text-jet p-8 rounded-2xl shadow-2xl border border-white/20 animate-fade-in-up" 
-                style={{ animationDelay: '0.6s' }}
-              >
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-display font-semibold text-xl">Top Performers</h3>
-                  <span className="bg-gold text-jet px-3 py-1 rounded-full text-xs font-bold shadow-md">TOPPERS</span>
-                </div>
-                
-                {/* Top Performers Display */}
-                <div className="space-y-4">
-                  {/* Current Set of 3 Achievers */}
-                  {achievements
-                    .slice(currentAchieverSet * 3, (currentAchieverSet * 3) + 3)
-                    .map((achiever, index) => (
-                    <div 
-                      key={`set-${currentAchieverSet}-${index}`}
-                      className="flex items-center justify-between p-3 bg-gradient-to-r from-african_violet/10 to-grape/10 rounded-lg border border-african_violet/20 animate-fade-in-up"
-                      style={{ 
-                        animationDelay: `${index * 0.1}s`,
-                        animationDuration: '0.6s'
-                      }}
-                    >
-                      <div className="flex items-center space-x-3">
-                        <div className="w-8 h-8 bg-gradient-to-br from-gold to-yellow-400 rounded-full flex items-center justify-center text-jet font-bold text-sm animate-bounce-in">
-                          {(currentAchieverSet * 3) + index + 1}
-                        </div>
-                        <div className="animate-slide-in-left">
-                          <p className="font-semibold text-african_violet text-sm">{achiever.name}</p>
-                          <p className="text-jet/70 text-xs">{achiever.exam}</p>
-                        </div>
-                      </div>
-                      <div className="text-right animate-slide-in-right">
-                        <p className="font-bold text-eminence text-lg">{achiever.score}</p>
-                      </div>
-                    </div>
-                  ))}
-                  
-                  {/* Set Navigation */}
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="text-center flex-1">
-                      <p 
-                        className="text-jet/60 text-xs transition-all duration-300"
-                      >
-                        Set {currentAchieverSet + 1} of {Math.ceil(achievements.length / 3)}
-                      </p>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      {/* Manual Navigation Buttons */}
-                      <button
-                        onClick={() => setCurrentAchieverSet((prev) => (prev - 1 + Math.ceil(achievements.length / 3)) % Math.ceil(achievements.length / 3))}
-                        className="p-1 text-jet/60 hover:text-african_violet transition-all duration-300 hover:scale-110"
-                        title="Previous set"
-                      >
-                        ←
-                      </button>
-                      
-                      {/* Navigation Dots */}
-                      <div className="flex space-x-1">
-                        {Array.from({ length: Math.ceil(achievements.length / 3) }).map((_, index) => (
-                                                  <button
-                          key={index}
-                          onClick={() => setCurrentAchieverSet(index)}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            index === currentAchieverSet 
-                              ? 'bg-african_violet w-4 shadow-neon-blue' 
-                              : 'bg-jet/30 hover:bg-jet/50'
-                          }`}
-                        />
-                        ))}
-                      </div>
-                      
-                      <button
-                        onClick={() => setCurrentAchieverSet((prev) => (prev + 1) % Math.ceil(achievements.length / 3))}
-                        className="p-1 text-african_violet hover:text-african_violet transition-all duration-300 hover:scale-110"
-                        title="Next set"
-                      >
-                        →
-                      </button>
-                    </div>
-                  </div>
-                </div>
+
+              {/* Right Side - Empty space (image is in background) */}
+              <div className="order-1 lg:order-2 relative">
+                {/* This space is intentionally left empty - the image is in the background */}
+                <div className="w-full h-64 sm:h-80 lg:h-96 xl:h-[500px]"></div>
               </div>
             </div>
           </div>
@@ -486,7 +423,7 @@ const Home = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {courses.map((course, index) => (
                 <div
-                  key={course.name}
+                  key={course.title}
                   className={`group relative bg-gradient-to-br from-white to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-6 border border-african_violet/10 hover:border-african_violet/30 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden border-l-4 border-l-grape ${
                     coursesInView 
                       ? 'opacity-100 translate-y-0' 
@@ -494,9 +431,9 @@ const Home = () => {
                   }`}
                   tabIndex={0}
                   onKeyDown={(e) => handleKeyDown(e, () => window.location.href = '/courses')}
-                  onClick={() => window.location.href = '/courses'}
+                  onClick={() => openModal(course)}
                   role="button"
-                  aria-label={`View ${course.name} course details`}
+                  aria-label={`View ${course.title} course details`}
                   style={{ 
                     transitionDelay: `${index * 0.1}s`,
                     transitionDuration: '800ms'
@@ -522,7 +459,7 @@ const Home = () => {
                     
                     {/* Course title with enhanced typography */}
                     <h3 className="font-display font-bold text-xl text-jet group-hover:text-eminence transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
-                      {course.name}
+                      {course.title}
                     </h3>
                     
                     {/* Description */}
@@ -533,7 +470,7 @@ const Home = () => {
                     {/* Interactive CTA button */}
                     <div className="pt-3">
                       <span className="inline-flex items-center space-x-2 text-african_violet font-semibold text-base group-hover:text-grape transition-all duration-500 ease-out transform group-hover:translate-x-1">
-                        <span>View details</span>
+                        <span>Apply Now</span>
                         <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-2 transition-all duration-500 ease-out" />
                       </span>
                     </div>
@@ -715,6 +652,9 @@ const Home = () => {
                                 <h3 className="font-display font-bold text-lg text-jet group-hover:text-eminence transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
                                   {mentorItem.name}
                                 </h3>
+                                <p className="text-eminence font-semibold text-sm group-hover:text-grape transition-colors duration-500">
+                                  {mentorItem.qualification}
+                                </p>
                                 <p className="text-african_violet font-semibold text-base group-hover:text-grape transition-colors duration-500">
                                   {mentorItem.subject}
                                 </p>
@@ -1029,6 +969,13 @@ const Home = () => {
       </main>
 
       <Footer />
+      
+      {/* Apply Modal */}
+      <ApplyModal
+        course={selectedCourse}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </div>
     </>
   );

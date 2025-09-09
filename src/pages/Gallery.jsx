@@ -7,64 +7,77 @@ import { Helmet } from 'react-helmet-async';
 const GALLERY_IMAGES = [
   { 
     id: 1, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Personalized Guidance - Students engaged in intensive study sessions' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/20240712_113143_aow7om.jpg', 
+    message: 'Interactive Classes with hands on experiments by experienced teachers',
+    adjustment: { x: 50, y: 35 } // center
   },
   { 
     id: 2, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Regular Interaction with Parents - Every Parent is a Teacher' 
-  },
-  { 
-    id: 3, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Felicitation Ceremony - Celebrating academic excellence' 
-  },
-  { 
-    id: 4, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Regular Mock Tests - To test your knowledge and improve your performance, Giving you a feel of the exam' 
-  },
-  { 
-    id: 5, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Making peer group - Enabling students to learn from each other' 
-  },
-  { 
-    id: 6, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Interactive Sessions - To make learning more engaging and effective' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458279/20250410_131542_gguadn.jpg', 
+    message: 'Regular monitored study sessions with doubt clearing sessions',
+    adjustment: { x: 50, y: 50 } // center
   },
   { 
     id: 7, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Guidance sessions from alumni- Enabling understanding from other success and failures' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757460657/20250410_131705_sdx1xc.jpg', 
+    message: 'Intensive Test Series and Regular Tests',
+    adjustment: { x: 50, y: 50 } // center
   },
+  { 
+    id: 3, 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458278/20250506_135409_zk8ugz.jpg', 
+    message: 'FElicitation Ceremony for toppers',
+    adjustment: { x: 50, y: 50 } // center
+  },
+  { 
+    id: 4, 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458276/20240321_145939_lpemcy.jpg', 
+    message: 'Regular guidance and mentorship from alumi and other success stories',
+    adjustment: { x: 50, y: 50 } // center
+  },
+  { 
+    id: 5, 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/20250722_150232_g5py4c.jpg', 
+    message: 'Well Structures modules provided to the students, for easy learning and fast results',
+    adjustment: { x: 50, y: 45 } // center
+  },
+  { 
+    id: 6, 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458277/20240218_191419_j9pxyg.jpg', 
+    message: 'Fun activities with student freshen up their mind and motivate them to study',
+    adjustment: { x: 50, y: 40 } // center
+  },
+  
   { 
     id: 8, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Daily practice session and doubt clearing sessions- Enabling students to clear their doubts and improve their performance' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757460914/20240321_134048_ryaost.jpg', 
+    message: 'Special guest session from education field experts',
+    adjustment: { x: 50, y: 50 } // center
   },
-  { 
-    id: 9, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Student Counseling Session - Personalized guidance for career planning' 
-  },
-  { 
-    id: 10, 
-    src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop', 
-    message: 'Science Exhibition - Students showcasing their innovative projects' 
-  },
-  { 
-    id: 11, 
-    src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop', 
-    message: 'Group Study Session - Collaborative learning and peer support' 
-  },
-  { 
-    id: 12, 
-    src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop', 
-    message: 'Annual Day Celebration - Recognizing achievements and fostering community' 
-  }
+  // { 
+  //   id: 9, 
+  //   src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
+  //   message: 'Student Counseling Session - Personalized guidance for career planning',
+  //   adjustment: { x: 50, y: 50 } // center
+  // },
+  // { 
+  //   id: 10, 
+  //   src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop', 
+  //   message: 'Science Exhibition - Students showcasing their innovative projects',
+  //   adjustment: { x: 50, y: 50 } // center
+  // },
+  // { 
+  //   id: 11, 
+  //   src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop', 
+  //   message: 'Group Study Session - Collaborative learning and peer support',
+  //   adjustment: { x: 50, y: 50 } // center
+  // },
+  // { 
+  //   id: 12, 
+  //   src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop', 
+  //   message: 'Annual Day Celebration - Recognizing achievements and fostering community',
+  //   adjustment: { x: 50, y: 50 } // center
+  // }
 ];
 
 // Auto-scrolling slideshow component
@@ -111,6 +124,9 @@ function Slideshow() {
               src={image.src}
               alt={image.message}
               className="w-full h-full object-cover"
+              style={{
+                objectPosition: `${image.adjustment?.x || 50}% ${image.adjustment?.y || 50}%`
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             <div className="absolute bottom-4 left-4 right-4 text-white">
