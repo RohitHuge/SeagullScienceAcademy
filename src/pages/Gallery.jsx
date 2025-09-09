@@ -7,33 +7,33 @@ import { Helmet } from 'react-helmet-async';
 const GALLERY_IMAGES = [
   { 
     id: 1, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Personalized Guidance - Students engaged in intensive study sessions' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/20240712_113143_aow7om.jpg', 
+    message: 'Interactive Classes with hands on experiments by experienced teachers' 
   },
   { 
     id: 2, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Regular Interaction with Parents - Every Parent is a Teacher' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458279/20250410_131542_gguadn.jpg', 
+    message: 'Regular monitored study sessions with doubt clearing sessions' 
   },
   { 
     id: 3, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Felicitation Ceremony - Celebrating academic excellence' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458278/20250506_135409_zk8ugz.jpg', 
+    message: 'FElicitation Ceremony for toppers' 
   },
   { 
     id: 4, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Regular Mock Tests - To test your knowledge and improve your performance, Giving you a feel of the exam' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458276/20240321_145939_lpemcy.jpg', 
+    message: 'Regular guidance and mentorship from alumi and other success stories' 
   },
   { 
     id: 5, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Making peer group - Enabling students to learn from each other' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458275/20250722_150232_g5py4c.jpg', 
+    message: 'Well Structures modules provided to the students, for easy learning and fast results' 
   },
   { 
     id: 6, 
-    src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-    message: 'Interactive Sessions - To make learning more engaging and effective' 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1757458277/20240218_191419_j9pxyg.jpg', 
+    message: 'Fun activities with student freshen up their mind and motivate them to study' 
   },
   { 
     id: 7, 

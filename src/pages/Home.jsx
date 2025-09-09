@@ -322,23 +322,15 @@ const Home = () => {
           <div className="absolute bottom-32 left-1/4 w-20 h-20 bg-white/15 rounded-full blur-md animate-pulse" style={{ animationDelay: '2s' }}></div>
           <div className="absolute bottom-20 right-1/3 w-28 h-28 bg-african_violet/25 rounded-full blur-xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
           
-          {/* Gradient overlays for depth */}
-          <div className="absolute inset-0 bg-gradient-to-r from-grape/80 via-transparent to-eminence/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>
+          {/* Gradient overlays for depth - only on left side */}
+          <div className="absolute inset-0 bg-gradient-to-r from-grape/80 via-transparent to-transparent"></div>
           
           {/* Full Height Background Image - Right Side */}
           <div className="absolute inset-0 w-full h-full">
             <div 
               className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
               style={{
-                backgroundImage: 'url(/thumbnail-1.png)',
-                clipPath: 'polygon(60% 0%, 100% 0%, 100% 100%, 40% 100%)'
-              }}
-            ></div>
-            {/* Overlay for better contrast */}
-            <div 
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-black/40"
-              style={{
+                backgroundImage: 'url(https://res.cloudinary.com/dewpzsbeb/image/upload/v1757457944/Gemini_Generated_Image_gqukb5gqukb5gquk_jxg5et.png)',
                 clipPath: 'polygon(60% 0%, 100% 0%, 100% 100%, 40% 100%)'
               }}
             ></div>
@@ -394,12 +386,7 @@ const Home = () => {
               {/* Right Side - Empty space (image is in background) */}
               <div className="order-1 lg:order-2 relative">
                 {/* This space is intentionally left empty - the image is in the background */}
-                <div className="w-full h-64 sm:h-80 lg:h-96 xl:h-[500px] flex items-center justify-center">
-                  <div className="text-white/30 text-center">
-                    <AcademicCapIcon className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                    <p className="text-lg font-medium">Excellence in Education</p>
-                  </div>
-                </div>
+                <div className="w-full h-64 sm:h-80 lg:h-96 xl:h-[500px]"></div>
               </div>
             </div>
           </div>
