@@ -9,4 +9,4 @@ Disallow: /private/
 Disallow: /login
 
 # Sitemap location
-Sitemap: https://seagullscienceacademy.pages.dev/sitemap.xml
+Sitemap: https://seagullacadmy.in/sitemap.xml
