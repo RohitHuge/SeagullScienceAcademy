@@ -28,7 +28,7 @@ export default async function (context) {
     }
 
     // 2) Env vars
-    const API_KEY = "AIzaSyDf7m-vWwWTwzHuPy_kkoUS3-e-JuWXUTE";
+    const API_KEY = "AIzaSyAD2MXsdp7fgOQku8tfFnS13Etc_wNHnlY";
     const MODEL = "gemini-2.5-flash";
     const SYSTEM_PROMPT =
       `You are Seagull Science Academy’s helpful assistant.
