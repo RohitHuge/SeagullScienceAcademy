@@ -5,18 +5,18 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 // Individual Student Achievements Data
 const STUDENT_ACHIEVEMENTS = [
-  { id: 1, name: 'Amit Shinde', exam: 'MHT-CET 2025 (PCB)', score: '98.86%tile', image: '' },
-  { id: 2, name: 'Amit Shinde', exam: 'MHT-CET 2025 (PCM)', score: '97.50%tile', image: '' },
-  { id: 3, name: 'Prajwal Shinde', exam: 'JEE Main 2025', score: '98.17%tile', image: '' },
-  { id: 4, name: 'Prajwal Shinde', exam: 'MHT-CET 2025 (PCB)', score: '98.81%tile', image: '' },
-  { id: 5, name: 'Nilesh Doiphode', exam: 'MHT-CET 2025 (PCB)', score: '98.81%tile', image: '' },
-  { id: 6, name: 'Nilesh Doiphode', exam: 'MHT-CET 2025 (PCM)', score: '91.73%tile', image: '' },
-  { id: 7, name: 'Gautam Vishnoi', exam: 'MHT-CET 2025 (PCB)', score: '95.96%tile', image: '' },
-  { id: 8, name: 'Gautam Vishnoi', exam: 'MHT-CET 2025 (PCM)', score: '91.50%tile', image: '' },
-  { id: 9, name: 'Samiksha Shivshete', exam: 'MHT-CET 2025 (PCM)', score: '93.91%tile', image: '' },
-  { id: 10, name: 'Shrawani Mote', exam: 'MHT-CET 2025 (PCM)', score: '92.71%tile', image: '' },
-  { id: 11, name: 'Bajarang Sounke', exam: 'MHT-CET 2025', score: '98.25%', image: '' },
-  { id: 12, name: 'Bajarang Sounke', exam: 'HSC 2025', score: '91.83%', image: '' }
+  { id: 1, name: 'Amit Shinde', exam: 'MHT-CET 2025 (PCB)', score: '98.86%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_2000,h_2000,ar_1:1,g_auto,f_png/v1759334138/IMG_3004_gw2edq.jpg' },
+  { id: 3, name: 'Prajwal Shinde', exam: 'JEE Main 2025', score: '98.17%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334137/IMG-20250228-WA0007_tdul59.jpg' },
+  { id: 7, name: 'Gautam Vishnoi', exam: 'MHT-CET 2025 (PCB)', score: '95.96%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_1200,h_1200,ar_1:1,g_auto,f_png/v1759334137/IMG_3013_ntnh6z.jpg' },
+  { id: 5, name: 'Nilesh Doiphode', exam: 'MHT-CET 2025 (PCB)', score: '98.81%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_1500,h_1500,ar_1:1,g_auto,f_png/v1759334137/IMG_3009_cgxs6j.jpg' },
+  { id: 2, name: 'Amit Shinde', exam: 'MHT-CET 2025 (PCM)', score: '97.50%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_2000,h_2000,ar_1:1,g_auto,f_png/v1759334138/IMG_3004_gw2edq.jpg' },
+  { id: 6, name: 'Nilesh Doiphode', exam: 'MHT-CET 2025 (PCM)', score: '91.73%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_1500,h_1500,ar_1:1,g_auto,f_png/v1759334137/IMG_3009_cgxs6j.jpg' },
+  { id: 8, name: 'Gautam Vishnoi', exam: 'MHT-CET 2025 (PCM)', score: '91.50%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_1200,h_1200,ar_1:1,g_auto,f_png/v1759334137/IMG_3013_ntnh6z.jpg' },
+  { id: 11, name: 'Bajarang Sounke', exam: 'MHT-CET 2025', score: '98.25%', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_3200,h_3200,ar_1:1,g_auto,f_png/v1759334138/IMG-20250409-WA0030_enkdtz.jpg' },
+  { id: 4, name: 'Prajwal Shinde', exam: 'MHT-CET 2025 (PCB)', score: '98.81%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334137/IMG-20250228-WA0007_tdul59.jpg' },
+  { id: 9, name: 'Samiksha Shivshete', exam: 'MHT-CET 2025 (PCM)', score: '93.91%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334138/IMG-20250621-WA0009_z4txg6.jpg' },
+  { id: 10, name: 'Shrawani Mote', exam: 'MHT-CET 2025 (PCM)', score: '92.71%tile', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334137/IMG-20250620-WA0016_xqxva0.jpg' },
+  { id: 12, name: 'Bajarang Sounke', exam: 'HSC 2025', score: '91.83%', image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_3200,h_3200,ar_1:1,g_auto,f_png/v1759334138/IMG-20250409-WA0030_enkdtz.jpg' }
 ];
 
 
@@ -57,7 +57,7 @@ const TESTIMONIALS = [
     id: 1,
     name: 'Amit Shinde',
     course: 'MHT-CET 2025 (PCB & PCM)',
-    image: '',
+    image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_2000,h_2000,ar_1:1,g_auto,f_png/v1759334138/IMG_3004_gw2edq.jpg',
     rating: 5,
     message: 'Scoring 98.86 percentile in PCB and 97.50 percentile in PCM was possible thanks to the rigorous preparation, daily tests, and personal mentorship at Seagull Academy. The faculty guided me at every step and helped me stay focused.',
     shortMessage: 'Daily tests and personal mentorship helped me achieve 98.86 (PCB) & 97.50 (PCM).'
@@ -66,7 +66,7 @@ const TESTIMONIALS = [
     id: 2,
     name: 'Prajwal Shinde',
     course: 'JEE Main & MHT-CET 2025 (PCB)',
-    image: '',
+    image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334137/IMG-20250228-WA0007_tdul59.jpg',
     rating: 5,
     message: 'With the excellent coaching at Seagull Academy, I secured 98.17 percentile in JEE Main and 98.81 percentile in PCB. The conceptual clarity and structured practice sessions were outstanding.',
     shortMessage: 'Concept clarity and structured practice led me to 98.17 (JEE) & 98.81 (PCB).'
@@ -75,7 +75,7 @@ const TESTIMONIALS = [
     id: 3,
     name: 'Nilesh Doiphode',
     course: 'MHT-CET 2025 (PCB & PCM)',
-    image: '',
+    image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_1500,h_1500,ar_1:1,g_auto,f_png/v1759334137/IMG_3009_cgxs6j.jpg',
     rating: 5,
     message: 'The guidance and support from Seagull Academy’s faculty were invaluable. I scored 98.81 percentile in PCB and 91.73 percentile in PCM, thanks to their strategic teaching and constant encouragement.',
     shortMessage: '98.81 (PCB) & 91.73 (PCM) thanks to strategic teaching and guidance.'
@@ -84,7 +84,7 @@ const TESTIMONIALS = [
     id: 4,
     name: 'Gautam Vishnoi',
     course: 'MHT-CET 2025 (PCB & PCM)',
-    image: '',
+    image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_1200,h_1200,ar_1:1,g_auto,f_png/v1759334137/IMG_3013_ntnh6z.jpg',
     rating: 5,
     message: 'Seagull Academy provided the perfect mix of study material, regular assessments, and motivation. I achieved 95.96 percentile in PCB and 91.50 percentile in PCM.',
     shortMessage: 'Regular assessments helped me secure 95.96 (PCB) & 91.50 (PCM).'
@@ -93,7 +93,7 @@ const TESTIMONIALS = [
     id: 5,
     name: 'Samiksha Shivshete',
     course: 'MHT-CET 2025 (PCM)',
-    image: '',
+    image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334138/IMG-20250621-WA0009_z4txg6.jpg',
     rating: 5,
     message: 'The focused approach and timely doubt-solving sessions at Seagull Academy helped me achieve 93.91 percentile in PCM.',
     shortMessage: 'Focused approach and doubt sessions boosted my score to 93.91 (PCM).'
@@ -102,7 +102,7 @@ const TESTIMONIALS = [
     id: 6,
     name: 'Shrawani Mote',
     course: 'MHT-CET 2025 (PCM)',
-    image: '',
+    image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334137/IMG-20250620-WA0016_xqxva0.jpg',
     rating: 5,
     message: 'With Seagull Academy’s consistent test series and personal feedback, I scored 92.71 percentile in PCM.',
     shortMessage: 'Consistent tests and feedback helped me score 92.71 (PCM).'
@@ -111,7 +111,7 @@ const TESTIMONIALS = [
     id: 7,
     name: 'Bajarang Sounke',
     course: 'MHT-CET & HSC 2025',
-    image: '',
+    image: 'https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_3200,h_3200,ar_1:1,g_auto,f_png/v1759334138/IMG-20250409-WA0030_enkdtz.jpg',
     rating: 5,
     message: 'I am grateful to Seagull Academy for helping me achieve 98.25% in CET and 91.83% in HSC. Their preparation strategy covered both board and competitive exams effectively.',
     shortMessage: 'Scored 98.25% in CET & 91.83% in HSC with Seagull Academy’s guidance.'
