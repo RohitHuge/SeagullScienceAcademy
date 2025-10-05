@@ -35,6 +35,7 @@ if (typeof window !== 'undefined') {
 const Home = () => {
   const { showSuccess, showError } = useToast();
   const [currentMentorSlide, setCurrentMentorSlide] = useState(0);
+  const [currentAchievementSlide, setCurrentAchievementSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [mentorImages, setMentorImages] = useState([]);
   const [coursesInView, setCoursesInView] = useState(false);
@@ -642,7 +643,8 @@ const Home = () => {
                                 {/* Profile image */}
                                 <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
                                   <div className="w-full h-full bg-gradient-to-br from-african_violet/20 to-grape/20 flex items-center justify-center">
-                                    <UserGroupIcon className="w-10 h-10 text-african_violet group-hover:text-grape transition-all duration-700 ease-out" />
+                                    {/* <UserGroupIcon className="w-10 h-10 text-african_violet group-hover:text-grape transition-all duration-700 ease-out" /> */}
+                                    <img src={mentorItem.photo} alt={mentorItem.name} className="w-full h-full object-cover" />
                                   </div>
                                 </div>
                               </div>
@@ -727,21 +729,116 @@ const Home = () => {
               </p>
             </div>
             
-            {/* Achievements Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" ref={achievementsRef}>
-              {achievements.map((achievement, i) => (
+            {/* Achievements Carousel */}
+            <div className="relative">
+              {/* Navigation arrows */}
+              <button
+                onClick={() => setCurrentAchievementSlide((prev) => (prev - 1 + Math.ceil(achievements.length / 4)) % Math.ceil(achievements.length / 4))}
+                className="absolute -left-20 top-1/3 -translate-y-1/2 bg-white text-jet border border-gray-200 p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-african_violet transition-all duration-200 z-20"
+                aria-label="Previous achievements"
+              >
+                <ChevronLeftIcon className="w-6 h-6" />
+              </button>
+              
+              <button
+                onClick={() => setCurrentAchievementSlide((prev) => (prev + 1) % Math.ceil(achievements.length / 4))}
+                className="absolute -right-20 top-1/3 -translate-y-1/2 bg-white text-jet border border-gray-200 p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-african_violet transition-all duration-200 z-20"
+                aria-label="Next achievements"
+              >
+                <ChevronRightIcon className="w-6 h-6" />
+              </button>
+              
+              {/* Carousel content */}
+              <div className="overflow-hidden py-8">
                 <div 
-                  key={`achievement-${i}`} 
-                  className={`bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center border-b-4 border-gold transition-all duration-700 hover:scale-105 cursor-pointer ${
-                    achievementsInView ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
-                  }`} 
-                  style={{ transitionDelay: `${i * 120}ms` }}
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${currentAchievementSlide * 100}%)` }}
                 >
-                  <span className="text-4xl font-bold text-eminence mb-2">{achievement.score}</span>
-                  <h3 className="text-lg font-bold text-jet mb-1">{achievement.name}</h3>
-                  <p className="text-base text-jet/70 mb-1">{achievement.exam}</p>
+                  {Array.from({ length: Math.ceil(achievements.length / 4) }, (_, slideIndex) => (
+                    <div key={slideIndex} className="w-full flex-shrink-0 px-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                        {achievements.slice(slideIndex * 4, (slideIndex + 1) * 4).map((achievement, cardIndex) => (
+                          <div
+                            key={achievement.id}
+                            className={`group relative bg-gradient-to-br from-white/95 to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-6 border border-african_violet/20 hover:border-african_violet/40 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden ${
+                              achievementsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                            }`}
+                            style={{ 
+                              transitionDelay: `${cardIndex * 0.1}s`,
+                              transitionDuration: '800ms'
+                            }}
+                          >
+                            {/* Animated left border */}
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-grape via-african_violet to-eminence transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-out"></div>
+                            
+                            {/* Background pattern */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-african_violet/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"></div>
+                            
+                            {/* Content */}
+                            <div className="relative z-10 flex flex-col items-center text-center space-y-4">
+                              {/* Student image container */}
+                              <div className="relative">
+                                {/* Outer glow ring */}
+                                <div className="absolute inset-0 w-20 h-20 bg-gradient-to-r from-grape to-african_violet rounded-full blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
+                                
+                                {/* Student image */}
+                                <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
+                                  <img 
+                                    src={achievement.image} 
+                                    alt={achievement.name} 
+                                    className="w-full h-full object-cover" 
+                                  />
+                                </div>
+                              </div>
+                              
+                              {/* Achievement details */}
+                              <div className="space-y-2">
+                                <div className="text-3xl font-bold text-eminence group-hover:text-grape transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
+                                  {achievement.score}
+                                </div>
+                                <h3 className="font-display font-bold text-lg text-jet group-hover:text-eminence transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
+                                  {achievement.name}
+                                </h3>
+                                <p className="text-african_violet font-semibold text-sm group-hover:text-grape transition-colors duration-500">
+                                  {achievement.exam}
+                                </p>
+                              </div>
+                              
+                              {/* Hover indicator */}
+                              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-2 group-hover:translate-y-0">
+                                <span className="inline-flex items-center space-x-2 text-african_violet font-medium text-xs group-hover:text-grape transition-colors duration-500">
+                                  <span>View Achievement</span>
+                                  <ArrowRightIcon className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                                </span>
+                              </div>
+                            </div>
+                            
+                            {/* Hover effect overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-grape/5 to-eminence/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"></div>
+                            
+                            {/* Subtle floating animation */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-out transform translate-y-full group-hover:translate-y-0"></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              
+              {/* Dots indicator */}
+              <div className="flex justify-center space-x-2 mt-8">
+                {Array.from({ length: Math.ceil(achievements.length / 4) }, (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentAchievementSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                      index === currentAchievementSlide ? 'bg-african_violet' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to achievement group ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
