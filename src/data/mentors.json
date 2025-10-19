@@ -19,7 +19,7 @@
     "name": "Prachi Ghule",
     "subject": "Mathematics",
     "qualification": "BE, ME Instrumentation",
-    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_281,h_500,ar_9:16,g_auto,f_png/v1759334138/IMG-20250822-WA0040_kefyoo.jpg",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_256,h_256,ar_1:1,g_auto,f_png/v1760871440/IMG-20250822-WA0040_kefyoo.jpg",
     "experience": "7 years",
     "bio": "7 years of experience in Mathematics education. Expert in calculus, algebra, and trigonometry. Focuses on building strong mathematical foundations and problem-solving skills.",
     "achievements": [
@@ -79,7 +79,7 @@
     "name": "Kishor Jadhav",
     "subject": "Mathematics",
     "qualification": "BE & ME Mechanical",
-    "photo": "/images/mentors/kishor.jpg",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_2200,h_2200,ar_1:1,g_auto,f_png/v1760871938/WhatsApp_Image_2025-10-19_at_15.19.55_b8558178_jlknnd.jpg",
     "experience": "6 years",
     "bio": "6 years of experience in Mathematics education. Specializes in calculus, coordinate geometry, and statistics. Focuses on building logical thinking and mathematical intuition.",
     "achievements": [
@@ -94,7 +94,7 @@
     "name": "Dr. Shradha Dandnaik",
     "subject": "Bio-NEET",
     "qualification": "BDS",
-    "photo": "/images/mentors/shradha.jpg", 
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_700,h_700,ar_1:1,g_auto,f_png/v1760871937/WhatsApp_Image_2025-10-19_at_15.19.26_63cb30bf_etzsxz.jpg", 
     "experience": "4 years",
     "bio": "4 years of experience in Biology education with medical background. Specializes in human anatomy, physiology, and medical terminology. Provides unique medical perspective to biology concepts.",
     "achievements": [
@@ -103,5 +103,21 @@
       "Specialist in human physiology",
       "Developed medical biology curriculum"
     ]
+  },
+  {
+    "id": 8,
+    "name": "Sandip Sir ",
+    "subject": "Mathematics",
+    "qualification": "M.Sc Maths, SET, B.Ed",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1760872374/WhatsApp_Image_2025-10-19_at_16.40.42_64038c7c_qk4ol7.jpg", 
+    "experience": "8 years",
+    "bio": "8 years of experience in Mathematics education. Specializes in calculus, coordinate geometry, and statistics. Focuses on building logical thinking and mathematical intuition.",
+    "achievements": [
+      "Mentored 120+ JEE qualifiers",
+      "Expert in advanced mathematics",
+      "Developed mathematics problem banks",
+      "Regular contributor to mathematics forums"
+    ]
   }
+  
 ]

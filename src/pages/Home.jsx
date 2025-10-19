@@ -332,20 +332,20 @@ const Home = () => {
           <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] relative">
               {/* Left Side - Content */}
-              <div className="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-30 flex flex-col items-start lg:items-start">
+              <div className="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-30 flex flex-col items-center text-center">
                 <div className="flex justify-center items-center w-full">
                 <img src="/logo.png" alt="Seagull Science Academy Logo" className="h-48 w-48 mb-3 drop-shadow-lg mx-auto lg:mx-0" />
                 </div>
-                <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl leading-tight animate-fade-in-up">
+                <h1 className="font-display  font-bold text-4xl sm:text-5xl lg:text-7xl leading-tight animate-fade-in-up">
                 <BlurText
-                  text={homeData.hero.title}
+                  text="Seagull Science Academy"
                   delay={150}
                   animateBy="words"
                   direction="top"
-                  className="text-4xl sm:text-5xl lg:text-7xl leading-tight"
+                  className="text-4xl sm:text-5xl lg:text-7xl leading-tight text-center justify-center"
                 />
                 </h1>
-                <p className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <p className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed text-center animate-fade-in-up">
                 <TextType 
                   text={homeData.hero.subtitle.split('**')}
                   as="span"
@@ -353,7 +353,7 @@ const Home = () => {
                   pauseDuration={1500}
                   showCursor={false}
                   cursorCharacter="•"
-                  className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed"
+                  className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed text-center"
                   variableSpeed={{min : 60 , max : 120}}
                 />
                 </p>
@@ -630,13 +630,13 @@ const Home = () => {
                               {/* Profile image container */}
                               <div className="relative">
                                 {/* Outer glow ring */}
-                                <div className="absolute inset-0 w-20 h-20 bg-gradient-to-r from-grape to-african_violet rounded-full blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
+                                <div className="absolute inset-0 w-28 h-28 bg-gradient-to-r from-grape to-african_violet rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
                                 
                                 {/* Profile image */}
-                                <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
+                                <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
                                   <div className="w-full h-full bg-gradient-to-br from-african_violet/20 to-grape/20 flex items-center justify-center">
                                     {/* <UserGroupIcon className="w-10 h-10 text-african_violet group-hover:text-grape transition-all duration-700 ease-out" /> */}
-                                    <img src={mentorItem.photo} alt={mentorItem.name} className="w-full h-full object-cover" />
+                                    <img src={mentorItem.photo} alt={mentorItem.name} className="w-full h-full object-cover rounded-2xl" />
                                   </div>
                                 </div>
                               </div>
@@ -771,14 +771,14 @@ const Home = () => {
                               {/* Student image container */}
                               <div className="relative">
                                 {/* Outer glow ring */}
-                                <div className="absolute inset-0 w-20 h-20 bg-gradient-to-r from-grape to-african_violet rounded-full blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
+                                <div className="absolute inset-0 w-32 h-32 bg-gradient-to-r from-grape to-african_violet rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
                                 
                                 {/* Student image */}
-                                <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
+                                <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
                                   <img 
                                     src={achievement.image} 
                                     alt={achievement.name} 
-                                    className="w-full h-full object-cover" 
+                                    className="w-full h-full object-cover rounded-2xl" 
                                   />
                                 </div>
                               </div>
@@ -1090,25 +1090,33 @@ function HeroAchievementsCarousel() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: -30 }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="bg-white shadow-2xl rounded-3xl max-w-[516px] min-w-[420px] w-full flex flex-col items-center p-16 border-b-8 border-gold"
+          className="bg-white shadow-2xl rounded-3xl max-w-[530px] min-w-[430px] w-full h-[600px] flex flex-col items-center p-0 border-b-8 border-gold overflow-hidden"
         >
-          <div className="w-56 h-56 rounded-full overflow-hidden border-8 border-eminence bg-gradient-to-br from-gold to-amber-300 flex items-center justify-center mb-8">
-            <img src={student.image} alt={student.name} className="object-cover w-full h-full rounded-full" />
-          </div>
-          <div className="font-bold text-3xl text-grape text-center mb-3">{student.name}</div>
-          <div className="text-lg text-eminence font-semibold mb-4 text-center">{student.exam}</div>
-          <div className="relative flex justify-center items-center my-2">
-            <span className="inline-block text-4xl font-extrabold bg-gradient-to-r from-gold to-amber-300 text-eminence px-10 py-4 rounded-full shadow-lg border-4 border-gold transform -rotate-3 uppercase tracking-tight outline-white outline outline-2 drop-shadow-lg">
-              {student.score}
-            </span>
-            <span className="absolute right-0 -top-4 bg-gold text-eminence font-bold text-xs px-3 py-1 rounded-xl shadow-md border-2 border-white">
-              Top Score
-            </span>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </div>
-  );
+         <div className="flex flex-col h-full w-full">
+           {/* Image section: 65% */}
+           <div className="flex-1 min-h-0 flex flex-col justify-center items-center py-8" style={{flexBasis: '65%', flexGrow: 1}}>
+             <div className="w-[19.2rem] h-[19.2rem] overflow-hidden border-4 border-eminence bg-gradient-to-br from-gold to-amber-300 flex items-center justify-center rounded-2xl">
+               <img src={student.image} alt={student.name} className="object-cover w-full h-full rounded-2xl" />
+             </div>
+           </div>
+           {/* Details section: 35% */}
+           <div className="flex-none flex flex-col justify-center items-center gap-2 px-8 pb-6" style={{height: '35%'}}>
+             <div className="font-bold text-2xl text-grape text-center">{student.name}</div>
+             <div className="text-base text-eminence font-semibold text-center">{student.exam}</div>
+             <div className="relative flex justify-center items-center my-1 w-full">
+               <span className="inline-block text-4xl font-extrabold bg-gradient-to-r from-gold to-amber-300 text-eminence px-10 py-5 rounded-full shadow-lg border-4 border-gold -rotate-2 uppercase tracking-tight outline-white outline outline-2 drop-shadow-lg">
+                 {student.score}
+               </span>
+               <span className="absolute right-4 -top-3 bg-gold text-eminence font-bold text-xs px-2 py-1 rounded-xl shadow-md border-2 border-white">
+                 Top Score
+               </span>
+             </div>
+           </div>
+         </div>
+       </motion.div>
+     </AnimatePresence>
+   </div>
+ );
 }
 
 export default Home;
