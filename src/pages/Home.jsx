@@ -26,6 +26,8 @@ import { STUDENT_ACHIEVEMENTS } from './Achievements';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { COURSES } from './Courses';
 import { ApplyModal } from './Courses';
+import { motion, AnimatePresence } from "framer-motion";
+
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -330,7 +332,10 @@ const Home = () => {
           <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] relative">
               {/* Left Side - Content */}
-              <div className="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-30">
+              <div className="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-30 flex flex-col items-start lg:items-start">
+                <div className="flex justify-center items-center w-full">
+                <img src="/logo.png" alt="Seagull Science Academy Logo" className="h-48 w-48 mb-3 drop-shadow-lg mx-auto lg:mx-0" />
+                </div>
                 <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl leading-tight animate-fade-in-up">
                 <BlurText
                   text={homeData.hero.title}
@@ -1067,32 +1072,41 @@ const Home = () => {
 
 // --- Achievements Carousel for Hero ---
 function HeroAchievementsCarousel() {
-  // Generic static array
   const students = STUDENT_ACHIEVEMENTS;
   const [index, setIndex] = useState(0);
   useEffect(() => {
     const intv = setInterval(() => {
-      setIndex((idx) => (idx + 2) % students.length);
+      setIndex((idx) => (idx + 1) % students.length);
     }, 3000);
     return () => clearInterval(intv);
   }, [students.length]);
-  // Slice and wrap for 2 cards
-  const show = [students[index], students[(index + 1) % students.length]];
+  const student = students[index];
   return (
-    <div className="flex flex-col justify-center items-center gap-4 py-6 w-full animate-fade-in-up transition-all duration-500">
-      <img src="/logo.png" alt="Seagull Science Academy Logo" className="h-48 w-48 mb-1 drop-shadow-md" />
-      <div className="flex justify-center gap-8 w-full">
-        {show.map((student) => (
-          <div key={student.id} className="bg-white shadow-lg rounded-2xl max-w-[312px] min-w-[252px] w-full flex flex-col items-center p-6 border-b-4 border-gold hover:scale-105 hover:shadow-xl transition-transform duration-300">
-            <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-eminence mb-4">
-              <img src={student.image} alt={student.name} className="object-cover w-full h-full" />
-            </div>
-            <div className="font-bold text-2xl text-grape text-center mb-2">{student.name}</div>
-            <div className="text-base text-jet/70 mb-2 text-center">{student.exam}</div>
-            <div className="text-xl font-bold bg-gold text-grape rounded-full px-5 py-2 mt-2 text-center">{student.score}</div>
+    <div className="flex flex-col justify-center items-center py-10 w-full">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={student.id || index}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: -30 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="bg-white shadow-2xl rounded-3xl max-w-[516px] min-w-[420px] w-full flex flex-col items-center p-16 border-b-8 border-gold"
+        >
+          <div className="w-56 h-56 rounded-full overflow-hidden border-8 border-eminence bg-gradient-to-br from-gold to-amber-300 flex items-center justify-center mb-8">
+            <img src={student.image} alt={student.name} className="object-cover w-full h-full rounded-full" />
           </div>
-        ))}
-      </div>
+          <div className="font-bold text-3xl text-grape text-center mb-3">{student.name}</div>
+          <div className="text-lg text-eminence font-semibold mb-4 text-center">{student.exam}</div>
+          <div className="relative flex justify-center items-center my-2">
+            <span className="inline-block text-4xl font-extrabold bg-gradient-to-r from-gold to-amber-300 text-eminence px-10 py-4 rounded-full shadow-lg border-4 border-gold transform -rotate-3 uppercase tracking-tight outline-white outline outline-2 drop-shadow-lg">
+              {student.score}
+            </span>
+            <span className="absolute right-0 -top-4 bg-gold text-eminence font-bold text-xs px-3 py-1 rounded-xl shadow-md border-2 border-white">
+              Top Score
+            </span>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
