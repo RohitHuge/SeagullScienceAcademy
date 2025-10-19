@@ -96,7 +96,7 @@ function MessageFromDirector() {
               {/* Main photo with enhanced styling */}
               <div className="relative">
                 <img 
-                  src="https://randomuser.me/api/portraits/men/75.jpg" 
+                  src="https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759333666/20240428_224813_xstoqt.jpg" 
                   alt="Vikram Sir" 
                   className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-8 border-white shadow-2xl transform hover:scale-105 transition-all duration-300" 
                   style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}
@@ -120,7 +120,7 @@ function MessageFromDirector() {
               {/* Main photo with enhanced styling */}
               <div className="relative">
                 <img 
-                  src="https://randomuser.me/api/portraits/women/65.jpg" 
+                  src="https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_281,h_500,ar_9:16,g_auto,f_png/v1759334138/IMG-20250822-WA0040_kefyoo.jpg" 
                   alt="Prachi Ma'am" 
                   className="w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-8 border-white shadow-2xl transform hover:scale-105 transition-all duration-300" 
                   style={{ boxShadow: '0 20px 40px rgba(0,0,0,0.15)' }}
