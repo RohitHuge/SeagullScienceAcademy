@@ -26,6 +26,8 @@ import { STUDENT_ACHIEVEMENTS } from './Achievements';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { COURSES } from './Courses';
 import { ApplyModal } from './Courses';
+import { motion, AnimatePresence } from "framer-motion";
+
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -1080,21 +1082,31 @@ function HeroAchievementsCarousel() {
   }, [students.length]);
   const student = students[index];
   return (
-    <div className="flex flex-col justify-center items-center py-10 w-full animate-fade-in-up transition-all duration-500">
-      <div className="bg-white shadow-2xl rounded-3xl max-w-[516px] min-w-[420px] w-full flex flex-col items-center p-16 border-b-8 border-gold hover:scale-105 hover:shadow-2xl transition-transform duration-500">
-        <div className="w-56 h-56 rounded-full overflow-hidden border-8 border-eminence bg-gradient-to-br from-gold to-amber-300 flex items-center justify-center mb-8">
-          <img src={student.image} alt={student.name} className="object-cover w-full h-full rounded-full" />
-        </div>
-        <div className="font-bold text-3xl text-grape text-center mb-3">{student.name}</div>
-        <div className="text-lg text-eminence font-semibold mb-4 text-center">{student.exam}</div>
-        {/* Highlighted Score */}
-        <div className="relative flex justify-center items-center my-2">
-          <span className="inline-block text-4xl font-extrabold bg-gradient-to-r from-gold to-amber-300 text-eminence px-10 py-4 rounded-full shadow-lg border-4 border-gold transform -rotate-3 uppercase tracking-tight outline-white outline outline-2 drop-shadow-lg animate-bounce-slow">
-            {student.score}
-          </span>
-          <span className="absolute right-0 -top-4 bg-gold text-eminence font-bold text-xs px-3 py-1 rounded-xl shadow-md border-2 border-white animate-wiggle">Top Score</span>
-        </div>
-      </div>
+    <div className="flex flex-col justify-center items-center py-10 w-full">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={student.id || index}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: -30 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="bg-white shadow-2xl rounded-3xl max-w-[516px] min-w-[420px] w-full flex flex-col items-center p-16 border-b-8 border-gold"
+        >
+          <div className="w-56 h-56 rounded-full overflow-hidden border-8 border-eminence bg-gradient-to-br from-gold to-amber-300 flex items-center justify-center mb-8">
+            <img src={student.image} alt={student.name} className="object-cover w-full h-full rounded-full" />
+          </div>
+          <div className="font-bold text-3xl text-grape text-center mb-3">{student.name}</div>
+          <div className="text-lg text-eminence font-semibold mb-4 text-center">{student.exam}</div>
+          <div className="relative flex justify-center items-center my-2">
+            <span className="inline-block text-4xl font-extrabold bg-gradient-to-r from-gold to-amber-300 text-eminence px-10 py-4 rounded-full shadow-lg border-4 border-gold transform -rotate-3 uppercase tracking-tight outline-white outline outline-2 drop-shadow-lg">
+              {student.score}
+            </span>
+            <span className="absolute right-0 -top-4 bg-gold text-eminence font-bold text-xs px-3 py-1 rounded-xl shadow-md border-2 border-white">
+              Top Score
+            </span>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }
