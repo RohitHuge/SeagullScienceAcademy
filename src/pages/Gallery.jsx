@@ -54,18 +54,18 @@ const GALLERY_IMAGES = [
     message: 'Special guest session from education field experts',
     adjustment: { x: 50, y: 50 } // center
   },
-  // { 
-  //   id: 9, 
-  //   src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop', 
-  //   message: 'Student Counseling Session - Personalized guidance for career planning',
-  //   adjustment: { x: 50, y: 50 } // center
-  // },
-  // { 
-  //   id: 10, 
-  //   src: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop', 
-  //   message: 'Science Exhibition - Students showcasing their innovative projects',
-  //   adjustment: { x: 50, y: 50 } // center
-  // },
+  { 
+    id: 9, 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1760874649/WhatsApp_Image_2025-10-19_at_15.23.21_4c42aa71_ywcpgh.jpg', 
+    message: 'Teacher Day Celebration - Honoring our mentors for their dedication and support',
+    adjustment: { x: 50, y: 50 } // center
+  },
+  { 
+    id: 10, 
+    src: 'https://res.cloudinary.com/dewpzsbeb/image/upload/v1760874649/WhatsApp_Image_2025-10-19_at_15.24.27_0186efa1_quqpis.jpg', 
+    message: 'Visit - Empowering student minds with real life experiences',
+    adjustment: { x: 50, y: 40 } // center
+  },
   // { 
   //   id: 11, 
   //   src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop', 
