@@ -56,8 +56,9 @@ const Header = () => {
             <div className="flex-shrink-0">
               <a
                 href="/"
-                className="text-white font-display font-bold text-xl hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-african_violet rounded"
+                className="flex items-center text-white font-display font-bold text-xl hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-african_violet rounded"
               >
+                <img src="/logo.png" alt="Seagull Science Academy Logo" className="h-9 w-9 mr-2" />
                 Seagull Science Academy
               </a>
             </div>

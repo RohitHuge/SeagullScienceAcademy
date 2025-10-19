@@ -326,18 +326,6 @@ const Home = () => {
           {/* Gradient overlays for depth - only on left side */}
           <div className="absolute inset-0 bg-gradient-to-r from-grape/80 via-transparent to-transparent"></div>
           
-          {/* Full Height Background Image - Right Side */}
-          <div className="absolute inset-0 w-full h-full">
-            <div 
-              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: 'url(https://res.cloudinary.com/dewpzsbeb/image/upload/v1757457944/Gemini_Generated_Image_gqukb5gqukb5gquk_jxg5et.png)',
-                clipPath: 'polygon(60% 0%, 100% 0%, 100% 100%, 40% 100%)'
-              }}
-            ></div>
-          </div>
-          
-          
           {/* Content */}
           <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] relative">
@@ -384,10 +372,9 @@ const Home = () => {
                 </button>
               </div>
 
-              {/* Right Side - Empty space (image is in background) */}
-              <div className="order-1 lg:order-2 relative">
-                {/* This space is intentionally left empty - the image is in the background */}
-                <div className="w-full h-64 sm:h-80 lg:h-96 xl:h-[500px]"></div>
+              {/* Right Side - Modern Carousel with Student Achievements */}
+              <div className="order-1 lg:order-2 flex justify-center items-center w-full">
+                <HeroAchievementsCarousel />
               </div>
             </div>
           </div>
@@ -1077,5 +1064,37 @@ const Home = () => {
     </>
   );
 };
+
+// --- Achievements Carousel for Hero ---
+function HeroAchievementsCarousel() {
+  // Generic static array
+  const students = STUDENT_ACHIEVEMENTS;
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const intv = setInterval(() => {
+      setIndex((idx) => (idx + 2) % students.length);
+    }, 3000);
+    return () => clearInterval(intv);
+  }, [students.length]);
+  // Slice and wrap for 2 cards
+  const show = [students[index], students[(index + 1) % students.length]];
+  return (
+    <div className="flex flex-col justify-center items-center gap-4 py-6 w-full animate-fade-in-up transition-all duration-500">
+      <img src="/logo.png" alt="Seagull Science Academy Logo" className="h-48 w-48 mb-1 drop-shadow-md" />
+      <div className="flex justify-center gap-8 w-full">
+        {show.map((student) => (
+          <div key={student.id} className="bg-white shadow-lg rounded-2xl max-w-[312px] min-w-[252px] w-full flex flex-col items-center p-6 border-b-4 border-gold hover:scale-105 hover:shadow-xl transition-transform duration-300">
+            <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-eminence mb-4">
+              <img src={student.image} alt={student.name} className="object-cover w-full h-full" />
+            </div>
+            <div className="font-bold text-2xl text-grape text-center mb-2">{student.name}</div>
+            <div className="text-base text-jet/70 mb-2 text-center">{student.exam}</div>
+            <div className="text-xl font-bold bg-gold text-grape rounded-full px-5 py-2 mt-2 text-center">{student.score}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default Home;
