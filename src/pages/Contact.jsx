@@ -416,11 +416,11 @@ export default function Contact() {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://seagullscienceacademy.pages.dev/contact"
+          content="https://seagullacadmy.in/contact"
         />
         <meta
           property="og:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/contact-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
 
         {/* Twitter Card */}
@@ -432,7 +432,7 @@ export default function Contact() {
         />
         <meta
           name="twitter:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/contact-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
 
         {/* Local Business / Contact info for SEO */}
@@ -446,9 +446,9 @@ export default function Contact() {
             "@context": "https://schema.org",
             "@type": "EducationalOrganization",
             "name": "Seagull Science Academy",
-            "url": "https://seagullscienceacademy.pages.dev",
-            "logo": "https://seagullscienceacademy.pages.dev/images/logo.png",
-            "image": "https://seagullscienceacademy.pages.dev/images/seo/contact-banner.jpg",
+            "url": "https://seagullacadmy.in",
+            "logo": "https://seagullacadmy.in/logo.png",
+            "image": "https://seagullacadmy.in/logo.png",
             "description": "Seagull Science Academy provides expert coaching for NEET, JEE, MHT-CET, NDA, and 6th-12th Science (PCMB). Located in Bhosari, Maharashtra.",
             "address": {
               "@type": "PostalAddress",

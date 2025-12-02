@@ -308,11 +308,11 @@ export default function Gallery() {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://seagullscienceacademy.pages.dev/gallery"
+          content="https://seagullacadmy.in/gallery"
         />
         <meta
           property="og:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/gallery-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
 
         {/* Twitter Card */}
@@ -324,7 +324,7 @@ export default function Gallery() {
         />
         <meta
           name="twitter:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/gallery-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
       </Helmet>
     <div className="min-h-screen bg-white font-display">

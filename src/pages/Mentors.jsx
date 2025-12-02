@@ -116,11 +116,11 @@ export default function Mentors() {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://seagullscienceacademy.pages.dev/mentors"
+          content="https://seagullacadmy.in/mentors"
         />
         <meta
           property="og:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/mentors-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
 
         {/* Twitter Card */}
@@ -135,7 +135,7 @@ export default function Mentors() {
         />
         <meta
           name="twitter:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/mentors-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
       </Helmet>
     <div className="font-display bg-white text-jet min-h-screen">
