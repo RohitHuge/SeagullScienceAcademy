@@ -279,7 +279,7 @@ const Home = () => {
         <title>Seagull Science Academy | NEET, JEE, CET Coaching in Bhosari, Pune</title>
         <meta
           name="description"
-          content="Seagull Science Academy, Bhosari – Expert coaching for NEET, JEE, CET, NDA. Experienced mentors, daily tests, printed notes, and career guidance."
+          content="Seagull Science Academy, Bhosari – Expert coaching for NEET, JEE, CET. Experienced mentors, daily tests, printed notes, and career guidance."
         />
         <meta
           name="keywords"
@@ -289,26 +289,83 @@ const Home = () => {
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.seagullscienceacademy.com/" />
+        <meta property="og:url" content="https://seagullacadmy.in/" />
         <meta property="og:title" content="Seagull Science Academy | NEET, JEE, CET Coaching" />
         <meta
           property="og:description"
           content="Join Seagull Science Academy in Bhosari, Pune for NEET, JEE, CET, and NDA coaching. Daily tests, expert faculties & personalized mentoring."
         />
-        <meta property="og:image" content="https://www.seagullscienceacademy.com/images/og-banner.jpg" />
+        <meta property="og:image" content="https://seagullacadmy.in/logo.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.seagullscienceacademy.com/" />
+        <meta name="twitter:url" content="https://seagullacadmy.in/" />
         <meta name="twitter:title" content="Seagull Science Academy | NEET, JEE, CET Coaching" />
         <meta
           name="twitter:description"
           content="Trusted coaching in Bhosari, Pune for NEET, JEE, CET, and NDA with daily tests and expert mentors."
         />
-        <meta name="twitter:image" content="https://www.seagullscienceacademy.com/images/og-banner.jpg" />
+        <meta name="twitter:image" content="https://seagullacadmy.in/logo.png" />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
+
+        <script type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: `
+            {
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              "name": "Seagull Science Academy",
+              "url": "https://seagullacadmy.in",
+              "logo": "https://seagullacadmy.in/logo.png",
+              "image": "https://seagullacadmy.in/logo.png",
+              "description": "Seagull Science Academy provides expert coaching for NEET, JEE, MHT-CET, NDA, and 6th-12th Science (PCMB). Located in Bhosari, Maharashtra.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2nd floor, Arham Plaza, Near PNG Jewellers, Gavhanewasti",
+                "addressLocality": "Bhosari",
+                "addressRegion": "Maharashtra",
+                "postalCode": "411039",
+                "addressCountry": "IN"
+              },
+              "geo": { 
+                "@type": "GeoCoordinates", 
+                "latitude": 18.6279, 
+                "longitude": 73.8531 
+              },
+              "contactPoint": [
+                { 
+                  "@type": "ContactPoint", 
+                  "telephone": "+91-9096705353", 
+                  "contactType": "customer service", 
+                  "areaServed": "IN" 
+                },
+                { 
+                  "@type": "ContactPoint", 
+                  "telephone": "+91-9284635306", 
+                  "contactType": "admissions", 
+                  "areaServed": "IN" 
+                }
+              ],
+              "openingHoursSpecification": [
+                { 
+                  "@type": "OpeningHoursSpecification", 
+                  "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], 
+                  "opens":"08:00", 
+                  "closes":"20:00" 
+                },
+                { 
+                  "@type": "OpeningHoursSpecification", 
+                  "dayOfWeek":"Sunday", 
+                  "opens":"09:00", 
+                  "closes":"18:00" 
+                }
+              ]
+            }
+            `}}
+            ></script>
+
       </Helmet>
     <div className="min-h-screen bg-white">
       <Header />

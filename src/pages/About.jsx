@@ -354,11 +354,11 @@ export default function About() {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://seagullscienceacademy.pages.dev/about"
+          content="https://seagullacadmy.in/about"
         />
         <meta
           property="og:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/academy-building.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
 
         {/* Twitter Card */}
@@ -373,7 +373,7 @@ export default function About() {
         />
         <meta
           name="twitter:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/academy-building.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
       </Helmet>
       <Header />

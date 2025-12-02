@@ -399,11 +399,11 @@ export default function Courses() {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://seagullscienceacademy.pages.dev/courses"
+          content="https://seagullacadmy.in/courses"
         />
         <meta
           property="og:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/courses-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
 
         {/* Twitter Card */}
@@ -418,7 +418,7 @@ export default function Courses() {
         />
         <meta
           name="twitter:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/courses-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
       </Helmet>
     <div className="font-display bg-white text-jet min-h-screen">

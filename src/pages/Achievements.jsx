@@ -598,11 +598,11 @@ export default function Achievements() {
         <meta property="og:type" content="website" />
         <meta
           property="og:url"
-          content="https://seagullscienceacademy.pages.dev/achievements"
+          content="https://seagullacadmy.in/achievements"
         />
         <meta
           property="og:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/achievements-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
 
         {/* Twitter Card */}
@@ -617,7 +617,7 @@ export default function Achievements() {
         />
         <meta
           name="twitter:image"
-          content="https://seagullscienceacademy.pages.dev/images/seo/achievements-banner.jpg"
+          content="https://seagullacadmy.in/logo.png"
         />
       </Helmet>
     <div className="font-display bg-white text-jet min-h-screen">
