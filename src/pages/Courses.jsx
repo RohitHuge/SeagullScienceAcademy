@@ -7,7 +7,7 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 export const COURSES = [
   {
     id: 1,
-    title: 'IIT-JEE Intigrated Course',
+    title: 'IIT-JEE Integrated Course',
     classes: '11th & 12th Standard',
     subjects: ['Mathematics', 'Science', 'English', 'Social Studies'],
     fee: '₹30,000/year',
@@ -16,7 +16,7 @@ export const COURSES = [
   },
   {
     id: 2,
-    title: 'NEET-UG Intigrated Course',
+    title: 'NEET-UG Integrated Course',
     classes: '11th & 12th Standard',
     subjects: ['Physics', 'Chemistry', 'Mathematics', 'Biology'],
     fee: '₹40,000/year',
@@ -25,7 +25,7 @@ export const COURSES = [
   },
   {
     id: 3,
-    title: 'MHT-CET Intigrated Course',
+    title: 'MHT-CET Integrated Course',
     classes: '11th & 12th Standard',
     subjects: ['Physics', 'Chemistry', 'Mathematics'],
     fee: '₹35,000',
@@ -52,7 +52,7 @@ export const COURSES = [
   },
   {
     id: 6,
-    title: 'MHT-CER Crash Course',
+    title: 'MHT-CET Crash Course',
     classes: '12th Standard',
     subjects: ['Mathematics', 'Science', 'English'],
     fee: '₹20,000/year',
