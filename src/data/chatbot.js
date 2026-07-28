@@ -1,4 +1,4 @@
-const WORKER_URL = import.meta.env.VITE_CHATBOT_WORKER_URL;
+const WORKER_URL = import.meta.env.VITE_CHATBOT_WORKER_URL || "https://seagull-chatbot.seagullwebsite25.workers.dev";
 
 export async function askBot(userMessage, messages = []) {
   const response = await fetch(WORKER_URL, {
