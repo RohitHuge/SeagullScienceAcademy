@@ -60,14 +60,14 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="font-display font-semibold text-lg mb-2">Website</h3>
             <a
-              href="https://www.seagullacademy.in"
+              href="https://www.seagullacadmy.in"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors duration-200 group"
               aria-label="Visit Seagull Academy website"
             >
               <GlobeAltIcon className="w-5 h-5 text-african_violet group-hover:scale-110 transition-transform duration-200" />
-              <span>www.seagullacademy.in</span>
+              <span>www.seagullacadmy.in</span>
             </a>
           </div>
         </div>

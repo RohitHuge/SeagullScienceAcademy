@@ -3,6 +3,7 @@ import { ToastProvider } from './components/ui/Toast'
 import { AuthProvider } from './contexts/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import FloatingChatLauncher from './components/FloatingChatLauncher'
+import CETCrashCoursePopup from './components/CETCrashCoursePopup'
 import Home from './pages/Home'
 import About from './pages/About'
 import Courses from './pages/Courses'
@@ -22,6 +23,7 @@ function App() {
       <ToastProvider>
         <BrowserRouter>
           <FloatingChatLauncher />
+          <CETCrashCoursePopup />
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Home />} />
@@ -32,7 +34,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/login" element={<Login />} />
-            
+
             {/* Protected Admin Routes */}
             <Route path="/admin" element={
               <ProtectedRoute>

@@ -42,7 +42,7 @@ const MentorCard = ({ mentor, onViewProfile, animate, delay }) => {
         {/* Photo Section */}
         <div className="flex justify-center mb-4">
           <div className="relative">
-            <div className="w-24 h-24 rounded-full overflow-hidden ring-4 ring-african_violet/30 group-hover:ring-african_violet/50 transition-all duration-300">
+            <div className="w-24 h-24 rounded-2xl overflow-hidden ring-4 ring-african_violet/30 group-hover:ring-african_violet/50 transition-all duration-300">
               {!imageLoaded && (
                 <div className="w-full h-full bg-gradient-to-br from-african_violet/20 to-grape/20 animate-pulse flex items-center justify-center">
                   <div className="text-african_violet text-2xl font-bold">
@@ -70,6 +70,7 @@ const MentorCard = ({ mentor, onViewProfile, animate, delay }) => {
           <h3 className="text-xl font-bold text-jet mb-2 group-hover:text-grape transition-colors duration-300">
             {mentor.name}
           </h3>
+          <h4 className="text-lg font-bold text-jet mb-2 group-hover:text-grape transition-colors duration-300">{mentor.experience}</h4>
           <p className="text-african_violet font-semibold mb-2 group-hover:text-eminence transition-colors duration-300">
             {mentor.subject}
           </p>

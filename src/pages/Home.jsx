@@ -26,6 +26,8 @@ import { STUDENT_ACHIEVEMENTS } from './Achievements';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { COURSES } from './Courses';
 import { ApplyModal } from './Courses';
+import { motion, AnimatePresence } from "framer-motion";
+
 
 // Add smooth scroll CSS globally
 if (typeof window !== 'undefined') {
@@ -35,6 +37,7 @@ if (typeof window !== 'undefined') {
 const Home = () => {
   const { showSuccess, showError } = useToast();
   const [currentMentorSlide, setCurrentMentorSlide] = useState(0);
+  const [currentAchievementSlide, setCurrentAchievementSlide] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [mentorImages, setMentorImages] = useState([]);
   const [coursesInView, setCoursesInView] = useState(false);
@@ -276,7 +279,7 @@ const Home = () => {
         <title>Seagull Science Academy | NEET, JEE, CET Coaching in Bhosari, Pune</title>
         <meta
           name="description"
-          content="Seagull Science Academy, Bhosari – Expert coaching for NEET, JEE, CET, NDA. Experienced mentors, daily tests, printed notes, and career guidance."
+          content="Seagull Science Academy, Bhosari – Expert coaching for NEET, JEE, CET. Experienced mentors, daily tests, printed notes, and career guidance."
         />
         <meta
           name="keywords"
@@ -286,26 +289,83 @@ const Home = () => {
 
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.seagullscienceacademy.com/" />
+        <meta property="og:url" content="https://seagullacadmy.in/" />
         <meta property="og:title" content="Seagull Science Academy | NEET, JEE, CET Coaching" />
         <meta
           property="og:description"
           content="Join Seagull Science Academy in Bhosari, Pune for NEET, JEE, CET, and NDA coaching. Daily tests, expert faculties & personalized mentoring."
         />
-        <meta property="og:image" content="https://www.seagullscienceacademy.com/images/og-banner.jpg" />
+        <meta property="og:image" content="https://seagullacadmy.in/logo.png" />
 
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content="https://www.seagullscienceacademy.com/" />
+        <meta name="twitter:url" content="https://seagullacadmy.in/" />
         <meta name="twitter:title" content="Seagull Science Academy | NEET, JEE, CET Coaching" />
         <meta
           name="twitter:description"
           content="Trusted coaching in Bhosari, Pune for NEET, JEE, CET, and NDA with daily tests and expert mentors."
         />
-        <meta name="twitter:image" content="https://www.seagullscienceacademy.com/images/og-banner.jpg" />
+        <meta name="twitter:image" content="https://seagullacadmy.in/logo.png" />
 
         {/* Favicon */}
         <link rel="icon" href="/favicon.ico" />
+
+        <script type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: `
+            {
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              "name": "Seagull Science Academy",
+              "url": "https://seagullacadmy.in",
+              "logo": "https://seagullacadmy.in/logo.png",
+              "image": "https://seagullacadmy.in/logo.png",
+              "description": "Seagull Science Academy provides expert coaching for NEET, JEE, MHT-CET, NDA, and 6th-12th Science (PCMB). Located in Bhosari, Maharashtra.",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "2nd floor, Arham Plaza, Near PNG Jewellers, Gavhanewasti",
+                "addressLocality": "Bhosari",
+                "addressRegion": "Maharashtra",
+                "postalCode": "411039",
+                "addressCountry": "IN"
+              },
+              "geo": { 
+                "@type": "GeoCoordinates", 
+                "latitude": 18.6279, 
+                "longitude": 73.8531 
+              },
+              "contactPoint": [
+                { 
+                  "@type": "ContactPoint", 
+                  "telephone": "+91-9096705353", 
+                  "contactType": "customer service", 
+                  "areaServed": "IN" 
+                },
+                { 
+                  "@type": "ContactPoint", 
+                  "telephone": "+91-9284635306", 
+                  "contactType": "admissions", 
+                  "areaServed": "IN" 
+                }
+              ],
+              "openingHoursSpecification": [
+                { 
+                  "@type": "OpeningHoursSpecification", 
+                  "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], 
+                  "opens":"08:00", 
+                  "closes":"20:00" 
+                },
+                { 
+                  "@type": "OpeningHoursSpecification", 
+                  "dayOfWeek":"Sunday", 
+                  "opens":"09:00", 
+                  "closes":"18:00" 
+                }
+              ]
+            }
+            `}}
+            ></script>
+
       </Helmet>
     <div className="min-h-screen bg-white">
       <Header />
@@ -325,33 +385,24 @@ const Home = () => {
           {/* Gradient overlays for depth - only on left side */}
           <div className="absolute inset-0 bg-gradient-to-r from-grape/80 via-transparent to-transparent"></div>
           
-          {/* Full Height Background Image - Right Side */}
-          <div className="absolute inset-0 w-full h-full">
-            <div 
-              className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-              style={{
-                backgroundImage: 'url(https://res.cloudinary.com/dewpzsbeb/image/upload/v1757457944/Gemini_Generated_Image_gqukb5gqukb5gquk_jxg5et.png)',
-                clipPath: 'polygon(60% 0%, 100% 0%, 100% 100%, 40% 100%)'
-              }}
-            ></div>
-          </div>
-          
-          
           {/* Content */}
           <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[80vh] relative">
               {/* Left Side - Content */}
-              <div className="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-30">
-                <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-7xl leading-tight animate-fade-in-up">
+              <div className="space-y-6 lg:space-y-8 order-2 lg:order-1 relative z-30 flex flex-col items-center text-center">
+                <div className="flex justify-center items-center w-full">
+                <img src="/logo.png" alt="Seagull Science Academy Logo" className="h-48 w-48 mb-3 drop-shadow-lg mx-auto lg:mx-0" />
+                </div>
+                <h1 className="font-display  font-bold text-4xl sm:text-5xl lg:text-7xl leading-tight animate-fade-in-up">
                 <BlurText
-                  text={homeData.hero.title}
+                  text="Seagull Science Academy"
                   delay={150}
                   animateBy="words"
                   direction="top"
-                  className="text-4xl sm:text-5xl lg:text-7xl leading-tight"
+                  className="text-4xl sm:text-5xl lg:text-7xl leading-tight text-center justify-center"
                 />
                 </h1>
-                <p className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                <p className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed text-center animate-fade-in-up">
                 <TextType 
                   text={homeData.hero.subtitle.split('**')}
                   as="span"
@@ -359,7 +410,7 @@ const Home = () => {
                   pauseDuration={1500}
                   showCursor={false}
                   cursorCharacter="•"
-                  className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed"
+                  className="text-lg sm:text-xl lg:text-2xl text-white/90 leading-relaxed text-center"
                   variableSpeed={{min : 60 , max : 120}}
                 />
                 </p>
@@ -383,10 +434,9 @@ const Home = () => {
                 </button>
               </div>
 
-              {/* Right Side - Empty space (image is in background) */}
-              <div className="order-1 lg:order-2 relative">
-                {/* This space is intentionally left empty - the image is in the background */}
-                <div className="w-full h-64 sm:h-80 lg:h-96 xl:h-[500px]"></div>
+              {/* Right Side - Modern Carousel with Student Achievements */}
+              <div className="order-1 lg:order-2 flex justify-center items-center w-full">
+                <HeroAchievementsCarousel />
               </div>
             </div>
           </div>
@@ -637,12 +687,13 @@ const Home = () => {
                               {/* Profile image container */}
                               <div className="relative">
                                 {/* Outer glow ring */}
-                                <div className="absolute inset-0 w-20 h-20 bg-gradient-to-r from-grape to-african_violet rounded-full blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
+                                <div className="absolute inset-0 w-28 h-28 bg-gradient-to-r from-grape to-african_violet rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
                                 
                                 {/* Profile image */}
-                                <div className="relative w-20 h-20 rounded-full overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
+                                <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
                                   <div className="w-full h-full bg-gradient-to-br from-african_violet/20 to-grape/20 flex items-center justify-center">
-                                    <UserGroupIcon className="w-10 h-10 text-african_violet group-hover:text-grape transition-all duration-700 ease-out" />
+                                    {/* <UserGroupIcon className="w-10 h-10 text-african_violet group-hover:text-grape transition-all duration-700 ease-out" /> */}
+                                    <img src={mentorItem.photo} alt={mentorItem.name} className="w-full h-full object-cover rounded-2xl" />
                                   </div>
                                 </div>
                               </div>
@@ -727,21 +778,116 @@ const Home = () => {
               </p>
             </div>
             
-            {/* Achievements Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8" ref={achievementsRef}>
-              {achievements.map((achievement, i) => (
+            {/* Achievements Carousel */}
+            <div className="relative">
+              {/* Navigation arrows */}
+              <button
+                onClick={() => setCurrentAchievementSlide((prev) => (prev - 1 + Math.ceil(achievements.length / 4)) % Math.ceil(achievements.length / 4))}
+                className="absolute -left-20 top-1/3 -translate-y-1/2 bg-white text-jet border border-gray-200 p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-african_violet transition-all duration-200 z-20"
+                aria-label="Previous achievements"
+              >
+                <ChevronLeftIcon className="w-6 h-6" />
+              </button>
+              
+              <button
+                onClick={() => setCurrentAchievementSlide((prev) => (prev + 1) % Math.ceil(achievements.length / 4))}
+                className="absolute -right-20 top-1/3 -translate-y-1/2 bg-white text-jet border border-gray-200 p-3 rounded-full shadow-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-african_violet transition-all duration-200 z-20"
+                aria-label="Next achievements"
+              >
+                <ChevronRightIcon className="w-6 h-6" />
+              </button>
+              
+              {/* Carousel content */}
+              <div className="overflow-hidden py-8">
                 <div 
-                  key={`achievement-${i}`} 
-                  className={`bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center border-b-4 border-gold transition-all duration-700 hover:scale-105 cursor-pointer ${
-                    achievementsInView ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
-                  }`} 
-                  style={{ transitionDelay: `${i * 120}ms` }}
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${currentAchievementSlide * 100}%)` }}
                 >
-                  <span className="text-4xl font-bold text-eminence mb-2">{achievement.score}</span>
-                  <h3 className="text-lg font-bold text-jet mb-1">{achievement.name}</h3>
-                  <p className="text-base text-jet/70 mb-1">{achievement.exam}</p>
+                  {Array.from({ length: Math.ceil(achievements.length / 4) }, (_, slideIndex) => (
+                    <div key={slideIndex} className="w-full flex-shrink-0 px-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                        {achievements.slice(slideIndex * 4, (slideIndex + 1) * 4).map((achievement, cardIndex) => (
+                          <div
+                            key={achievement.id}
+                            className={`group relative bg-gradient-to-br from-white/95 to-african_violet/5 text-jet rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-700 ease-out p-6 border border-african_violet/20 hover:border-african_violet/40 cursor-pointer transform hover:-translate-y-3 hover:scale-105 overflow-hidden ${
+                              achievementsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                            }`}
+                            style={{ 
+                              transitionDelay: `${cardIndex * 0.1}s`,
+                              transitionDuration: '800ms'
+                            }}
+                          >
+                            {/* Animated left border */}
+                            <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-grape via-african_violet to-eminence transform origin-top scale-y-0 group-hover:scale-y-100 transition-transform duration-700 ease-out"></div>
+                            
+                            {/* Background pattern */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-african_violet/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"></div>
+                            
+                            {/* Content */}
+                            <div className="relative z-10 flex flex-col items-center text-center space-y-4">
+                              {/* Student image container */}
+                              <div className="relative">
+                                {/* Outer glow ring */}
+                                <div className="absolute inset-0 w-32 h-32 bg-gradient-to-r from-grape to-african_violet rounded-2xl blur-lg opacity-0 group-hover:opacity-60 transition-all duration-700 ease-out scale-0 group-hover:scale-100"></div>
+                                
+                                {/* Student image */}
+                                <div className="relative w-32 h-32 rounded-2xl overflow-hidden border-4 border-african_violet/30 group-hover:border-african_violet/60 transition-all duration-700 ease-out transform group-hover:scale-110">
+                                  <img 
+                                    src={achievement.image} 
+                                    alt={achievement.name} 
+                                    className="w-full h-full object-cover rounded-2xl" 
+                                  />
+                                </div>
+                              </div>
+                              
+                              {/* Achievement details */}
+                              <div className="space-y-2">
+                                <div className="text-3xl font-bold text-eminence group-hover:text-grape transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
+                                  {achievement.score}
+                                </div>
+                                <h3 className="font-display font-bold text-lg text-jet group-hover:text-eminence transition-all duration-500 ease-out transform group-hover:translate-y-[-2px]">
+                                  {achievement.name}
+                                </h3>
+                                <p className="text-african_violet font-semibold text-sm group-hover:text-grape transition-colors duration-500">
+                                  {achievement.exam}
+                                </p>
+                              </div>
+                              
+                              {/* Hover indicator */}
+                              <div className="opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out transform translate-y-2 group-hover:translate-y-0">
+                                <span className="inline-flex items-center space-x-2 text-african_violet font-medium text-xs group-hover:text-grape transition-colors duration-500">
+                                  <span>View Achievement</span>
+                                  <ArrowRightIcon className="w-3 h-3 group-hover:translate-x-1 transition-transform duration-300" />
+                                </span>
+                              </div>
+                            </div>
+                            
+                            {/* Hover effect overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-grape/5 to-eminence/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out"></div>
+                            
+                            {/* Subtle floating animation */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-out transform translate-y-full group-hover:translate-y-0"></div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              
+              {/* Dots indicator */}
+              <div className="flex justify-center space-x-2 mt-8">
+                {Array.from({ length: Math.ceil(achievements.length / 4) }, (_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentAchievementSlide(index)}
+                    className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                      index === currentAchievementSlide ? 'bg-african_violet' : 'bg-gray-300'
+                    }`}
+                    aria-label={`Go to achievement group ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -980,5 +1126,54 @@ const Home = () => {
     </>
   );
 };
+
+// --- Achievements Carousel for Hero ---
+function HeroAchievementsCarousel() {
+  const students = STUDENT_ACHIEVEMENTS;
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const intv = setInterval(() => {
+      setIndex((idx) => (idx + 1) % students.length);
+    }, 3000);
+    return () => clearInterval(intv);
+  }, [students.length]);
+  const student = students[index];
+  return (
+    <div className="flex flex-col justify-center items-center py-10 w-full">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={student.id || index}
+          initial={{ opacity: 0, scale: 0.9, y: 30 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: -30 }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
+          className="bg-white shadow-2xl rounded-3xl max-w-[530px] min-w-[430px] w-full h-[600px] flex flex-col items-center p-0 border-b-8 border-gold overflow-hidden"
+        >
+         <div className="flex flex-col h-full w-full">
+           {/* Image section: 65% */}
+           <div className="flex-1 min-h-0 flex flex-col justify-center items-center py-8" style={{flexBasis: '65%', flexGrow: 1}}>
+             <div className="w-[19.2rem] h-[19.2rem] overflow-hidden border-4 border-eminence bg-gradient-to-br from-gold to-amber-300 flex items-center justify-center rounded-2xl">
+               <img src={student.image} alt={student.name} className="object-cover w-full h-full rounded-2xl" />
+             </div>
+           </div>
+           {/* Details section: 35% */}
+           <div className="flex-none flex flex-col justify-center items-center gap-2 px-8 pb-6" style={{height: '35%'}}>
+             <div className="font-bold text-2xl text-grape text-center">{student.name}</div>
+             <div className="text-base text-eminence font-semibold text-center">{student.exam}</div>
+             <div className="relative flex justify-center items-center my-1 w-full">
+               <span className="inline-block text-4xl font-extrabold bg-gradient-to-r from-gold to-amber-300 text-eminence px-10 py-5 rounded-full shadow-lg border-4 border-gold -rotate-2 uppercase tracking-tight outline-white outline outline-2 drop-shadow-lg">
+                 {student.score}
+               </span>
+               <span className="absolute right-4 -top-3 bg-gold text-eminence font-bold text-xs px-2 py-1 rounded-xl shadow-md border-2 border-white">
+                 Top Score
+               </span>
+             </div>
+           </div>
+         </div>
+       </motion.div>
+     </AnimatePresence>
+   </div>
+ );
+}
 
 export default Home;

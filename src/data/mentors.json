@@ -4,7 +4,7 @@
     "name": "Vikram Ghule",
     "subject": "Physics",
     "qualification": "BE, ME & PhD Mechanical",
-    "photo": "/images/mentors/vikram.jpg",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759333666/20240428_224813_xstoqt.jpg",
     "experience": "17 years",
     "bio": "17 years of experience in teaching Physics to NEET & JEE aspirants. Specializes in mechanics, thermodynamics, and modern physics. Known for breaking down complex concepts into simple, understandable parts.",
     "achievements": [
@@ -19,7 +19,7 @@
     "name": "Prachi Ghule",
     "subject": "Mathematics",
     "qualification": "BE, ME Instrumentation",
-    "photo": "/images/mentors/prachi.jpg",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_256,h_256,ar_1:1,g_auto,f_png/v1760871440/IMG-20250822-WA0040_kefyoo.jpg",
     "experience": "7 years",
     "bio": "7 years of experience in Mathematics education. Expert in calculus, algebra, and trigonometry. Focuses on building strong mathematical foundations and problem-solving skills.",
     "achievements": [
@@ -34,7 +34,7 @@
     "name": "Minal Patil",
     "subject": "Chemistry",
     "qualification": "BSc & MSc Chemistry",
-    "photo": "/images/mentors/minal.jpg",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_700,h_700,ar_1:1,g_auto,f_png/v1759334136/IMG-20250212-WA0004_mxucpt.jpg",
     "experience": "12 years",
     "bio": "12 years of experience in Chemistry education. Specializes in organic chemistry, physical chemistry, and analytical chemistry. Known for making chemistry concepts memorable through practical examples.",
     "achievements": [
@@ -49,7 +49,7 @@
     "name": "Asawari Hire",
     "subject": "Biology",
     "qualification": "BSc & MSc Biotechnology",
-    "photo": "/images/mentors/asawari.jpg", 
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_900,h_900,ar_1:1,g_auto,f_png/v1759334136/IMG_20250211_222017_wisrxd.jpg", 
     "experience": "8 years",
     "bio": "8 years of experience in Biology education. Specializes in human physiology, genetics, and ecology. Focuses on NEET-specific biology preparation with emphasis on diagrams and concepts.",
     "achievements": [
@@ -64,7 +64,7 @@
     "name": "Ram Solanke",
     "subject": "Biology",
     "qualification": "BSc & MSc Microbiology",
-    "photo": "/images/mentors/ram.jpg",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1759334136/IMG_20250415_001246_672_t5sfki.webp",
     "experience": "6 years",
     "bio": "6 years of experience in Biology education. Expert in microbiology, cell biology, and plant physiology. Known for his innovative teaching methods and practical approach.",
     "achievements": [
@@ -79,7 +79,7 @@
     "name": "Kishor Jadhav",
     "subject": "Mathematics",
     "qualification": "BE & ME Mechanical",
-    "photo": "/images/mentors/kishor.jpg",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_2200,h_2200,ar_1:1,g_auto,f_png/v1760871938/WhatsApp_Image_2025-10-19_at_15.19.55_b8558178_jlknnd.jpg",
     "experience": "6 years",
     "bio": "6 years of experience in Mathematics education. Specializes in calculus, coordinate geometry, and statistics. Focuses on building logical thinking and mathematical intuition.",
     "achievements": [
@@ -94,7 +94,7 @@
     "name": "Dr. Shradha Dandnaik",
     "subject": "Bio-NEET",
     "qualification": "BDS",
-    "photo": "/images/mentors/shradha.jpg", 
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_700,h_700,ar_1:1,g_auto,f_png/v1760871937/WhatsApp_Image_2025-10-19_at_15.19.26_63cb30bf_etzsxz.jpg", 
     "experience": "4 years",
     "bio": "4 years of experience in Biology education with medical background. Specializes in human anatomy, physiology, and medical terminology. Provides unique medical perspective to biology concepts.",
     "achievements": [
@@ -106,77 +106,18 @@
   },
   {
     "id": 8,
-    "name": "Dr. Amit Deshmukh",
-    "subject": "Physics",
-    "qualification": "Ph.D. in Physics",
-    "photo": "/images/mentors/amit.jpg",
-    "experience": "15 years",
-    "bio": "15 years of experience in Physics education. Specializes in electromagnetism, optics, and quantum physics. Known for his research-oriented approach and deep conceptual understanding.",
-    "achievements": [
-      "Mentored 600+ JEE qualifiers",
-      "Published 25+ research papers",
-      "Former IIT faculty member",
-      "Awarded 'Excellence in Teaching' 2021"
-    ]
-  },
-  {
-    "id": 9,
-    "name": "Sneha Kulkarni",
-    "subject": "Chemistry",
-    "qualification": "MSc Chemistry, PhD Scholar",
-    "photo": "/images/mentors/sneha.jpg",
-    "experience": "10 years",
-    "bio": "10 years of experience in Chemistry education. Specializes in inorganic chemistry, coordination chemistry, and chemical bonding. Focuses on conceptual clarity and numerical problem solving.",
-    "achievements": [
-      "Mentored 350+ NEET qualifiers",
-      "Expert in coordination chemistry",
-      "Published chemistry textbooks",
-      "Awarded 'Young Chemistry Educator' 2023"
-    ]
-  },
-  {
-    "id": 10,
-    "name": "Rahul More",
+    "name": "Sandip Sir ",
     "subject": "Mathematics",
-    "qualification": "MSc Mathematics",
-    "photo": "/images/mentors/rahul.jpg",
+    "qualification": "M.Sc Maths, SET, B.Ed",
+    "photo": "https://res.cloudinary.com/dewpzsbeb/image/upload/e_background_removal/c_crop,w_800,h_800,ar_1:1,g_auto,f_png/v1760872374/WhatsApp_Image_2025-10-19_at_16.40.42_64038c7c_qk4ol7.jpg", 
     "experience": "8 years",
-    "bio": "8 years of experience in Mathematics education. Specializes in algebra, trigonometry, and probability. Known for his systematic approach and emphasis on fundamentals.",
+    "bio": "8 years of experience in Mathematics education. Specializes in calculus, coordinate geometry, and statistics. Focuses on building logical thinking and mathematical intuition.",
     "achievements": [
-      "Mentored 250+ JEE qualifiers",
-      "Specialist in algebra",
-      "Developed mathematics worksheets",
-      "Regular mathematics tutor trainer"
-    ]
-  },
-  {
-    "id": 11,
-    "name": "Dr. Priyanka Singh",
-    "subject": "Biology",
-    "qualification": "MBBS, MD Pathology",
-    "photo": "/images/mentors/priyanka.jpg",
-    "experience": "12 years",
-    "bio": "12 years of experience in Biology education with medical background. Specializes in human anatomy, pathology, and medical biology. Provides clinical perspective to biological concepts.",
-    "achievements": [
-      "Mentored 450+ NEET qualifiers",
-      "Medical doctor turned educator",
-      "Expert in human pathology",
-      "Developed clinical biology modules"
-    ]
-  },
-  {
-    "id": 12,
-    "name": "Vikrant Pawar",
-    "subject": "Physics",
-    "qualification": "MSc Physics",
-    "photo": "/images/mentors/vikrant.jpg",
-    "experience": "9 years",
-    "bio": "9 years of experience in Physics education. Specializes in mechanics, waves, and modern physics. Known for his practical demonstrations and real-world applications.",
-    "achievements": [
-      "Mentored 280+ NEET qualifiers",
-      "Specialist in wave physics",
-      "Developed physics lab modules",
-      "Awarded 'Practical Physics Teacher' 2022"
+      "Mentored 120+ JEE qualifiers",
+      "Expert in advanced mathematics",
+      "Developed mathematics problem banks",
+      "Regular contributor to mathematics forums"
     ]
   }
+  
 ]

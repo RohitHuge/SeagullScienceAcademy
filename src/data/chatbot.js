@@ -1,25 +1,18 @@
-import { Client, Functions } from "appwrite";
-import { appwriteProjectId } from "./config";
-
-const client = new Client()
-  .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject(appwriteProjectId);
-
-const functions = new Functions(client);
+const WORKER_URL = import.meta.env.VITE_CHATBOT_WORKER_URL;
 
 export async function askBot(userMessage, messages = []) {
-  const payload = {
-    message: userMessage,
-    history: messages,
-  };
+  const response = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: userMessage, history: messages }),
+  });
 
-  const execution = await functions.createExecution(
-    "68aafcd400374a707256",
-    JSON.stringify(payload)
-  );
+  if (!response.ok) {
+    const err = await response.json().catch(() => ({}));
+    throw new Error(err.error || `Worker error ${response.status}`);
+  }
 
-  const result = JSON.parse(execution.responseBody);
-
+  const result = await response.json();
   return {
     role: "model",
     text: result.reply,
