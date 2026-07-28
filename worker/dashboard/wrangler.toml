@@ -1,0 +1,12 @@
+name = "seagull-dashboard"
+main = "index.js"
+compatibility_date = "2024-11-01"
+account_id = "a4978ad5a462a0a78a0e8a903b0d352f"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "seagull-dashboard"
+database_id = "5a6bec18-1dc9-4821-96fe-ef00c34419eb"
+
+[observability]
+enabled = true
